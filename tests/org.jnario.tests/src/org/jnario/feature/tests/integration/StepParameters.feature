@@ -113,9 +113,8 @@ Feature: Step Parameters
 							x should be args.first
 			"
 		Then it should execute successfully
-		
+	
 	Scenario: Using args in And Steps
-		
 		When I have a scenario with 'and' step arguments
 		'''
 		Feature: And Arguments
@@ -128,3 +127,36 @@ Feature: Step Parameters
 		'''
 			jnarioFile=args.first
 		Then it should execute successfully
+		
+	Scenario: Field initializers in Backgrounds
+		When I have a scenario with a background and a field initializer
+		'''
+		Feature: Field initializers in Backgrounds
+		Background:
+		  String greeting = "Hello "
+		  Given a name "Sebastian"
+		    greeting = greeting + args.first
+		Scenario: Greeting someone
+		  Then the greeting should be "Hello Sebastian" 
+			greeting => args.first
+		'''
+			jnarioFile=args.first
+		Then it should execute successfully
+	
+	Scenario: White space normalizing
+		When I have a scenario with a multiline string
+		jnarioFile="
+		Feature: Multiline String
+			Scenario: Example
+				String arg 
+				Given a step with a multiline argument:
+					'''
+					 hello
+					 world
+					'''
+					arg = args.first
+				Then the whitespace should be normalized
+					assertEquals('hello\nworld\n', arg)
+		"
+		Then it should execute successfully
+		

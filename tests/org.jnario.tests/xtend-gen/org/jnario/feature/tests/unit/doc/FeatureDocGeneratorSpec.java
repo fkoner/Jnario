@@ -36,8 +36,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("FeatureDocGenerator")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = FeatureTestCreator.class)
 public class FeatureDocGeneratorSpec {
   @Subject
@@ -55,7 +55,7 @@ public class FeatureDocGeneratorSpec {
   
   @Test
   @Named("generates scenario documentation")
-  @Order(0)
+  @Order(1)
   public void _generatesScenarioDocumentation() throws Exception {
     final String actual = this.generateDoc("\n\t\t\tpackage test\n\n\t\t\tFeature: Example Feature\n\t\t\t\t\n\t\t\t\tThis is a description.\n\t\t\t\t\n\t\t\t\tScenario: Example Scenario\n\t\t\t\t\n\t\t\t\t\tString input\n\t\t\t\t\n\t\t\t\t\tGiven a step with an argument \"something\", another \"argument\" and a multiline string:\n\t\t\t\t\t\'\'\'\n\t\t\t\t\t\timport java.util.Collections.*;\n\t\t\t\t\t\t\n\t\t\t\t\t\tpublic class Greeter{\n\t\t\t\t\t\t\tpublic static void main(String args[]){\n\t\t\t\t\t\t\t\tList<String> list = new ArrayList<String>(); // should escape angle brackets\n\t\t\t\t\t\t\t\tSysten.out.println(\'Hello World\');\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\'\'\' \n\t\t\t\t\t\tinput = args.first\n\t\t\t\t\t\tprintln(args.last)\n\t\t\t\t\tWhen I do something that is pending.\n\t\t\t\t\t\tAnd something else that is pending\n\t\t\t\t\t\tBut this is implemented\n\t\t\t\t\t\t\t1 + 1 => 2\n\t\t\t\t\tThen it results in \"something else\"\n\t\t\t\t\t\tinput + \' else\' => args.first                                    \n\t\t");
     StringConcatenation _builder = new StringConcatenation();
@@ -114,7 +114,7 @@ public class FeatureDocGeneratorSpec {
   
   @Test
   @Named("Includes failure state in Feature")
-  @Order(1)
+  @Order(2)
   public void _includesFailureStateInFeature() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Feature: Example");
@@ -144,7 +144,7 @@ public class FeatureDocGeneratorSpec {
     _builder.newLine();
     CharSequence _generateDocWithErrors = this.generateDocWithErrors(_builder);
     boolean _should_contain = Should.should_contain(_generateDocWithErrors, "failed");
-    Assert.assertTrue("\nExpected \'\'\'\n\t\t\tFeature: Example\n\t\t\t\n\t\t\tScenario: A failing Scenario\n\t\t\t\n\t\t\tGiven something\n\t\t\tWhen something happens \n\t\t\tThen there is an error\n\t\t\t\n\t\t\tScenario: Another scnario\n\t\t\tGiven something\n\t\t\t\t1 + 1 => 2\n\t\t\tThen something else\n\t\t\t\t\"\"       \n\t\t\'\'\'.generateDocWithErrors should contain \"failed\" but"
+    org.jnario.lib.Assert.assertTrue("\nExpected \'\'\'\n\t\t\tFeature: Example\n\t\t\t\n\t\t\tScenario: A failing Scenario\n\t\t\t\n\t\t\tGiven something\n\t\t\tWhen something happens \n\t\t\tThen there is an error\n\t\t\t\n\t\t\tScenario: Another scnario\n\t\t\tGiven something\n\t\t\t\t1 + 1 => 2\n\t\t\tThen something else\n\t\t\t\t\"\"       \n\t\t\'\'\'.generateDocWithErrors should contain \"failed\" but"
      + "\n     \'\'\'\n\t\t\tFeature: Example\n\t\t\t\n\t\t\tScenario: A failing Scenario\n\t\t\t\n\t\t\tGiven something\n\t\t\tWhen something happens \n\t\t\tThen there is an error\n\t\t\t\n\t\t\tScenario: Another scnario\n\t\t\tGiven something\n\t\t\t\t1 + 1 => 2\n\t\t\tThen something else\n\t\t\t\t\"\"       \n\t\t\'\'\'.generateDocWithErrors is " + new StringDescription().appendValue(_generateDocWithErrors).toString()
      + "\n     \'\'\'\n\t\t\tFeature: Example\n\t\t\t\n\t\t\tScenario: A failing Scenario\n\t\t\t\n\t\t\tGiven something\n\t\t\tWhen something happens \n\t\t\tThen there is an error\n\t\t\t\n\t\t\tScenario: Another scnario\n\t\t\tGiven something\n\t\t\t\t1 + 1 => 2\n\t\t\tThen something else\n\t\t\t\t\"\"       \n\t\t\'\'\' is " + new StringDescription().appendValue(_builder).toString() + "\n", _should_contain);
     

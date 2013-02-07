@@ -4,21 +4,21 @@ import org.hamcrest.StringDescription;
 import org.jnario.feature.feature.Scenario;
 import org.jnario.feature.tests.unit.naming.StepNameProviderSpec;
 import org.jnario.jnario.test.util.Features;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("^describe[Scenario]")
+@RunWith(ExampleGroupRunner.class)
 public class StepNameProviderDescribeScenarioSpec extends StepNameProviderSpec {
   @Test
   @Named("scenario[\\\" With whitespace \\\"].desc =>  \\\"With whitespace\\\"")
-  @Order(9)
+  @Order(10)
   public void _scenarioWithWhitespaceDescWithWhitespace() throws Exception {
     Scenario _scenario = Features.scenario(" With whitespace ");
     String _desc = this.desc(_scenario);
@@ -31,7 +31,7 @@ public class StepNameProviderDescribeScenarioSpec extends StepNameProviderSpec {
   
   @Test
   @Named("scenario[\\\"With [parentheses]\\\"].desc =>  \\\"With [parentheses]\\\"")
-  @Order(10)
+  @Order(11)
   public void _scenarioWithParenthesesDescWithParentheses() throws Exception {
     Scenario _scenario = Features.scenario("With (parentheses)");
     String _desc = this.desc(_scenario);

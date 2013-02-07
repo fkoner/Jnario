@@ -32,7 +32,7 @@ class FeatureDocGenerator extends AbstractDocGenerator {
 		}
 		val feature = xtendClass as Feature
 		return HtmlFile::newHtmlFile[
-			name = feature.getClassName 
+			name = feature.toJavaClassName 
 			title = feature.name
 			content = feature.generateContent
 			rootFolder = feature.root
@@ -57,16 +57,13 @@ class FeatureDocGenerator extends AbstractDocGenerator {
 
 	def dispatch generate(Scenario scenario)'''
 		<div><h3 class="scenario «scenario.executionStateClass»" «id(scenario.name)»>«scenario.name»</h3>
-		«generate(scenario.steps.filter(typeof(Step)))»</div>
+		«generate(scenario.steps)»</div>
 	'''
-	
+
 	def dispatch generate(Iterable<Step> steps)'''
 		<ul>
 		«FOR step : steps»
 		<li>«generate(step)»</li>
-		«FOR and : step.and»
-		<li>«generate(and)»</li>
-		«ENDFOR»
 		«ENDFOR»
 		</ul>
 	'''

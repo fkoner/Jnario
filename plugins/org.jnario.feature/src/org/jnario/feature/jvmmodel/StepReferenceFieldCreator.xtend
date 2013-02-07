@@ -16,6 +16,7 @@ import org.eclipse.xtend.core.xtend.XtendMember
 import org.jnario.feature.feature.StepReference
 
 import static org.eclipse.xtext.EcoreUtil2.*
+import org.jnario.util.SourceAdapter
 
 /**
  * @author Birgit Engelmann - Initial contribution and API
@@ -27,7 +28,7 @@ class StepReferenceFieldCreator {
 	def copyXtendMemberForReferences(EObject objectWithReference){
 		val refs = getAllContentsOfType(objectWithReference, typeof(StepReference))
 		for(ref: refs){
-			if(ref.reference?.stepExpression != null){
+			if(ref.reference?.expression != null){
 				val fieldNames = ref.existingFieldNamesForContainerOfStepReference
 				val members = ref.reference.allVisibleMembers
 				objectWithReference.copyFields(members, fieldNames)					
@@ -40,7 +41,7 @@ class StepReferenceFieldCreator {
    	}
    	
    	def private getExistingFieldNames(Iterable<XtendMember> members){
-   		members.filter(typeof(XtendField)).map[name].toSet
+   		members.filter(typeof(XtendField)).filter[it != null].map[name].toSet
    	}
    	
    	def private copyFields(EObject objectWithReference, Iterable<XtendMember> members, Set<String> fieldNames){
@@ -50,7 +51,8 @@ class StepReferenceFieldCreator {
    		val type = objectWithReference as XtendClass
    		for(field: members.filter(typeof(XtendField))){
 			if(!fieldNames.contains(field.name)){
-				val copiedMember = cloneWithProxies(field)
+				val copiedMember = clone(field)
+				SourceAdapter::adapt(copiedMember, field);
 				type.members.add(copiedMember as XtendField)
 				fieldNames += field.name
 			}

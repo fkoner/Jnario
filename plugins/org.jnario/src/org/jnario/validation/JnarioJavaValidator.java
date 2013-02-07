@@ -21,14 +21,16 @@ import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.XBinaryOperation;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.typing.ITypeProvider;
+import org.eclipse.xtext.xbase.util.XExpressionHelper;
 import org.jnario.Assertion;
 import org.jnario.ExampleRow;
 import org.jnario.ExampleTable;
 import org.jnario.JnarioPackage;
 import org.jnario.MockLiteral;
+import org.jnario.ShouldThrow;
+import org.jnario.jvmmodel.TestRuntimeProvider;
 import org.jnario.runner.Named;
 import org.jnario.util.MockingSupport;
-import org.junit.Test;
 
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
@@ -43,8 +45,21 @@ public class JnarioJavaValidator extends AbstractDeclarativeValidator {
 	@Inject 
 	private ITypeProvider typeProvider;
 	
+	@Inject
+	private XExpressionHelper expressionHelper;
+	
 	@Inject 
 	private TypeReferences typeReferences;
+	
+	@Inject
+	private TestRuntimeProvider runtimeProvider;
+	
+	@Check
+	public void checkShouldThrow(ShouldThrow shouldThrow){
+		if(expressionHelper.isLiteral(shouldThrow.getExpression())){
+			error("Literals cannot throw exceptions", null);
+		}
+	}
 	
 	@Check
 	public void checkClassPath(MockLiteral clazz) {
@@ -60,8 +75,11 @@ public class JnarioJavaValidator extends AbstractDeclarativeValidator {
 			error("Mandatory library bundle 'org.jnario.lib' 0.1.0 or higher not found on the classpath.", clazz,
 					XTEND_CLASS__NAME, JnarioIssueCodes.JNARIO_LIB_NOT_ON_CLASSPATH);
 		}
-		if (typeReferences.findDeclaredType(Test.class, clazz) == null) {
-			error("Mandatory library bundle 'org.junit' 4.8.0 or higher not found on the classpath.", clazz,
+		
+		try {
+			runtimeProvider.get(clazz);
+		} catch (Exception e) {
+			error(e.getMessage(), clazz,
 					XTEND_CLASS__NAME, JnarioIssueCodes.JUNIT_NOT_ON_CLASSPATH);
 		}
 	}

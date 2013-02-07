@@ -8,13 +8,13 @@ import org.jnario.feature.feature.GivenReference;
 import org.jnario.feature.feature.StepImplementation;
 import org.jnario.jnario.test.util.FeatureTestCreator;
 import org.jnario.jnario.test.util.ModelStore;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.CreateWith;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Extension;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -25,8 +25,8 @@ import org.junit.runner.RunWith;
  * (see last example).
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Referencing other Steps")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = FeatureTestCreator.class)
 public class ReferencingOtherStepsSpec {
   @Inject
@@ -35,7 +35,7 @@ public class ReferencingOtherStepsSpec {
   
   @Test
   @Named("Steps can reference steps in the same feature")
-  @Order(0)
+  @Order(1)
   public void _stepsCanReferenceStepsInTheSameFeature() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package test");
@@ -69,14 +69,13 @@ public class ReferencingOtherStepsSpec {
     Assert.assertTrue("\nExpected first(typeof(GivenReference)).reference => first(typeof(Given)) but"
      + "\n     first(typeof(GivenReference)).reference is " + new StringDescription().appendValue(_reference).toString()
      + "\n     first(typeof(GivenReference)) is " + new StringDescription().appendValue(_first).toString()
-     + "\n      is " + new StringDescription().appendValue(this.m).toString()
      + "\n     first(typeof(Given)) is " + new StringDescription().appendValue(_first_1).toString() + "\n", _doubleArrow);
     
   }
   
   @Test
   @Named("Steps ignore trailing whitespace when referencing steps")
-  @Order(1)
+  @Order(2)
   public void _stepsIgnoreTrailingWhitespaceWhenReferencingSteps() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package test");
@@ -114,14 +113,13 @@ public class ReferencingOtherStepsSpec {
     Assert.assertTrue("\nExpected first(typeof(GivenReference)).reference => first(typeof(Given)) but"
      + "\n     first(typeof(GivenReference)).reference is " + new StringDescription().appendValue(_reference).toString()
      + "\n     first(typeof(GivenReference)) is " + new StringDescription().appendValue(_first).toString()
-     + "\n      is " + new StringDescription().appendValue(this.m).toString()
      + "\n     first(typeof(Given)) is " + new StringDescription().appendValue(_first_1).toString() + "\n", _doubleArrow);
     
   }
   
   @Test
   @Named("Steps can reference steps in features in the same package")
-  @Order(2)
+  @Order(3)
   public void _stepsCanReferenceStepsInFeaturesInTheSamePackage() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package test");
@@ -162,14 +160,13 @@ public class ReferencingOtherStepsSpec {
     Assert.assertTrue("\nExpected first(typeof(GivenReference)).reference => first(typeof(Given)) but"
      + "\n     first(typeof(GivenReference)).reference is " + new StringDescription().appendValue(_reference).toString()
      + "\n     first(typeof(GivenReference)) is " + new StringDescription().appendValue(_first).toString()
-     + "\n      is " + new StringDescription().appendValue(this.m).toString()
      + "\n     first(typeof(Given)) is " + new StringDescription().appendValue(_first_1).toString() + "\n", _doubleArrow);
     
   }
   
   @Test
   @Named("Referencing steps in a different package requires an import statement")
-  @Order(3)
+  @Order(4)
   public void _referencingStepsInADifferentPackageRequiresAnImportStatement() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package test1");
@@ -211,7 +208,6 @@ public class ReferencingOtherStepsSpec {
     Assert.assertTrue("\nExpected first(typeof(GivenReference)).reference => first(typeof(Given)) but"
      + "\n     first(typeof(GivenReference)).reference is " + new StringDescription().appendValue(_reference).toString()
      + "\n     first(typeof(GivenReference)) is " + new StringDescription().appendValue(_first).toString()
-     + "\n      is " + new StringDescription().appendValue(this.m).toString()
      + "\n     first(typeof(Given)) is " + new StringDescription().appendValue(_first_1).toString() + "\n", _doubleArrow);
     
   }

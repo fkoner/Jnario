@@ -9,6 +9,7 @@ import org.hamcrest.StringDescription;
 import org.jnario.feature.feature.FeaturePackage;
 import org.jnario.jnario.test.util.Specs;
 import org.jnario.jnario.test.util.Suites;
+import org.jnario.lib.Assert;
 import org.jnario.lib.JnarioCollectionLiterals;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
@@ -22,13 +23,12 @@ import org.jnario.spec.spec.SpecPackage;
 import org.jnario.suite.scoping.SuiteSpecFilter;
 import org.jnario.suite.suite.Suite;
 import org.jnario.suite.suite.SuitePackage;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("SuiteSpecFilter")
+@RunWith(ExampleGroupRunner.class)
 public class SuiteSpecFilterSpec {
   @Subject
   public SuiteSpecFilter subject;
@@ -44,7 +44,7 @@ public class SuiteSpecFilterSpec {
   
   @Test
   @Named("Suites pass")
-  @Order(0)
+  @Order(1)
   public void _suitesPass() throws Exception {
     EClass _suite = this._suitePackage.getSuite();
     IEObjectDescription _desc = this.desc(_suite);
@@ -54,14 +54,13 @@ public class SuiteSpecFilterSpec {
      + "\n     subject.apply(desc(suite)) is " + new StringDescription().appendValue(Boolean.valueOf(_apply)).toString()
      + "\n     subject is " + new StringDescription().appendValue(this.subject).toString()
      + "\n     desc(suite) is " + new StringDescription().appendValue(_desc).toString()
-     + "\n     suite is " + new StringDescription().appendValue(_suite).toString()
-     + "\n      is " + new StringDescription().appendValue(this._suitePackage).toString() + "\n", _doubleArrow);
+     + "\n     suite is " + new StringDescription().appendValue(_suite).toString() + "\n", _doubleArrow);
     
   }
   
   @Test
   @Named("Features pass")
-  @Order(1)
+  @Order(2)
   public void _featuresPass() throws Exception {
     EClass _feature = this._featurePackage.getFeature();
     IEObjectDescription _desc = this.desc(_feature);
@@ -71,14 +70,13 @@ public class SuiteSpecFilterSpec {
      + "\n     subject.apply(desc(feature)) is " + new StringDescription().appendValue(Boolean.valueOf(_apply)).toString()
      + "\n     subject is " + new StringDescription().appendValue(this.subject).toString()
      + "\n     desc(feature) is " + new StringDescription().appendValue(_desc).toString()
-     + "\n     feature is " + new StringDescription().appendValue(_feature).toString()
-     + "\n      is " + new StringDescription().appendValue(this._featurePackage).toString() + "\n", _doubleArrow);
+     + "\n     feature is " + new StringDescription().appendValue(_feature).toString() + "\n", _doubleArrow);
     
   }
   
   @Test
   @Named("Root Specs pass")
-  @Order(2)
+  @Order(3)
   public void _rootSpecsPass() throws Exception {
     IEObjectDescription _rootSpec = this.rootSpec();
     boolean _apply = this.subject.apply(_rootSpec);
@@ -92,7 +90,7 @@ public class SuiteSpecFilterSpec {
   
   @Test
   @Named("Child Specs fail")
-  @Order(3)
+  @Order(4)
   public void _childSpecsFail() throws Exception {
     IEObjectDescription _childSpec = this.childSpec();
     boolean _apply = this.subject.apply(_childSpec);

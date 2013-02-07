@@ -5,21 +5,21 @@ import org.jnario.feature.feature.Given;
 import org.jnario.feature.feature.Scenario;
 import org.jnario.jnario.test.util.Features;
 import org.jnario.jnario.tests.unit.jnario.ExecutableIsPendingSpec;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Scenario")
+@RunWith(ExampleGroupRunner.class)
 public class ExecutableIsPendingScenarioSpec extends ExecutableIsPendingSpec {
   @Test
   @Named("scenario[\\\"Without steps\\\"].isPending[] should be true")
-  @Order(7)
+  @Order(8)
   public void _scenarioWithoutStepsIsPendingShouldBeTrue() throws Exception {
     Scenario _scenario = Features.scenario("Without steps");
     boolean _isPending = _scenario.isPending();
@@ -32,7 +32,7 @@ public class ExecutableIsPendingScenarioSpec extends ExecutableIsPendingSpec {
   
   @Test
   @Named("scenarioWith[stepWithoutImplementation].isPending[] should be true")
-  @Order(8)
+  @Order(9)
   public void _scenarioWithStepWithoutImplementationIsPendingShouldBeTrue() throws Exception {
     Given _stepWithoutImplementation = Features.stepWithoutImplementation();
     Scenario _scenarioWith = Features.scenarioWith(_stepWithoutImplementation);
@@ -47,7 +47,7 @@ public class ExecutableIsPendingScenarioSpec extends ExecutableIsPendingSpec {
   
   @Test
   @Named("scenarioWith[implementedStep].isPending[] should be false")
-  @Order(9)
+  @Order(10)
   public void _scenarioWithImplementedStepIsPendingShouldBeFalse() throws Exception {
     Given _implementedStep = Features.implementedStep();
     Scenario _scenarioWith = Features.scenarioWith(_implementedStep);
@@ -62,7 +62,7 @@ public class ExecutableIsPendingScenarioSpec extends ExecutableIsPendingSpec {
   
   @Test
   @Named("scenarioWith[stepWithoutImplementation, implementedStep].isPending[] should be true")
-  @Order(10)
+  @Order(11)
   public void _scenarioWithStepWithoutImplementationImplementedStepIsPendingShouldBeTrue() throws Exception {
     Given _stepWithoutImplementation = Features.stepWithoutImplementation();
     Given _implementedStep = Features.implementedStep();

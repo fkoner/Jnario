@@ -4,11 +4,11 @@ import java.util.Collections;
 import java.util.List;
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.documentation._20FactsAboutXtendSpec;
+import org.jnario.lib.Assert;
 import org.jnario.lib.JnarioCollectionLiterals;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -39,8 +39,8 @@ import org.junit.runner.RunWith;
  * </pre>
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Readable Code with Extension Methods")
+@RunWith(ExampleGroupRunner.class)
 public class _20FactsAboutXtendReadableCodeWithExtensionMethodsSpec extends _20FactsAboutXtendSpec {
   /**
    * You can import static methods as extensions, for example, when we import:
@@ -53,7 +53,7 @@ public class _20FactsAboutXtendReadableCodeWithExtensionMethodsSpec extends _20F
    */
   @Test
   @Named("Import static extension methods.")
-  @Order(10)
+  @Order(11)
   public void _importStaticExtensionMethods() throws Exception {
     final List<String> colors = JnarioCollectionLiterals.<String>list("red", "blue", "green");
     Collections.<String>sort(colors);
@@ -80,7 +80,7 @@ public class _20FactsAboutXtendReadableCodeWithExtensionMethodsSpec extends _20F
    */
   @Test
   @Named("Local extension methods.")
-  @Order(11)
+  @Order(12)
   public void _localExtensionMethods() throws Exception {
     List<String> _list = JnarioCollectionLiterals.<String>list("red");
     boolean _hasOneElement = this.hasOneElement(_list);
@@ -106,7 +106,7 @@ public class _20FactsAboutXtendReadableCodeWithExtensionMethodsSpec extends _20F
    */
   @Test
   @Named("Extension fields")
-  @Order(12)
+  @Order(13)
   public void _extensionFields() throws Exception {
     List<String> _list = JnarioCollectionLiterals.<String>list("red");
     boolean _hasOneElement = this.hasOneElement(_list);

@@ -7,13 +7,14 @@
  *******************************************************************************/
 package org.jnario.spec.tests.integration
 
-import static extension org.jnario.jnario.test.util.Helpers.*
-import static extension org.jnario.jnario.test.util.SpecExecutor.*
-import org.junit.Ignore
-import org.jnario.runner.CreateWith
-import org.jnario.jnario.test.util.SpecTestCreator
-import org.jnario.jnario.test.util.BehaviorExecutor
 import com.google.inject.Inject
+import org.jnario.jnario.test.util.BehaviorExecutor
+import org.jnario.jnario.test.util.SpecTestCreator
+import org.jnario.runner.CreateWith
+
+import static extension org.jnario.jnario.test.util.Helpers.*
+import static extension org.jnario.lib.ExampleTableIterators.*
+import static extension org.jnario.lib.Should.*
 
 /*
  * Example tables are a great way to structure input and expected output data.
@@ -76,7 +77,7 @@ describe "Using Tables"{
    * Values in an example table can be arbitrary non-void expressions, for examples closures:
    * @filter('''|.executesSuccessfully) 
    */
-  fact "expressions in tables"{
+  fact "Expressions in tables"{
     '''
     package bootstrap
     
@@ -101,7 +102,7 @@ describe "Using Tables"{
    * It is also possible to call methods or reference fields from within a table.
    * @filter('''|.executesSuccessfully) 
    */
-  fact "referencing members"{
+  fact "Referencing members"{
     '''
     package bootstrap
     
@@ -134,25 +135,50 @@ describe "Using Tables"{
    * common supertype of all expressions in a column. 
    * @filter('''|.executesSuccessfully) 
    */
-  fact "Specifying column types"{
+  fact "Column type inference"{
   '''
   package bootstrap
   
   import java.util.*
 
   describe "Example Tables"{
-    def examplesWithType{
+    def examplesWithTypeInference{
       |          list            |
       | new ArrayList<String>()  |
       | new LinkedList<String>() |
     }     
 
     fact "computes the common super type"{
-      examplesWithType.forEach[
+      examplesWithTypeInference.forEach[
         assert list.empty // works only if the type of list has been inferred as List<String>
       ]
     }
   }
+  '''.executesSuccessfully       
+  }
+  
+  /*
+   * It is also possible to explicitly define the type of a column. 
+   * @filter('''|.executesSuccessfully) 
+   */
+  fact "Specifying column types"{
+  '''
+	import java.util.ArrayList
+	import java.util.LinkedList
+	
+	describe "Example Tables"{
+	  def examplesWithType{
+	    | Iterable<String> list    |
+	    | new ArrayList<String>()  |
+	    | new LinkedList<String>() |
+	  }
+	    
+	  fact "computes the common super type"{
+	    examplesWithType.forEach[
+	      assert list.empty
+	    ]
+	  }
+	}
   '''.executesSuccessfully       
   }
   
@@ -173,7 +199,6 @@ describe "Using Tables"{
    * `ExampleTable#forEach` executes the passed in procedure for all table rows. 
    * It will generate an error message for all procedures that have failed with the reason why they failed.
    */
-   @Ignore
    fact "Error message"{
 		errorMessage[
 		  example.forEach[
@@ -182,22 +207,24 @@ describe "Using Tables"{
 		].is('''
 			example failed
 			
-			        | value1     | value2     | sum     |
-			        | 1          | 2          | 3       | ?
-			        | 4          | 5          | 7       | ?     (1)
-			        | 7          | 8          | 14      | ?     (2)
+			        | value1     | value2     | sum      |
+			        | <1>        | <2>        | <3>      | ✓
+			        | <4>        | <5>        | <7>      | ✘     (1)
+			        | <7>        | <8>        | <14>     | ✘     (2)
 			
-			(1) Expected value1 + value2 => sum but
-			         value1 + value2 is 9
-			         value1 is 4
-			         value2 is 5
-			         sum is 7
-			    
-			(2) Expected value1 + value2 => sum but
-			         value1 + value2 is 15
-			         value1 is 7
-			         value2 is 8
-			         sum is 14''')
+			(1) java.lang.AssertionError: 
+			Expected value1 + value2 => sum but
+			     value1 + value2 is <9>
+			     value1 is <4>
+			     value2 is <5>
+			     sum is <7>
+			
+			(2) java.lang.AssertionError: 
+			Expected value1 + value2 => sum but
+			     value1 + value2 is <15>
+			     value1 is <7>
+			     value2 is <8>
+			     sum is <14>''')
 	}    
 
 }               

@@ -8,18 +8,18 @@ import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.ModelStore;
 import org.jnario.jnario.test.util.Query;
 import org.jnario.jnario.test.util.SpecTestCreator;
+import org.jnario.lib.Assert;
 import org.jnario.runner.CreateWith;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Extension;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Should")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SpecTestCreator.class)
 public class ShouldSpec {
   @Inject
@@ -32,7 +32,7 @@ public class ShouldSpec {
   
   @Test
   @Named("\\\'isNot\\\' is false if for \\\'1 should be 1")
-  @Order(0)
+  @Order(1)
   public void _isNotIsFalseIfFor1ShouldBe1() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package bootstrap");
@@ -52,14 +52,13 @@ public class ShouldSpec {
     Assert.assertTrue("\nExpected !query.first(typeof(Should)).isNot but"
      + "\n     query.first(typeof(Should)).isNot is " + new StringDescription().appendValue(_isNot).toString()
      + "\n     query.first(typeof(Should)) is " + new StringDescription().appendValue(_first).toString()
-     + "\n     query is " + new StringDescription().appendValue(_query).toString()
-     + "\n      is " + new StringDescription().appendValue(this._modelStore).toString() + "\n", _not);
+     + "\n     query is " + new StringDescription().appendValue(_query).toString() + "\n", _not);
     
   }
   
   @Test
   @Named("\\\'isNot\\\' is true if for \\\'1 should not be 1")
-  @Order(1)
+  @Order(2)
   public void _isNotIsTrueIfFor1ShouldNotBe1() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package bootstrap");
@@ -77,14 +76,13 @@ public class ShouldSpec {
     boolean _isNot = _first.isNot();
     Assert.assertTrue("\nExpected query.first(typeof(Should)).isNot but"
      + "\n     query.first(typeof(Should)) is " + new StringDescription().appendValue(_first).toString()
-     + "\n     query is " + new StringDescription().appendValue(_query).toString()
-     + "\n      is " + new StringDescription().appendValue(this._modelStore).toString() + "\n", _isNot);
+     + "\n     query is " + new StringDescription().appendValue(_query).toString() + "\n", _isNot);
     
   }
   
   @Test
   @Named("short circuit invocation works in closures within assertions")
-  @Order(2)
+  @Order(3)
   public void _shortCircuitInvocationWorksInClosuresWithinAssertions() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("describe \"Test\"{");
@@ -99,7 +97,7 @@ public class ShouldSpec {
   
   @Test
   @Named("throw checks expected exception")
-  @Order(3)
+  @Order(4)
   public void _throwChecksExpectedException() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("import java.util.*");
@@ -116,7 +114,7 @@ public class ShouldSpec {
   
   @Test
   @Named("throw checks fails if no exception is thrown")
-  @Order(4)
+  @Order(5)
   public void _throwChecksFailsIfNoExceptionIsThrown() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("describe \"Test\"{");
@@ -131,7 +129,7 @@ public class ShouldSpec {
   
   @Test
   @Named("throw checks fails if exception with different type is thrown")
-  @Order(5)
+  @Order(6)
   public void _throwChecksFailsIfExceptionWithDifferentTypeIsThrown() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("import java.util.*");
@@ -144,5 +142,20 @@ public class ShouldSpec {
     _builder.append("}");
     _builder.newLine();
     this._behaviorExecutor.executionFails(_builder);
+  }
+  
+  @Test
+  @Named("compares arrays")
+  @Order(7)
+  public void _comparesArrays() throws Exception {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("describe \"Test\"{");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("fact list(\"red\").toArray => list(\"red\").toArray");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    this._behaviorExecutor.executesSuccessfully(_builder);
   }
 }

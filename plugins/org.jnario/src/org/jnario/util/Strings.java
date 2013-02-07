@@ -8,6 +8,7 @@
 package org.jnario.util;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static com.google.common.io.Closeables.closeQuietly;
 import static java.lang.Character.isJavaIdentifierPart;
 import static java.lang.Character.isJavaIdentifierStart;
 import static java.lang.Character.isLetterOrDigit;
@@ -82,8 +83,11 @@ public class Strings extends org.eclipse.xtext.util.Strings{
 		return -1;
 	}
 	
+	@SuppressWarnings("resource")
 	public static String convertStreamToString(InputStream is) { 
-	    return new Scanner(is).useDelimiter("\\A").next();
+		String result = new Scanner(is).useDelimiter("\\A").next();
+	    closeQuietly(is);
+		return result;
 	}
 	
 	public static String convertToCamelCase(String string) {

@@ -17,8 +17,8 @@ import org.junit.runner.RunWith;
  * that you can find in the main button bar while being in a feature file.
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Views")
+@RunWith(ExampleGroupRunner.class)
 public class IntroducingJnarioFeaturesViewsSpec extends IntroducingJnarioFeaturesSpec {
   /**
    * @filter('''|.isSuccessful)
@@ -26,7 +26,7 @@ public class IntroducingJnarioFeaturesViewsSpec extends IntroducingJnarioFeature
    */
   @Test
   @Named("Displaying step definitions")
-  @Order(3)
+  @Order(4)
   public void _displayingStepDefinitions() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package demo");
@@ -88,7 +88,7 @@ public class IntroducingJnarioFeaturesViewsSpec extends IntroducingJnarioFeature
    */
   @Test
   @Named("Hiding step definitions")
-  @Order(4)
+  @Order(5)
   public void _hidingStepDefinitions() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package demo");

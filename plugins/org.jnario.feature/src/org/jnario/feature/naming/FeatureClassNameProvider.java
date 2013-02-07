@@ -12,7 +12,6 @@ import static org.eclipse.xtext.EcoreUtil2.getContainerOfType;
 import static org.jnario.util.Strings.toClassName;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.EcoreUtil2;
 import org.jnario.ExampleRow;
 import org.jnario.ExampleTable;
 import org.jnario.feature.feature.Background;
@@ -38,7 +37,7 @@ public class FeatureClassNameProvider extends JnarioNameProvider{
 		this.stepNameProvider = stepNameProvider;
 	}
 
-	public String toJavaClassName(EObject obj) {
+	protected String internalToJavaClassName(EObject obj) {
 		if (obj instanceof Feature) {
 			return getClassName((Feature)obj);
 		}
@@ -60,7 +59,7 @@ public class FeatureClassNameProvider extends JnarioNameProvider{
 		throw new UnsupportedOperationException("Missing getClassName for " + obj.eClass().getName());
 	}
 	
-	public String getClassName(Feature feature){
+	protected String getClassName(Feature feature){
 		String name = feature.getName();
 		if(isNullOrEmpty(name)){
 			return null;
@@ -68,21 +67,21 @@ public class FeatureClassNameProvider extends JnarioNameProvider{
 		return toClassName(name) + FEATURE_KEYWORD;
 	}
 
-	public String getClassName(Scenario scenario){
+	protected String getClassName(Scenario scenario){
 		return parentFeatureName(scenario) + Strings.toClassName(scenario.getName(), "Scenario");
 	}
 
-	public String getClassName(ExampleTable exampleTable){
+	protected String getClassName(ExampleTable exampleTable){
 		Scenario scenario = getContainerOfType(exampleTable, Scenario.class);
 		return getClassName(scenario) + Strings.toClassName(exampleTable.getName(), "Examples");
 	}
 	
-	public String getClassName(ExampleRow row){
+	protected String getClassName(ExampleRow row){
 		ExampleTable table = getContainerOfType(row, ExampleTable.class);
 		return getClassName(table) + "Row" + table.getRows().indexOf(row);
 	}
 	
-	public String getClassName(Background background){
+	protected String getClassName(Background background){
 		return parentFeatureName(background) + Strings.toClassName(background.getName(), "Background");
 	}
 
@@ -96,7 +95,7 @@ public class FeatureClassNameProvider extends JnarioNameProvider{
 
 
 	@Override
-	public String describe(EObject eObject) {
+	protected String internalDescribe(EObject eObject) {
 		if (eObject instanceof Feature) {
 			return stepNameProvider.describe((Feature) eObject);
 		}
@@ -110,7 +109,7 @@ public class FeatureClassNameProvider extends JnarioNameProvider{
 	}
 	
 	@Override
-	public String toQualifiedJavaClassName(EObject eObject) {
+	protected String internalToQualifiedJavaClassName(EObject eObject) {
 		if (eObject instanceof Step) {
 			Step step = (Step) eObject;
 			String className = getClassName(step);
@@ -123,7 +122,7 @@ public class FeatureClassNameProvider extends JnarioNameProvider{
 			}
 			return packageName + "." + className;
 		}
-		return super.toQualifiedJavaClassName(eObject);
+		return super.internalToQualifiedJavaClassName(eObject);
 	}
 
 	protected String getClassName(Step step) {
@@ -140,5 +139,20 @@ public class FeatureClassNameProvider extends JnarioNameProvider{
 			return null;
 		}
 		return className;
+	}
+	
+	
+	
+	@Override
+	protected String internalToMethodName(EObject eObject) {
+		if (eObject instanceof Step) {
+			return stepNameProvider.getMethodName((Step) eObject);
+		}
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	protected String internalToFieldName(EObject eObject) {
+		throw new UnsupportedOperationException();
 	}
 }

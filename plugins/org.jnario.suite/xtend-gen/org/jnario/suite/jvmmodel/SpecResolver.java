@@ -99,9 +99,9 @@ public class SpecResolver {
       final Function1<Specification,Boolean> _function_2 = new Function1<Specification,Boolean>() {
           public Boolean apply(final Specification it) {
             Resource _eResource = it.eResource();
-            URI _uRI = _eResource.getURI();
+            URI _uRI = _eResource==null?(URI)null:_eResource.getURI();
             Resource _eResource_1 = specRef.eResource();
-            URI _uRI_1 = _eResource_1.getURI();
+            URI _uRI_1 = _eResource_1==null?(URI)null:_eResource_1.getURI();
             boolean _notEquals = (!Objects.equal(_uRI, _uRI_1));
             return Boolean.valueOf(_notEquals);
           }
@@ -153,8 +153,8 @@ public class SpecResolver {
         }
       };
     List<Specification> _sort = IterableExtensions.<Specification>sort(_filter, new Comparator<Specification>() {
-        public int compare(Specification arg0,Specification arg1) {
-          return _function_1.apply(arg0,arg1);
+        public int compare(Specification o1,Specification o2) {
+          return _function_1.apply(o1,o2);
         }
     });
     return _sort;

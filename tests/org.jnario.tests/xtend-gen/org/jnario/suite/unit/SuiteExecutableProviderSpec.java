@@ -11,6 +11,7 @@ import org.jnario.Specification;
 import org.jnario.feature.feature.Feature;
 import org.jnario.jnario.test.util.ModelStore;
 import org.jnario.jnario.test.util.SuiteTestCreator;
+import org.jnario.lib.Assert;
 import org.jnario.lib.JnarioCollectionLiterals;
 import org.jnario.lib.Should;
 import org.jnario.runner.CreateWith;
@@ -22,14 +23,13 @@ import org.jnario.runner.Subject;
 import org.jnario.spec.spec.ExampleGroup;
 import org.jnario.suite.jvmmodel.SuiteExecutableProvider;
 import org.jnario.suite.suite.Suite;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("SuiteExecutableProvider")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SuiteTestCreator.class)
 public class SuiteExecutableProviderSpec {
   @Subject
@@ -84,7 +84,7 @@ public class SuiteExecutableProviderSpec {
   
   @Test
   @Named("returns contained suites")
-  @Order(0)
+  @Order(1)
   public void _returnsContainedSuites() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package demo");
@@ -111,7 +111,6 @@ public class SuiteExecutableProviderSpec {
      + "\n     subject.getExecutables(suite(\"My Suite\")) is " + new StringDescription().appendValue(_executables).toString()
      + "\n     subject is " + new StringDescription().appendValue(this.subject).toString()
      + "\n     suite(\"My Suite\") is " + new StringDescription().appendValue(_suite).toString()
-     + "\n      is " + new StringDescription().appendValue(this.m).toString()
      + "\n     list(suite(\"Child 1\"), suite(\"Child 2\")) is " + new StringDescription().appendValue(_list).toString()
      + "\n     suite(\"Child 1\") is " + new StringDescription().appendValue(_suite_1).toString()
      + "\n     suite(\"Child 2\") is " + new StringDescription().appendValue(_suite_2).toString() + "\n", _doubleArrow);
@@ -119,9 +118,9 @@ public class SuiteExecutableProviderSpec {
   }
   
   @Test
-  @Named("returns resolved specs")
-  @Order(1)
-  public void _returnsResolvedSpecs() throws Exception {
+  @Named("returns resolved specs via link")
+  @Order(2)
+  public void _returnsResolvedSpecsViaLink() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package demo");
     _builder.newLine();
@@ -147,7 +146,6 @@ public class SuiteExecutableProviderSpec {
      + "\n     subject.getExecutables(suite(\"My Suite\")) is " + new StringDescription().appendValue(_executables).toString()
      + "\n     subject is " + new StringDescription().appendValue(this.subject).toString()
      + "\n     suite(\"My Suite\") is " + new StringDescription().appendValue(_suite).toString()
-     + "\n      is " + new StringDescription().appendValue(this.m).toString()
      + "\n     set(exampleGroup(\"My Spec\"), feature()) is " + new StringDescription().appendValue(_set_1).toString()
      + "\n     exampleGroup(\"My Spec\") is " + new StringDescription().appendValue(_exampleGroup).toString()
      + "\n     feature() is " + new StringDescription().appendValue(_feature).toString() + "\n", _doubleArrow);
@@ -155,9 +153,9 @@ public class SuiteExecutableProviderSpec {
   }
   
   @Test
-  @Named("returns resolved specs")
-  @Order(2)
-  public void _returnsResolvedSpecs_1() throws Exception {
+  @Named("returns resolved specs via regex")
+  @Order(3)
+  public void _returnsResolvedSpecsViaRegex() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package demo");
     _builder.newLine();
@@ -183,7 +181,6 @@ public class SuiteExecutableProviderSpec {
      + "\n     subject.getExecutables(suite(\"My Suite\")) is " + new StringDescription().appendValue(_executables).toString()
      + "\n     subject is " + new StringDescription().appendValue(this.subject).toString()
      + "\n     suite(\"My Suite\") is " + new StringDescription().appendValue(_suite).toString()
-     + "\n      is " + new StringDescription().appendValue(this.m).toString()
      + "\n     set(exampleGroup(\"My Spec\"), exampleGroup(\"String\"), feature()) is " + new StringDescription().appendValue(_set_1).toString()
      + "\n     exampleGroup(\"My Spec\") is " + new StringDescription().appendValue(_exampleGroup).toString()
      + "\n     exampleGroup(\"String\") is " + new StringDescription().appendValue(_exampleGroup_1).toString()

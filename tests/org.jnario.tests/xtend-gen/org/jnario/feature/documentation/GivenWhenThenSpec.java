@@ -9,8 +9,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Given, When, Then...")
+@RunWith(ExampleGroupRunner.class)
 public class GivenWhenThenSpec {
   /**
    * If you have multiple **Givens**, **Whens** or **Thens** you can
@@ -20,7 +20,7 @@ public class GivenWhenThenSpec {
    */
   @Test
   @Named("And, But")
-  @Order(0)
+  @Order(1)
   public void _andBut() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Feature: And & But");

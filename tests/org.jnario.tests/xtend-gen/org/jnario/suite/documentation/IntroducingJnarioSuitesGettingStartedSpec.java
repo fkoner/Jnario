@@ -6,13 +6,13 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.test.util.ModelStore;
 import org.jnario.jnario.test.util.Resources;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Extension;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.suite.documentation.IntroducingJnarioSuitesSpec;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -34,8 +34,8 @@ import org.junit.runner.RunWith;
  * <img width="600px" src="/img/tutorial/suite_buildpath.png" alt="New Suite Error"/>
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Getting Started")
+@RunWith(ExampleGroupRunner.class)
 public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnarioSuitesSpec {
   @Inject
   @Extension
@@ -58,7 +58,7 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
    */
   @Test
   @Named("A simple Suite")
-  @Order(0)
+  @Order(1)
   public void _aSimpleSuite() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package demo");
@@ -77,7 +77,6 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
     Assert.assertTrue("\nExpected \'\'\'\n\t\t\tpackage demo\n\t\t\t\n\t\t\t#My Suite\n\t\t\t\n\t\t\t- \"My Feature\"\n\t\t\t- \"My Spec\"\n\t\t\t\'\'\'.parseSuite.nrOfParseAndLinkingErrors => 2 but"
      + "\n     \'\'\'\n\t\t\tpackage demo\n\t\t\t\n\t\t\t#My Suite\n\t\t\t\n\t\t\t- \"My Feature\"\n\t\t\t- \"My Spec\"\n\t\t\t\'\'\'.parseSuite.nrOfParseAndLinkingErrors is " + new StringDescription().appendValue(Integer.valueOf(_nrOfParseAndLinkingErrors)).toString()
      + "\n     \'\'\'\n\t\t\tpackage demo\n\t\t\t\n\t\t\t#My Suite\n\t\t\t\n\t\t\t- \"My Feature\"\n\t\t\t- \"My Spec\"\n\t\t\t\'\'\'.parseSuite is " + new StringDescription().appendValue(_parseSuite).toString()
-     + "\n      is " + new StringDescription().appendValue(this._modelStore).toString()
      + "\n     \'\'\'\n\t\t\tpackage demo\n\t\t\t\n\t\t\t#My Suite\n\t\t\t\n\t\t\t- \"My Feature\"\n\t\t\t- \"My Spec\"\n\t\t\t\'\'\' is " + new StringDescription().appendValue(_builder).toString() + "\n", _doubleArrow);
     
   }
@@ -116,7 +115,7 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
    */
   @Test
   @Named("Fixing the Errors")
-  @Order(1)
+  @Order(2)
   public void _fixingTheErrors() throws Exception {
     this.parseExampleScenarioAndSpec();
     StringConcatenation _builder = new StringConcatenation();
@@ -166,7 +165,7 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
    */
   @Test
   @Named("Structuring a Suite")
-  @Order(2)
+  @Order(3)
   public void _structuringASuite() throws Exception {
     this.parseExampleScenarioAndSpec();
     StringConcatenation _builder = new StringConcatenation();
@@ -224,7 +223,7 @@ public class IntroducingJnarioSuitesGettingStartedSpec extends IntroducingJnario
    */
   @Test
   @Named("Selecting multiple Specifications")
-  @Order(3)
+  @Order(4)
   public void _selectingMultipleSpecifications() throws Exception {
     this.parseExampleScenarioAndSpec();
     StringConcatenation _builder = new StringConcatenation();

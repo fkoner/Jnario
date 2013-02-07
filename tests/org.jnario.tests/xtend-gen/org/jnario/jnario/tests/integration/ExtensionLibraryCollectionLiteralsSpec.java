@@ -10,12 +10,12 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Pair;
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.tests.integration.ExtensionLibrarySpec;
+import org.jnario.lib.Assert;
 import org.jnario.lib.JnarioCollectionLiterals;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -24,12 +24,12 @@ import org.junit.runner.RunWith;
  * so much. Therefore, Jnario provides shorter versions of Xtend's collection literals.
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Collection Literals")
+@RunWith(ExampleGroupRunner.class)
 public class ExtensionLibraryCollectionLiteralsSpec extends ExtensionLibrarySpec {
   @Test
   @Named("List Literal")
-  @Order(0)
+  @Order(1)
   public void _listLiteral() throws Exception {
     List<String> _list = JnarioCollectionLiterals.<String>list("green", "red");
     ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("green", "red");
@@ -57,7 +57,7 @@ public class ExtensionLibraryCollectionLiteralsSpec extends ExtensionLibrarySpec
   
   @Test
   @Named("Set Literal")
-  @Order(1)
+  @Order(2)
   public void _setLiteral() throws Exception {
     Set<String> _set = JnarioCollectionLiterals.<String>set("green", "red");
     HashSet<String> _newHashSet = CollectionLiterals.<String>newHashSet("green", "red");
@@ -85,7 +85,7 @@ public class ExtensionLibraryCollectionLiteralsSpec extends ExtensionLibrarySpec
   
   @Test
   @Named("Map Literal")
-  @Order(2)
+  @Order(3)
   public void _mapLiteral() throws Exception {
     Pair<String,String> _mappedTo = Pair.<String, String>of("green", "apple");
     Pair<String,String> _mappedTo_1 = Pair.<String, String>of("yellow", "banana");

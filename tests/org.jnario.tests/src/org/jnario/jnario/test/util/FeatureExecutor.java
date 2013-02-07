@@ -8,6 +8,7 @@
 package org.jnario.jnario.test.util;
 
 import static junit.framework.Assert.assertFalse;
+import static org.hamcrest.CoreMatchers.is;
 import static org.jnario.jnario.test.util.ResultMatchers.failureCountIs;
 import static org.junit.Assert.assertThat;
 
@@ -36,6 +37,11 @@ public class FeatureExecutor extends BehaviorExecutor{
 		assertThat(run(content), ResultMatchers.isSuccessful());
 	}
 	
+	public static void ignoreCountIs(CharSequence content, int expectedCount) {
+		Result result = run(content);
+		assertThat(result.getIgnoreCount(), is(expectedCount));
+	}
+	
 	public static void fails(CharSequence content) {
 		assertThat(run(content), failureCountIs(1));
 	}
@@ -53,7 +59,7 @@ public class FeatureExecutor extends BehaviorExecutor{
 		CompositeResult result = new CompositeResult();
 		FeatureFile jnarioFile = (FeatureFile) object;
 		for (Feature  feature : Iterables.filter(jnarioFile.getXtendClasses(), Feature.class)) {
-			String jnarioClassName = nameProvider.getClassName(feature);
+			String jnarioClassName = nameProvider.toJavaClassName(feature);
 			String packageName = jnarioFile.getPackage();
 			result.add(runTestsInClass(jnarioClassName, packageName));
 		}

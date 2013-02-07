@@ -6,19 +6,19 @@ import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.ui.tests.unit.quickfix.JavaElementFinderStub;
 import org.jnario.jnario.ui.tests.unit.quickfix.UndefinedMethodFixSpec;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.ui.quickfix.CallsReadOnlyType;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("CallsReadOnlyType")
+@RunWith(ExampleGroupRunner.class)
 public class UndefinedMethodFixCallsReadOnlyTypeSpec extends UndefinedMethodFixSpec {
   public CallsReadOnlyType subject;
   
@@ -37,7 +37,7 @@ public class UndefinedMethodFixCallsReadOnlyTypeSpec extends UndefinedMethodFixS
   
   @Test
   @Named("true if java element is read-only")
-  @Order(8)
+  @Order(9)
   public void _trueIfJavaElementIsReadOnly() throws Exception {
     this.javaElementProvider.setReadOnly();
     StringConcatenation _builder = new StringConcatenation();
@@ -61,7 +61,7 @@ public class UndefinedMethodFixCallsReadOnlyTypeSpec extends UndefinedMethodFixS
   
   @Test
   @Named("false if java element is changeable")
-  @Order(9)
+  @Order(10)
   public void _falseIfJavaElementIsChangeable() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("describe \"Something\"{");

@@ -5,13 +5,13 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.tests.integration.ExtensionLibrarySpec;
+import org.jnario.lib.Assert;
 import org.jnario.lib.JnarioCollectionLiterals;
 import org.jnario.lib.Should;
 import org.jnario.lib.StringConversions;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -21,15 +21,15 @@ import org.junit.runner.RunWith;
  * converting these string parameters into other types or representations.
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Converting Strings")
+@RunWith(ExampleGroupRunner.class)
 public class ExtensionLibraryConvertingStringsSpec extends ExtensionLibrarySpec {
   /**
    * Converting strings to other primitive types.
    */
   @Test
   @Named("Converting Strings to Primitives")
-  @Order(5)
+  @Order(6)
   public void _convertingStringsToPrimitives() throws Exception {
     boolean _bool = StringConversions.toBool("true");
     boolean _doubleArrow = Should.operator_doubleArrow(Boolean.valueOf(_bool), Boolean.valueOf(true));
@@ -58,7 +58,7 @@ public class ExtensionLibraryConvertingStringsSpec extends ExtensionLibrarySpec 
    */
   @Test
   @Named("Converting Strings to Lists")
-  @Order(6)
+  @Order(7)
   public void _convertingStringsToLists() throws Exception {
     List<String> _list = StringConversions.toList("1,2,3");
     List<String> _list_1 = JnarioCollectionLiterals.<String>list("1", "2", "3");

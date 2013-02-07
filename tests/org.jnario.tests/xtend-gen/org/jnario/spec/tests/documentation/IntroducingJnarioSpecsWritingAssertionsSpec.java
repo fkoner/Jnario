@@ -5,12 +5,12 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.test.util.Helpers;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.spec.tests.documentation.IntroducingJnarioSpecsSpec;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -18,8 +18,8 @@ import org.junit.runner.RunWith;
  * Jnario provides different statements for writing assertions ([more...](/org/jnario/spec/tests/integration/AssertionSpec.html)).
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Writing Assertions")
+@RunWith(ExampleGroupRunner.class)
 public class IntroducingJnarioSpecsWritingAssertionsSpec extends IntroducingJnarioSpecsSpec {
   /**
    * The `assert` statement fails if
@@ -27,7 +27,7 @@ public class IntroducingJnarioSpecsWritingAssertionsSpec extends IntroducingJnar
    */
   @Test
   @Named("\\\'assert\\\'")
-  @Order(10)
+  @Order(11)
   public void _assert() throws Exception {
     Assert.assertTrue("\nExpected true but" + " did not." + "\n", true);
     
@@ -51,12 +51,12 @@ public class IntroducingJnarioSpecsWritingAssertionsSpec extends IntroducingJnar
    */
   @Test
   @Named("\\\'should\\\' and `=>`")
-  @Order(11)
+  @Order(12)
   public void _shouldAnd() throws Exception {
     boolean _should_be = Should.<Boolean>should_be(
       Boolean.valueOf(true), true);
     Assert.assertTrue("\nExpected true should be true but"
-     + "\n     true should be true is " + new StringDescription().appendValue(null).toString() + "\n", _should_be);
+     + "\n     true should be true is " + new StringDescription().appendValue(true).toString() + "\n", _should_be);
     
     boolean _doubleArrow = Should.operator_doubleArrow(
       Boolean.valueOf(false), Boolean.valueOf(false));
@@ -84,7 +84,7 @@ public class IntroducingJnarioSpecsWritingAssertionsSpec extends IntroducingJnar
    */
   @Test
   @Named("Self-explaining failures")
-  @Order(12)
+  @Order(13)
   public void _selfExplainingFailures() throws Exception {
     final int x = 0;
     final int y = 1;

@@ -4,6 +4,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.hamcrest.StringDescription;
 import org.jnario.ExampleTable;
 import org.jnario.jnario.test.util.Query;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
@@ -11,20 +12,19 @@ import org.jnario.runner.Order;
 import org.jnario.runner.Subject;
 import org.jnario.spec.naming.ExampleNameProvider;
 import org.jnario.spec.tests.unit.naming.ExampleNameProviderSpec;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("toJavaClassName[ExampleTable]")
+@RunWith(ExampleGroupRunner.class)
 public class ExampleNameProviderToJavaClassNameExampleTableSpec extends ExampleNameProviderSpec {
   @Subject
   public ExampleNameProvider subject;
   
   @Test
   @Named("should combine example and parent name")
-  @Order(10)
+  @Order(11)
   public void _shouldCombineExampleAndParentName() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("describe \'My Context\'{");
@@ -47,7 +47,7 @@ public class ExampleNameProviderToJavaClassNameExampleTableSpec extends ExampleN
   
   @Test
   @Named("should convert example name to first upper")
-  @Order(11)
+  @Order(12)
   public void _shouldConvertExampleNameToFirstUpper() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("describe \'My Context\'{");

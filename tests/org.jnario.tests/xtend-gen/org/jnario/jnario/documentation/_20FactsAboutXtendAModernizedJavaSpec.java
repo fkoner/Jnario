@@ -6,11 +6,11 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Pair;
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.documentation._20FactsAboutXtendSpec;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -21,15 +21,15 @@ import org.junit.runner.RunWith;
  * one should be aware of.
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("A modernized Java")
+@RunWith(ExampleGroupRunner.class)
 public class _20FactsAboutXtendAModernizedJavaSpec extends _20FactsAboutXtendSpec {
   /**
    * Semicolons are optional in Xtend.
    */
   @Test
   @Named("No semicolons")
-  @Order(0)
+  @Order(1)
   public void _noSemicolons() throws Exception {
     String greeting = "";
     greeting = "Hello World";
@@ -42,7 +42,7 @@ public class _20FactsAboutXtendAModernizedJavaSpec extends _20FactsAboutXtendSpe
    */
   @Test
   @Named("Variables are declared with var and val")
-  @Order(1)
+  @Order(2)
   public void _variablesAreDeclaredWithVarAndVal() throws Exception {
     String x = "I might change";
     final String y = "I\'ll never change";
@@ -56,7 +56,7 @@ public class _20FactsAboutXtendAModernizedJavaSpec extends _20FactsAboutXtendSpe
    */
   @Test
   @Named("Less typing thanks to type inference")
-  @Order(2)
+  @Order(3)
   public void _lessTypingThanksToTypeInference() throws Exception {
     final String greeting = "Hello World";
     boolean _doubleArrow = Should.operator_doubleArrow(greeting, String.class);
@@ -79,7 +79,7 @@ public class _20FactsAboutXtendAModernizedJavaSpec extends _20FactsAboutXtendSpe
    */
   @Test
   @Named("Syntactic sugar: Pairs")
-  @Order(3)
+  @Order(4)
   public void _syntacticSugarPairs() throws Exception {
     final Pair<String,String> pair = Pair.<String, String>of("spain", "italy");
     String _key = pair.getKey();
@@ -127,7 +127,7 @@ public class _20FactsAboutXtendAModernizedJavaSpec extends _20FactsAboutXtendSpe
    */
   @Test
   @Named("Fields & methods work almost like in Java")
-  @Order(4)
+  @Order(5)
   public void _fieldsMethodsWorkAlmostLikeInJava() throws Exception {
     String _sayHello = this.sayHello("Sebastian");
     String _plus = (this.greeting + "Sebastian");

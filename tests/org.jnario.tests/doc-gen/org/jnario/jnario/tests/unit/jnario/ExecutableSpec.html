@@ -24,7 +24,7 @@
 	<div class="container">
 		<div class="tabbable">
 			<div class="content">
-				<div class="page-header pending">
+				<div class="page-header notrun">
 					<h1>Executable</h1>
 					  <ul class="nav nav-tabs pull-right">
 					    <li class="active"><a href="#spec" data-toggle="tab">Spec</a></li>
@@ -35,7 +35,7 @@
 					<div class="span12">
 						  <div class="tab-content">
 							  	<div class="tab-pane active" id="spec">
-<h3 class="exampleGroup pending"  id="isPending">IsPending</h3>
+<h3 class="exampleGroup notrun"  id="isPending">IsPending</h3>
 <div class="level">
 <h4 class="exampleGroup notrun"  id="Feature">Feature</h4>
 <ul><li><p id="feature_Without_scenarios_and_without_background_isPending_should_be_true" class="example notrun"><strong>feature["Without scenarios and without background"].isPending[] should be true</strong></p>
@@ -72,6 +72,7 @@
 <ul><li><p id="exampleGroupWith_pendingExample_isPending_should_be_true" class="example notrun"><strong>exampleGroupWith[pendingExample].isPending should be true</strong></p>
 </li><li><p id="exampleGroupWith_implementedExample_isPending_should_be_false" class="example notrun"><strong>exampleGroupWith[implementedExample].isPending should be false</strong></p>
 </li><li><p id="exampleGroupWith_pendingExample_implementedExample_isPending_should_be_true" class="example notrun"><strong>exampleGroupWith[pendingExample, implementedExample].isPending should be true</strong></p>
+</li><li><p id="exampleGroupWith_pendingExampleGroup_isPending_should_be_true" class="example notrun"><strong>exampleGroupWith[pendingExampleGroup].isPending should be true</strong></p>
 </li></ul>
 </div>
 <div class="level">
@@ -146,6 +147,7 @@ describe Executable{
       fact exampleGroupWith(pendingExample).isPending should be true
       fact exampleGroupWith(implementedExample).isPending should be false
       fact exampleGroupWith(pendingExample, implementedExample).isPending should be true
+      fact exampleGroupWith(pendingExampleGroup).isPending should be true
     }
     
     @CreateWith(typeof(SuiteTestCreator))

@@ -16,8 +16,8 @@ import org.junit.runner.RunWith;
  * JUnit rules work exactly as in JUnit. Just declare a public field with the rule annotation.
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Using JUnit Rules in Specs")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SpecTestCreator.class)
 public class UsingJUnitRulesInSpecsSpec {
   @Inject
@@ -29,7 +29,7 @@ public class UsingJUnitRulesInSpecsSpec {
    */
   @Test
   @Named("Example Specification:")
-  @Order(0)
+  @Order(1)
   public void _exampleSpecification() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package test");

@@ -15,13 +15,15 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend.core.resource.XtendLocationInFileProvider;
+import org.eclipse.xtend.core.xtend.XtendPackage;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.util.ITextRegion;
-import org.eclipse.xtext.util.TextRegion;
 import org.eclipse.xtext.util.TextRegionWithLineInformation;
 import org.jnario.feature.feature.FeaturePackage;
+import org.jnario.feature.feature.Scenario;
 import org.jnario.feature.feature.Step;
 import org.jnario.feature.feature.StepReference;
+
 
 public class FeatureLocationInFileProvider extends XtendLocationInFileProvider {
 
@@ -29,40 +31,61 @@ public class FeatureLocationInFileProvider extends XtendLocationInFileProvider {
 		if(isSignificant && obj instanceof Step){
 			return getSignificantTextRegionStep((Step) obj);
 		}
+		if (obj instanceof Scenario) {
+			if(isSignificant && obj instanceof Scenario){
+				return getSignificantTextRegionStep((Scenario) obj);
+			}
+		}
 		return super.getTextRegion(obj, isSignificant);
 	}
 	
+
+	private ITextRegion getSignificantTextRegionStep(Scenario element) {
+		List<INode> nodes = nodesFor(element);
+		return createTextRegion(nodes);
+	}
+
+	public List<INode> nodesFor(Scenario element) {
+		return findNodesForFeature(element, XtendPackage.Literals.XTEND_CLASS__NAME);
+	}
+	
+	
+
 	private ITextRegion getSignificantTextRegionStep(Step element) {
 		List<INode> nodes;
 		if (element instanceof StepReference) {
 			nodes = findNodesForFeature(element, FeaturePackage.Literals.STEP_REFERENCE__REFERENCE);
 		}else{
-			nodes = findNodesForFeature(element, FeaturePackage.Literals.STEP__NAME);
+			nodes = findNodesForFeature(element, XtendPackage.Literals.XTEND_FUNCTION__NAME);
 		}
-		if (!nodes.isEmpty()) {
-			int length = 0;
-			int offset = 0;
-			int lineNumber = 0;
-			int endLineNumber = 0;
-			boolean isFirstNode = true;
-			for (int i=0; i<nodes.size(); i++) {
-				INode node = nodes.get(i);
-				if (!isHidden(node)) {
-					if(isFirstNode){
-						offset = node.getOffset();
-						lineNumber = node.getStartLine();
-						isFirstNode = false;
-					}
-					length += node.getLength();
-					if(isLastNode(nodes, i)){
-						endLineNumber = node.getEndLine();
-						length = length - countWhitespaceAtEnd(node.getText());
-					}
+		return createTextRegion(nodes);
+	}
+
+	protected ITextRegion createTextRegion(List<INode> nodes) {
+		if (nodes.isEmpty()) {
+			return createRegion(Collections.<INode>emptyList());
+		}
+		int length = 0;
+		int offset = 0;
+		int lineNumber = 0;
+		int endLineNumber = 0;
+		boolean isFirstNode = true;
+		for (int i=0; i<nodes.size(); i++) {
+			INode node = nodes.get(i);
+			if (!isHidden(node)) {
+				if(isFirstNode){
+					offset = node.getOffset();
+					lineNumber = node.getStartLine();
+					isFirstNode = false;
+				}
+				length += node.getLength();
+				if(isLastNode(nodes, i)){
+					endLineNumber = node.getEndLine();
+					length = length - countWhitespaceAtEnd(node.getText());
 				}
 			}
-			return new TextRegionWithLineInformation(offset, length, lineNumber, endLineNumber);
 		}
-		return createRegion(Collections.<INode>emptyList());
+		return new TextRegionWithLineInformation(offset, length, lineNumber, endLineNumber);
 	}
 
 	private boolean isLastNode(List<INode> nodes, int i){

@@ -24,8 +24,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("SuiteDocGenerator")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SuiteTestCreator.class)
 public class SuiteDocGeneratorSpec {
   @Subject
@@ -64,7 +64,7 @@ public class SuiteDocGeneratorSpec {
   
   @Test
   @Named("Generates suite doc with resolved specs")
-  @Order(0)
+  @Order(1)
   public void _generatesSuiteDocWithResolvedSpecs() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package test");

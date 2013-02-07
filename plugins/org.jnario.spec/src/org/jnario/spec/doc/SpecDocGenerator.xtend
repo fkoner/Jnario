@@ -21,7 +21,7 @@ import org.jnario.doc.HtmlFile
 import org.jnario.spec.naming.ExampleNameProvider
 import org.jnario.spec.spec.Example
 import org.jnario.spec.spec.ExampleGroup
-
+import static org.eclipse.xtend.core.xtend.XtendPackage$Literals.*
 class SpecDocGenerator extends AbstractDocGenerator {
 
 	@Inject extension ExampleNameProvider 
@@ -105,19 +105,17 @@ class SpecDocGenerator extends AbstractDocGenerator {
 			«ELSE»
 			«ENDIF»
 			«docString»
-			«IF !example.pending && example.body != null»
+			«IF !example.pending && example.eIsSet(XTEND_FUNCTION__EXPRESSION)»
 			«example.toCodeBlock(filters)»
 			«example.errorMessage»
 			«ENDIF»
 		'''
 	}
 	
-
-	
 	def toCodeBlock(Example example, List<Filter> filters){
 		var prefix = '<pre class="prettyprint lang-spec linenums">'
 		prefix = filters.apply(prefix)
-		val code = example.implementation.serialize(filters)
+		val code = example.expression.serialize(filters)
 		if(code.length == 0) return ""
 		'''
 		«prefix»

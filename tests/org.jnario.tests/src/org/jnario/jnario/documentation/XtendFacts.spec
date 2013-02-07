@@ -6,13 +6,13 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
 package org.jnario.jnario.documentation
- 
+
 import java.util.Collections
 import java.util.HashMap
 import java.util.List
 import static extension java.util.Collections.*
 
-/*
+/*  
  * This document teaches you everything 
  * you need to know about Xtend to effectively use
  * [Jnario](http://www.jnario.org). For a more detailed 
@@ -23,7 +23,7 @@ import static extension java.util.Collections.*
  * by clicking on **source** in the upper right corner.
  */
 describe "20 Facts about Xtend"{
-  /*
+  /* 
    * The syntax of Xtend is quite similar to Java, but Xtend code 
    * is usually a lot shorter than its Java counterpart. However, 
    * there are some important differences between Java and Xtend 
@@ -222,7 +222,7 @@ describe "20 Facts about Xtend"{
    * </pre>
    */
   describe "Readable Code with Extension Methods"{
-    
+
     /*
      * You can import static methods as extensions, for example, when we import:
      * 
@@ -330,7 +330,7 @@ describe "20 Facts about Xtend"{
      * </pre>
      * 
      * ...and we can even completely remove the 'it' variable:
-     * 
+     *
      */
     fact "Concise Lambda Expressions"{
       var (String)=>int lambda = [length] 

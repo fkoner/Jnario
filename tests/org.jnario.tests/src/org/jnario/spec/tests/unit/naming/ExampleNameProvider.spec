@@ -25,7 +25,7 @@ import static extension org.jnario.lib.Should.*
 @CreateWith(typeof(SpecTestCreator))
 describe ExampleNameProvider {
 
-  context toJavaClassName{ 
+  context "toJavaClassName(ExampleGroup)"{ 
     
     fact "should remove all white spaces from ExampleGroup's description"{
       firstJavaClassName("describe 'My Example'") should not contain " "
@@ -106,7 +106,7 @@ describe ExampleNameProvider {
     }
   }      
   
-    context toJavaClassName(ExampleTable){
+    context "toJavaClassName(ExampleTable)"{
       
       fact "should combine example and parent name"{
         exampleTableClassName('''
@@ -132,7 +132,7 @@ describe ExampleNameProvider {
       }
     }
   
-    context toMethodName(Example){
+    context "toMethodName(Example)"{
       
       fact "converts method description to camel case starting in lowercase"{
         newArrayList(
@@ -163,7 +163,7 @@ describe ExampleNameProvider {
       }
     }
     
-    context toMethodName(Before){
+    context "toMethodName(Before)"{
       
       fact "should convert before description to camel case starting in lowercase"{
         newArrayList(
@@ -174,14 +174,46 @@ describe ExampleNameProvider {
         ).forEach[
           firstMethodName => '_myExample'
         ] 
-      } 
+      }
+       
       fact "should use before as default name"{
         firstMethodName("before{}") => "before"
       }
-      fact "should enumerate befores without description"{
+
+      fact "should use beforeAll as default name"{
+        firstMethodName("before all{}") => "beforeAll"
+      }
+      
+      
+      fact "should enumerate before without description"{
         secondMethodName("before{}
                  before{}") => "before2"
       }
+      
+      fact "should enumerate nested before without description"{
+        secondMethodName(
+                "before{}
+                 context{
+                   before{}
+                 }") => "before2"
+      }
+      
+      fact "should enumerate nested before all without description"{
+        secondMethodName(
+                "before all{}
+                 context{
+                   before all{}
+                 }") => "beforeAll2"
+      }
+      
+      fact "should keep default name of nested before and before all"{
+        secondMethodName(
+                "before{}
+                 context{
+                   before all{}
+                 }") => "beforeAll"
+      }
+      
       
       fact "should escape invalid names"{
         firstMethodName("before 'null'{}") => "_null"
@@ -198,7 +230,7 @@ describe ExampleNameProvider {
       }
     } 
     
-    context toMethodName(After){
+    context "toMethodName(After)"{
       
       fact "should convert after description to camel case starting in lowercase"{
       newArrayList(
@@ -215,9 +247,37 @@ describe ExampleNameProvider {
         firstMethodName("after{}") => "after"
       }
       
-      fact "should enumerate afters without description"{
+      fact "should use afterAll as default name"{
+        firstMethodName("after all{}") => "afterAll"
+      }
+      
+      fact "should enumerate after without description"{
         secondMethodName("after{}
                  after{}") => "after2"
+      }
+      
+      fact "should enumerate nested after without description"{
+        secondMethodName(
+                "after{}
+                 context{
+                   after{}
+                 }") => "after2"
+      }
+      
+      fact "should enumerate nested after all without description"{
+        secondMethodName(
+                "after all{}
+                 context{
+                   after all{}
+                 }") => "afterAll2"
+      }
+      
+      fact "nested after and after all keep their default name"{
+        secondMethodName(
+                "after{}
+                 context{
+                   after all{}
+                 }") => "afterAll"
       }
       
       def firstMethodName(String content){
@@ -256,7 +316,7 @@ describe ExampleNameProvider {
     
   }
  
-  context ^describe(ExampleGroup){
+  context "describe(ExampleGroup)"{
     
     fact "should use the description"{
       describeFirst("describe 'My Description'") => "My Description"
@@ -308,7 +368,7 @@ describe ExampleNameProvider {
     }
   }  
   
-  context ^describe(Example){
+  context "describe(Example)"{
     
     fact "should use the description"{
       describeFirst("'should do stuff' {true}") => "should do stuff"

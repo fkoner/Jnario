@@ -4,12 +4,12 @@ import com.google.common.base.Objects;
 import java.util.List;
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.documentation._20FactsAboutXtendSpec;
+import org.jnario.lib.Assert;
 import org.jnario.lib.JnarioCollectionLiterals;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -20,8 +20,8 @@ import org.junit.runner.RunWith;
  * values but can be used for any object.
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("The Uber-Switch Expression")
+@RunWith(ExampleGroupRunner.class)
 public class _20FactsAboutXtendTheUberSwitchExpressionSpec extends _20FactsAboutXtendSpec {
   /**
    * Cases support arbitrary expressions, if they evaluate to a boolean value, it will
@@ -29,7 +29,7 @@ public class _20FactsAboutXtendTheUberSwitchExpressionSpec extends _20FactsAbout
    */
   @Test
   @Named("Supports case expressions")
-  @Order(8)
+  @Order(9)
   public void _supportsCaseExpressions() throws Exception {
     final String myString = "Hello";
     String _switchResult = null;
@@ -64,7 +64,7 @@ public class _20FactsAboutXtendTheUberSwitchExpressionSpec extends _20FactsAbout
    */
   @Test
   @Named("...and type guards [with type inference]")
-  @Order(9)
+  @Order(10)
   public void _andTypeGuardsWithTypeInference() throws Exception {
     List<Integer> _list = JnarioCollectionLiterals.<Integer>list(Integer.valueOf(1), Integer.valueOf(2), Integer.valueOf(3));
     final Object x = ((Object) _list);

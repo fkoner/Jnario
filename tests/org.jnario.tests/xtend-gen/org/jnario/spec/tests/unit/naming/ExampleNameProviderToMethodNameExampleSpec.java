@@ -7,6 +7,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.test.util.Query;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
@@ -15,20 +16,19 @@ import org.jnario.runner.Subject;
 import org.jnario.spec.naming.ExampleNameProvider;
 import org.jnario.spec.spec.Example;
 import org.jnario.spec.tests.unit.naming.ExampleNameProviderSpec;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("toMethodName[Example]")
+@RunWith(ExampleGroupRunner.class)
 public class ExampleNameProviderToMethodNameExampleSpec extends ExampleNameProviderSpec {
   @Subject
   public ExampleNameProvider subject;
   
   @Test
   @Named("converts method description to camel case starting in lowercase")
-  @Order(12)
+  @Order(13)
   public void _convertsMethodDescriptionToCamelCaseStartingInLowercase() throws Exception {
     ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList(
       "\'my example\'", 
@@ -50,7 +50,7 @@ public class ExampleNameProviderToMethodNameExampleSpec extends ExampleNameProvi
   
   @Test
   @Named("shortens method name to 250 chars")
-  @Order(13)
+  @Order(14)
   public void _shortensMethodNameTo250Chars() throws Exception {
     String _nameOfLength = this.nameOfLength(251);
     String _firstMethodName = this.firstMethodName(_nameOfLength);

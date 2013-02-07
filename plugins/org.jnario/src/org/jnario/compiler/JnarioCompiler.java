@@ -43,12 +43,13 @@ import org.jnario.Assertion;
 import org.jnario.MockLiteral;
 import org.jnario.Should;
 import org.jnario.ShouldThrow;
+import org.jnario.lib.Assert;
 import org.jnario.util.MockingSupport;
 import org.jnario.util.SourceAdapter;
-import org.junit.Assert;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
 /**
@@ -96,22 +97,29 @@ public class JnarioCompiler extends XtendCompiler {
 		if (should.getType() == null || should.getType().getType() == null) {
 			return;
 		}
+		String expectedException = b.declareSyntheticVariable(should, "expectedException");
+		b.newLine().append("boolean ").append(expectedException).append(" = false;").newLine();
+		String message = b.declareSyntheticVariable(should, "message");
+		b.append("String ").append(message).append(" = \"\";");
 		b.newLine().append("try{").increaseIndentation();
 		toJavaStatement(should.getExpression(), b, false);
-		b.newLine()
-				.append(assertType(should))
-				.append(".fail(\"Expected \" + ")
-				.append(should.getType().getType())
-				.append(".class.getName() + \" in ")
-				.append(javaStringNewLine())
-				.append("     ")
-				.append(serialize(should.getExpression()).replace("\n",
-						"\n    ")).append(javaStringNewLine())
-				.append(" with:\"");
+		b.newLine().append(message).append(" = \"Expected \" + ")
+		.append(should.getType().getType())
+		.append(".class.getName() + \" for ")
+		.append(javaStringNewLine())
+		.append("     ")
+		.append(serialize(should.getExpression()).replace("\n", "\n    ")).append(javaStringNewLine())
+		.append(" with:\"");
 		appendValues(should.getExpression(), b, new HashSet<String>());
-		b.append(");").decreaseIndentation().newLine().append("}catch(")
-				.append(should.getType().getType()).append(" e){")
-				.newLine().append("}");
+		b.append(";");
+		b.decreaseIndentation().newLine().append("}catch(").increaseIndentation()
+				.append(should.getType().getType()).append(" e){").newLine()
+				.append(expectedException).append(" = true;")
+				.decreaseIndentation().newLine().append("}");
+		b.newLine()
+		.append(assertType(should))
+		.append(".assertTrue(").append(message).append(", ")
+		.append(expectedException).append(");");
 	}
 	
 	
@@ -160,9 +168,11 @@ public class JnarioCompiler extends XtendCompiler {
 		return getMethod(should, CoreMatchers.class, "nullValue");
 	}
 
-	protected JvmIdentifiableElement getMethod(XBinaryOperation should,
-			Class<?> type, String methodName) {
+	protected JvmIdentifiableElement getMethod(XBinaryOperation should, Class<?> type, String methodName) {
 		JvmGenericType coreMatchersType = (JvmGenericType) jvmType(type, should);
+		if(coreMatchersType == null){
+			return null;
+		}
 		Iterable<JvmOperation> operations = Iterables.filter(coreMatchersType.getMembers(), JvmOperation.class);
 		for (JvmOperation jvmOperation : operations) {
 			if(methodName.equals(jvmOperation.getSimpleName())){
@@ -188,11 +198,11 @@ public class JnarioCompiler extends XtendCompiler {
 	}
 	
 	public void _toJavaExpression(Should should, ITreeAppendable b) {
-		b.append("null");
+		b.append("true");
 	}
 
 	public void _toJavaExpression(ShouldThrow should, ITreeAppendable b) {
-		b.append("null");
+		b.append("true");
 	}
 
 	public void _toJavaStatement(Assertion assertion, ITreeAppendable b,
@@ -204,7 +214,7 @@ public class JnarioCompiler extends XtendCompiler {
 	}
 
 	public void _toJavaExpression(Assertion assertion, ITreeAppendable b) {
-		b.append("null");
+		b.append("true");
 	}
 
 	private void generateSingleAssertion(XExpression expr, ITreeAppendable b) {
@@ -229,7 +239,11 @@ public class JnarioCompiler extends XtendCompiler {
 	}
 
 	private JvmType jvmType(Class<?> type, EObject context) {
-		return getTypeReferences().getTypeForName(type, context).getType();
+		JvmTypeReference jvmTypeReference = getTypeReferences().getTypeForName(type, context);
+		if(jvmTypeReference == null){
+			return null;
+		}
+		return jvmTypeReference.getType();
 	}
 
 	public void generateMessageFor(Should should, ITreeAppendable b) {
@@ -321,13 +335,6 @@ public class JnarioCompiler extends XtendCompiler {
 	}
 
 	protected Iterator<XExpression> allSubExpressions(XExpression expression) {
-		Predicate<XExpression> onlyKnownFeatures = new Predicate<XExpression>() {
-
-			public boolean apply(XExpression e) {
-				// FIXME
-				return !"<unkown>".equals(e.toString());
-			}
-		};
 		Predicate<XExpression> noSwitchCases = new Predicate<XExpression>() {
 			public boolean apply(XExpression e) {
 				return !(e.eContainer() instanceof XSwitchExpression);
@@ -340,7 +347,6 @@ public class JnarioCompiler extends XtendCompiler {
 		};
 		Iterable<XExpression> subExpressions = filter(expression.eContents(),
 				XExpression.class);
-		subExpressions = filter(subExpressions, onlyKnownFeatures);
 		subExpressions = filter(subExpressions, noLiteralExpressions);
 		subExpressions = filter(subExpressions, noSwitchCases);
 		return subExpressions.iterator();
@@ -355,7 +361,7 @@ public class JnarioCompiler extends XtendCompiler {
 			return;
 		}
 		String expr = serialize(expression);
-		if (valueMappings.contains(expr)) {
+		if (expr.isEmpty() || valueMappings.contains(expr)) {
 			return;
 		}
 		valueMappings.add(expr);

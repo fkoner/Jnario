@@ -2,6 +2,7 @@ package org.jnario.spec.tests.unit.naming;
 
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.test.util.Query;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
@@ -10,20 +11,19 @@ import org.jnario.runner.Subject;
 import org.jnario.spec.naming.ExampleNameProvider;
 import org.jnario.spec.spec.Example;
 import org.jnario.spec.tests.unit.naming.ExampleNameProviderSpec;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
+@Named("describe[Example]")
 @RunWith(ExampleGroupRunner.class)
-@Named("^describe[Example]")
 public class ExampleNameProviderDescribeExampleSpec extends ExampleNameProviderSpec {
   @Subject
   public ExampleNameProvider subject;
   
   @Test
   @Named("should use the description")
-  @Order(31)
+  @Order(40)
   public void _shouldUseTheDescription() throws Exception {
     String _describeFirst = this.describeFirst("\'should do stuff\' {true}");
     boolean _doubleArrow = Should.operator_doubleArrow(_describeFirst, "should do stuff");
@@ -34,7 +34,7 @@ public class ExampleNameProviderDescribeExampleSpec extends ExampleNameProviderS
   
   @Test
   @Named("appends \\\'[PENDING]\\\' to pending example descriptions")
-  @Order(32)
+  @Order(41)
   public void _appendsPENDINGToPendingExampleDescriptions() throws Exception {
     String _describeFirst = this.describeFirst("\'should do stuff\'");
     boolean _doubleArrow = Should.operator_doubleArrow(_describeFirst, "should do stuff [PENDING]");

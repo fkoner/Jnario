@@ -5,21 +5,21 @@ import org.eclipse.xtend.core.xtend.XtendField;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.hamcrest.StringDescription;
 import org.jnario.feature.tests.unit.jvmmodel.StepContextProviderSpec;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("usedFields")
+@RunWith(ExampleGroupRunner.class)
 public class StepContextProviderUsedFieldsSpec extends StepContextProviderSpec {
   @Test
   @Named("returns all called fields of scenario")
-  @Order(0)
+  @Order(1)
   public void _returnsAllCalledFieldsOfScenario() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Feature: My Feature");
@@ -51,7 +51,7 @@ public class StepContextProviderUsedFieldsSpec extends StepContextProviderSpec {
   
   @Test
   @Named("returns all called fields of scenario and background")
-  @Order(1)
+  @Order(2)
   public void _returnsAllCalledFieldsOfScenarioAndBackground() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Feature: My Feature");

@@ -266,22 +266,13 @@ public interface FeaturePackage extends EPackage
 	int SCENARIO__TYPE_PARAMETERS = XtendPackage.XTEND_CLASS__TYPE_PARAMETERS;
 
 	/**
-	 * The feature id for the '<em><b>Steps</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SCENARIO__STEPS = XtendPackage.XTEND_CLASS_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Scenario</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO_FEATURE_COUNT = XtendPackage.XTEND_CLASS_FEATURE_COUNT + 1;
+	int SCENARIO_FEATURE_COUNT = XtendPackage.XTEND_CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.jnario.feature.feature.impl.BackgroundImpl <em>Background</em>}' class.
@@ -366,15 +357,6 @@ public interface FeaturePackage extends EPackage
 	int BACKGROUND__TYPE_PARAMETERS = SCENARIO__TYPE_PARAMETERS;
 
 	/**
-	 * The feature id for the '<em><b>Steps</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BACKGROUND__STEPS = SCENARIO__STEPS;
-
-	/**
 	 * The number of structural features of the '<em>Background</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -400,7 +382,7 @@ public interface FeaturePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__ANNOTATIONS = XtendPackage.XTEND_MEMBER__ANNOTATIONS;
+	int STEP__ANNOTATIONS = XtendPackage.XTEND_FUNCTION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Annotation Info</b></em>' containment reference.
@@ -409,7 +391,7 @@ public interface FeaturePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__ANNOTATION_INFO = XtendPackage.XTEND_MEMBER__ANNOTATION_INFO;
+	int STEP__ANNOTATION_INFO = XtendPackage.XTEND_FUNCTION__ANNOTATION_INFO;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -418,25 +400,97 @@ public interface FeaturePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__NAME = XtendPackage.XTEND_MEMBER_FEATURE_COUNT + 0;
+	int STEP__NAME = XtendPackage.XTEND_FUNCTION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__STEP_EXPRESSION = XtendPackage.XTEND_MEMBER_FEATURE_COUNT + 1;
+	int STEP__EXPRESSION = XtendPackage.XTEND_FUNCTION__EXPRESSION;
 
 	/**
-	 * The feature id for the '<em><b>And</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__AND = XtendPackage.XTEND_MEMBER_FEATURE_COUNT + 2;
+	int STEP__RETURN_TYPE = XtendPackage.XTEND_FUNCTION__RETURN_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__PARAMETERS = XtendPackage.XTEND_FUNCTION__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__OVERRIDE = XtendPackage.XTEND_FUNCTION__OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Dispatch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__DISPATCH = XtendPackage.XTEND_FUNCTION__DISPATCH;
+
+	/**
+	 * The feature id for the '<em><b>Create Extension Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__CREATE_EXTENSION_INFO = XtendPackage.XTEND_FUNCTION__CREATE_EXTENSION_INFO;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__TYPE_PARAMETERS = XtendPackage.XTEND_FUNCTION__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__VISIBILITY = XtendPackage.XTEND_FUNCTION__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__STATIC = XtendPackage.XTEND_FUNCTION__STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Exceptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__EXCEPTIONS = XtendPackage.XTEND_FUNCTION__EXCEPTIONS;
 
 	/**
 	 * The number of structural features of the '<em>Step</em>' class.
@@ -445,7 +499,7 @@ public interface FeaturePackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int STEP_FEATURE_COUNT = XtendPackage.XTEND_MEMBER_FEATURE_COUNT + 3;
+	int STEP_FEATURE_COUNT = XtendPackage.XTEND_FUNCTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.jnario.feature.feature.impl.StepImplementationImpl <em>Step Implementation</em>}' class.
@@ -455,7 +509,7 @@ public interface FeaturePackage extends EPackage
 	 * @see org.jnario.feature.feature.impl.FeaturePackageImpl#getStepImplementation()
 	 * @generated
 	 */
-	int STEP_IMPLEMENTATION = 15;
+	int STEP_IMPLEMENTATION = 14;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -485,22 +539,94 @@ public interface FeaturePackage extends EPackage
 	int STEP_IMPLEMENTATION__NAME = STEP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP_IMPLEMENTATION__STEP_EXPRESSION = STEP__STEP_EXPRESSION;
+	int STEP_IMPLEMENTATION__EXPRESSION = STEP__EXPRESSION;
 
 	/**
-	 * The feature id for the '<em><b>And</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP_IMPLEMENTATION__AND = STEP__AND;
+	int STEP_IMPLEMENTATION__RETURN_TYPE = STEP__RETURN_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_IMPLEMENTATION__PARAMETERS = STEP__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_IMPLEMENTATION__OVERRIDE = STEP__OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Dispatch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_IMPLEMENTATION__DISPATCH = STEP__DISPATCH;
+
+	/**
+	 * The feature id for the '<em><b>Create Extension Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_IMPLEMENTATION__CREATE_EXTENSION_INFO = STEP__CREATE_EXTENSION_INFO;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_IMPLEMENTATION__TYPE_PARAMETERS = STEP__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_IMPLEMENTATION__VISIBILITY = STEP__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_IMPLEMENTATION__STATIC = STEP__STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Exceptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_IMPLEMENTATION__EXCEPTIONS = STEP__EXCEPTIONS;
 
 	/**
 	 * The number of structural features of the '<em>Step Implementation</em>' class.
@@ -549,22 +675,94 @@ public interface FeaturePackage extends EPackage
 	int GIVEN__NAME = STEP_IMPLEMENTATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GIVEN__STEP_EXPRESSION = STEP_IMPLEMENTATION__STEP_EXPRESSION;
+	int GIVEN__EXPRESSION = STEP_IMPLEMENTATION__EXPRESSION;
 
 	/**
-	 * The feature id for the '<em><b>And</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GIVEN__AND = STEP_IMPLEMENTATION__AND;
+	int GIVEN__RETURN_TYPE = STEP_IMPLEMENTATION__RETURN_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN__PARAMETERS = STEP_IMPLEMENTATION__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN__OVERRIDE = STEP_IMPLEMENTATION__OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Dispatch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN__DISPATCH = STEP_IMPLEMENTATION__DISPATCH;
+
+	/**
+	 * The feature id for the '<em><b>Create Extension Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN__CREATE_EXTENSION_INFO = STEP_IMPLEMENTATION__CREATE_EXTENSION_INFO;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN__TYPE_PARAMETERS = STEP_IMPLEMENTATION__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN__VISIBILITY = STEP_IMPLEMENTATION__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN__STATIC = STEP_IMPLEMENTATION__STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Exceptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN__EXCEPTIONS = STEP_IMPLEMENTATION__EXCEPTIONS;
 
 	/**
 	 * The number of structural features of the '<em>Given</em>' class.
@@ -613,22 +811,94 @@ public interface FeaturePackage extends EPackage
 	int WHEN__NAME = STEP_IMPLEMENTATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WHEN__STEP_EXPRESSION = STEP_IMPLEMENTATION__STEP_EXPRESSION;
+	int WHEN__EXPRESSION = STEP_IMPLEMENTATION__EXPRESSION;
 
 	/**
-	 * The feature id for the '<em><b>And</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WHEN__AND = STEP_IMPLEMENTATION__AND;
+	int WHEN__RETURN_TYPE = STEP_IMPLEMENTATION__RETURN_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN__PARAMETERS = STEP_IMPLEMENTATION__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN__OVERRIDE = STEP_IMPLEMENTATION__OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Dispatch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN__DISPATCH = STEP_IMPLEMENTATION__DISPATCH;
+
+	/**
+	 * The feature id for the '<em><b>Create Extension Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN__CREATE_EXTENSION_INFO = STEP_IMPLEMENTATION__CREATE_EXTENSION_INFO;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN__TYPE_PARAMETERS = STEP_IMPLEMENTATION__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN__VISIBILITY = STEP_IMPLEMENTATION__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN__STATIC = STEP_IMPLEMENTATION__STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Exceptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN__EXCEPTIONS = STEP_IMPLEMENTATION__EXCEPTIONS;
 
 	/**
 	 * The number of structural features of the '<em>When</em>' class.
@@ -677,22 +947,94 @@ public interface FeaturePackage extends EPackage
 	int THEN__NAME = STEP_IMPLEMENTATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int THEN__STEP_EXPRESSION = STEP_IMPLEMENTATION__STEP_EXPRESSION;
+	int THEN__EXPRESSION = STEP_IMPLEMENTATION__EXPRESSION;
 
 	/**
-	 * The feature id for the '<em><b>And</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int THEN__AND = STEP_IMPLEMENTATION__AND;
+	int THEN__RETURN_TYPE = STEP_IMPLEMENTATION__RETURN_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN__PARAMETERS = STEP_IMPLEMENTATION__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN__OVERRIDE = STEP_IMPLEMENTATION__OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Dispatch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN__DISPATCH = STEP_IMPLEMENTATION__DISPATCH;
+
+	/**
+	 * The feature id for the '<em><b>Create Extension Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN__CREATE_EXTENSION_INFO = STEP_IMPLEMENTATION__CREATE_EXTENSION_INFO;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN__TYPE_PARAMETERS = STEP_IMPLEMENTATION__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN__VISIBILITY = STEP_IMPLEMENTATION__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN__STATIC = STEP_IMPLEMENTATION__STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Exceptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN__EXCEPTIONS = STEP_IMPLEMENTATION__EXCEPTIONS;
 
 	/**
 	 * The number of structural features of the '<em>Then</em>' class.
@@ -741,22 +1083,94 @@ public interface FeaturePackage extends EPackage
 	int AND__NAME = STEP_IMPLEMENTATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AND__STEP_EXPRESSION = STEP_IMPLEMENTATION__STEP_EXPRESSION;
+	int AND__EXPRESSION = STEP_IMPLEMENTATION__EXPRESSION;
 
 	/**
-	 * The feature id for the '<em><b>And</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AND__AND = STEP_IMPLEMENTATION__AND;
+	int AND__RETURN_TYPE = STEP_IMPLEMENTATION__RETURN_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND__PARAMETERS = STEP_IMPLEMENTATION__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND__OVERRIDE = STEP_IMPLEMENTATION__OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Dispatch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND__DISPATCH = STEP_IMPLEMENTATION__DISPATCH;
+
+	/**
+	 * The feature id for the '<em><b>Create Extension Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND__CREATE_EXTENSION_INFO = STEP_IMPLEMENTATION__CREATE_EXTENSION_INFO;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND__TYPE_PARAMETERS = STEP_IMPLEMENTATION__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND__VISIBILITY = STEP_IMPLEMENTATION__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND__STATIC = STEP_IMPLEMENTATION__STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Exceptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND__EXCEPTIONS = STEP_IMPLEMENTATION__EXCEPTIONS;
 
 	/**
 	 * The number of structural features of the '<em>And</em>' class.
@@ -768,43 +1182,6 @@ public interface FeaturePackage extends EPackage
 	int AND_FEATURE_COUNT = STEP_IMPLEMENTATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.jnario.feature.feature.impl.StepExpressionImpl <em>Step Expression</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.jnario.feature.feature.impl.StepExpressionImpl
-	 * @see org.jnario.feature.feature.impl.FeaturePackageImpl#getStepExpression()
-	 * @generated
-	 */
-	int STEP_EXPRESSION = 8;
-
-	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEP_EXPRESSION__ANNOTATIONS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Block Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEP_EXPRESSION__BLOCK_EXPRESSION = 1;
-
-	/**
-	 * The number of structural features of the '<em>Step Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEP_EXPRESSION_FEATURE_COUNT = 2;
-
-	/**
 	 * The meta object id for the '{@link org.jnario.feature.feature.impl.FeatureFileImpl <em>File</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -812,7 +1189,7 @@ public interface FeaturePackage extends EPackage
 	 * @see org.jnario.feature.feature.impl.FeaturePackageImpl#getFeatureFile()
 	 * @generated
 	 */
-	int FEATURE_FILE = 9;
+	int FEATURE_FILE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Imports</b></em>' containment reference list.
@@ -858,7 +1235,7 @@ public interface FeaturePackage extends EPackage
 	 * @see org.jnario.feature.feature.impl.FeaturePackageImpl#getStepReference()
 	 * @generated
 	 */
-	int STEP_REFERENCE = 14;
+	int STEP_REFERENCE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -888,22 +1265,94 @@ public interface FeaturePackage extends EPackage
 	int STEP_REFERENCE__NAME = STEP__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP_REFERENCE__STEP_EXPRESSION = STEP__STEP_EXPRESSION;
+	int STEP_REFERENCE__EXPRESSION = STEP__EXPRESSION;
 
 	/**
-	 * The feature id for the '<em><b>And</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP_REFERENCE__AND = STEP__AND;
+	int STEP_REFERENCE__RETURN_TYPE = STEP__RETURN_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_REFERENCE__PARAMETERS = STEP__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_REFERENCE__OVERRIDE = STEP__OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Dispatch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_REFERENCE__DISPATCH = STEP__DISPATCH;
+
+	/**
+	 * The feature id for the '<em><b>Create Extension Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_REFERENCE__CREATE_EXTENSION_INFO = STEP__CREATE_EXTENSION_INFO;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_REFERENCE__TYPE_PARAMETERS = STEP__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_REFERENCE__VISIBILITY = STEP__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_REFERENCE__STATIC = STEP__STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Exceptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEP_REFERENCE__EXCEPTIONS = STEP__EXCEPTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Reference</b></em>' reference.
@@ -931,7 +1380,7 @@ public interface FeaturePackage extends EPackage
 	 * @see org.jnario.feature.feature.impl.FeaturePackageImpl#getGivenReference()
 	 * @generated
 	 */
-	int GIVEN_REFERENCE = 10;
+	int GIVEN_REFERENCE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -961,22 +1410,94 @@ public interface FeaturePackage extends EPackage
 	int GIVEN_REFERENCE__NAME = STEP_REFERENCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GIVEN_REFERENCE__STEP_EXPRESSION = STEP_REFERENCE__STEP_EXPRESSION;
+	int GIVEN_REFERENCE__EXPRESSION = STEP_REFERENCE__EXPRESSION;
 
 	/**
-	 * The feature id for the '<em><b>And</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GIVEN_REFERENCE__AND = STEP_REFERENCE__AND;
+	int GIVEN_REFERENCE__RETURN_TYPE = STEP_REFERENCE__RETURN_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN_REFERENCE__PARAMETERS = STEP_REFERENCE__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN_REFERENCE__OVERRIDE = STEP_REFERENCE__OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Dispatch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN_REFERENCE__DISPATCH = STEP_REFERENCE__DISPATCH;
+
+	/**
+	 * The feature id for the '<em><b>Create Extension Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN_REFERENCE__CREATE_EXTENSION_INFO = STEP_REFERENCE__CREATE_EXTENSION_INFO;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN_REFERENCE__TYPE_PARAMETERS = STEP_REFERENCE__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN_REFERENCE__VISIBILITY = STEP_REFERENCE__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN_REFERENCE__STATIC = STEP_REFERENCE__STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Exceptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GIVEN_REFERENCE__EXCEPTIONS = STEP_REFERENCE__EXCEPTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Reference</b></em>' reference.
@@ -1004,7 +1525,7 @@ public interface FeaturePackage extends EPackage
 	 * @see org.jnario.feature.feature.impl.FeaturePackageImpl#getWhenReference()
 	 * @generated
 	 */
-	int WHEN_REFERENCE = 11;
+	int WHEN_REFERENCE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -1034,22 +1555,94 @@ public interface FeaturePackage extends EPackage
 	int WHEN_REFERENCE__NAME = STEP_REFERENCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WHEN_REFERENCE__STEP_EXPRESSION = STEP_REFERENCE__STEP_EXPRESSION;
+	int WHEN_REFERENCE__EXPRESSION = STEP_REFERENCE__EXPRESSION;
 
 	/**
-	 * The feature id for the '<em><b>And</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WHEN_REFERENCE__AND = STEP_REFERENCE__AND;
+	int WHEN_REFERENCE__RETURN_TYPE = STEP_REFERENCE__RETURN_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN_REFERENCE__PARAMETERS = STEP_REFERENCE__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN_REFERENCE__OVERRIDE = STEP_REFERENCE__OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Dispatch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN_REFERENCE__DISPATCH = STEP_REFERENCE__DISPATCH;
+
+	/**
+	 * The feature id for the '<em><b>Create Extension Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN_REFERENCE__CREATE_EXTENSION_INFO = STEP_REFERENCE__CREATE_EXTENSION_INFO;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN_REFERENCE__TYPE_PARAMETERS = STEP_REFERENCE__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN_REFERENCE__VISIBILITY = STEP_REFERENCE__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN_REFERENCE__STATIC = STEP_REFERENCE__STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Exceptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHEN_REFERENCE__EXCEPTIONS = STEP_REFERENCE__EXCEPTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Reference</b></em>' reference.
@@ -1077,7 +1670,7 @@ public interface FeaturePackage extends EPackage
 	 * @see org.jnario.feature.feature.impl.FeaturePackageImpl#getThenReference()
 	 * @generated
 	 */
-	int THEN_REFERENCE = 12;
+	int THEN_REFERENCE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -1107,22 +1700,94 @@ public interface FeaturePackage extends EPackage
 	int THEN_REFERENCE__NAME = STEP_REFERENCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int THEN_REFERENCE__STEP_EXPRESSION = STEP_REFERENCE__STEP_EXPRESSION;
+	int THEN_REFERENCE__EXPRESSION = STEP_REFERENCE__EXPRESSION;
 
 	/**
-	 * The feature id for the '<em><b>And</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int THEN_REFERENCE__AND = STEP_REFERENCE__AND;
+	int THEN_REFERENCE__RETURN_TYPE = STEP_REFERENCE__RETURN_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN_REFERENCE__PARAMETERS = STEP_REFERENCE__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN_REFERENCE__OVERRIDE = STEP_REFERENCE__OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Dispatch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN_REFERENCE__DISPATCH = STEP_REFERENCE__DISPATCH;
+
+	/**
+	 * The feature id for the '<em><b>Create Extension Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN_REFERENCE__CREATE_EXTENSION_INFO = STEP_REFERENCE__CREATE_EXTENSION_INFO;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN_REFERENCE__TYPE_PARAMETERS = STEP_REFERENCE__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN_REFERENCE__VISIBILITY = STEP_REFERENCE__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN_REFERENCE__STATIC = STEP_REFERENCE__STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Exceptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEN_REFERENCE__EXCEPTIONS = STEP_REFERENCE__EXCEPTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Reference</b></em>' reference.
@@ -1150,7 +1815,7 @@ public interface FeaturePackage extends EPackage
 	 * @see org.jnario.feature.feature.impl.FeaturePackageImpl#getAndReference()
 	 * @generated
 	 */
-	int AND_REFERENCE = 13;
+	int AND_REFERENCE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
@@ -1180,22 +1845,94 @@ public interface FeaturePackage extends EPackage
 	int AND_REFERENCE__NAME = STEP_REFERENCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AND_REFERENCE__STEP_EXPRESSION = STEP_REFERENCE__STEP_EXPRESSION;
+	int AND_REFERENCE__EXPRESSION = STEP_REFERENCE__EXPRESSION;
 
 	/**
-	 * The feature id for the '<em><b>And</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Return Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AND_REFERENCE__AND = STEP_REFERENCE__AND;
+	int AND_REFERENCE__RETURN_TYPE = STEP_REFERENCE__RETURN_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_REFERENCE__PARAMETERS = STEP_REFERENCE__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Override</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_REFERENCE__OVERRIDE = STEP_REFERENCE__OVERRIDE;
+
+	/**
+	 * The feature id for the '<em><b>Dispatch</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_REFERENCE__DISPATCH = STEP_REFERENCE__DISPATCH;
+
+	/**
+	 * The feature id for the '<em><b>Create Extension Info</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_REFERENCE__CREATE_EXTENSION_INFO = STEP_REFERENCE__CREATE_EXTENSION_INFO;
+
+	/**
+	 * The feature id for the '<em><b>Type Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_REFERENCE__TYPE_PARAMETERS = STEP_REFERENCE__TYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_REFERENCE__VISIBILITY = STEP_REFERENCE__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_REFERENCE__STATIC = STEP_REFERENCE__STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Exceptions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_REFERENCE__EXCEPTIONS = STEP_REFERENCE__EXCEPTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Reference</b></em>' reference.
@@ -1280,17 +2017,6 @@ public interface FeaturePackage extends EPackage
 	EClass getScenario();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.jnario.feature.feature.Scenario#getSteps <em>Steps</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Steps</em>'.
-	 * @see org.jnario.feature.feature.Scenario#getSteps()
-	 * @see #getScenario()
-	 * @generated
-	 */
-	EReference getScenario_Steps();
-
-	/**
 	 * Returns the meta object for class '{@link org.jnario.feature.feature.Step <em>Step</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1299,39 +2025,6 @@ public interface FeaturePackage extends EPackage
 	 * @generated
 	 */
 	EClass getStep();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.jnario.feature.feature.Step#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.jnario.feature.feature.Step#getName()
-	 * @see #getStep()
-	 * @generated
-	 */
-	EAttribute getStep_Name();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.jnario.feature.feature.Step#getStepExpression <em>Step Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Step Expression</em>'.
-	 * @see org.jnario.feature.feature.Step#getStepExpression()
-	 * @see #getStep()
-	 * @generated
-	 */
-	EReference getStep_StepExpression();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.jnario.feature.feature.Step#getAnd <em>And</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>And</em>'.
-	 * @see org.jnario.feature.feature.Step#getAnd()
-	 * @see #getStep()
-	 * @generated
-	 */
-	EReference getStep_And();
 
 	/**
 	 * Returns the meta object for class '{@link org.jnario.feature.feature.Given <em>Given</em>}'.
@@ -1372,38 +2065,6 @@ public interface FeaturePackage extends EPackage
 	 * @generated
 	 */
 	EClass getAnd();
-
-	/**
-	 * Returns the meta object for class '{@link org.jnario.feature.feature.StepExpression <em>Step Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Step Expression</em>'.
-	 * @see org.jnario.feature.feature.StepExpression
-	 * @generated
-	 */
-	EClass getStepExpression();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.jnario.feature.feature.StepExpression#getAnnotations <em>Annotations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Annotations</em>'.
-	 * @see org.jnario.feature.feature.StepExpression#getAnnotations()
-	 * @see #getStepExpression()
-	 * @generated
-	 */
-	EReference getStepExpression_Annotations();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.jnario.feature.feature.StepExpression#getBlockExpression <em>Block Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Block Expression</em>'.
-	 * @see org.jnario.feature.feature.StepExpression#getBlockExpression()
-	 * @see #getStepExpression()
-	 * @generated
-	 */
-	EReference getStepExpression_BlockExpression();
 
 	/**
 	 * Returns the meta object for class '{@link org.jnario.feature.feature.FeatureFile <em>File</em>}'.
@@ -1564,14 +2225,6 @@ public interface FeaturePackage extends EPackage
 		EClass SCENARIO = eINSTANCE.getScenario();
 
 		/**
-		 * The meta object literal for the '<em><b>Steps</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SCENARIO__STEPS = eINSTANCE.getScenario_Steps();
-
-		/**
 		 * The meta object literal for the '{@link org.jnario.feature.feature.impl.StepImpl <em>Step</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1580,30 +2233,6 @@ public interface FeaturePackage extends EPackage
 		 * @generated
 		 */
 		EClass STEP = eINSTANCE.getStep();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STEP__NAME = eINSTANCE.getStep_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Step Expression</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STEP__STEP_EXPRESSION = eINSTANCE.getStep_StepExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>And</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STEP__AND = eINSTANCE.getStep_And();
 
 		/**
 		 * The meta object literal for the '{@link org.jnario.feature.feature.impl.GivenImpl <em>Given</em>}' class.
@@ -1644,32 +2273,6 @@ public interface FeaturePackage extends EPackage
 		 * @generated
 		 */
 		EClass AND = eINSTANCE.getAnd();
-
-		/**
-		 * The meta object literal for the '{@link org.jnario.feature.feature.impl.StepExpressionImpl <em>Step Expression</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.jnario.feature.feature.impl.StepExpressionImpl
-		 * @see org.jnario.feature.feature.impl.FeaturePackageImpl#getStepExpression()
-		 * @generated
-		 */
-		EClass STEP_EXPRESSION = eINSTANCE.getStepExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Annotations</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STEP_EXPRESSION__ANNOTATIONS = eINSTANCE.getStepExpression_Annotations();
-
-		/**
-		 * The meta object literal for the '<em><b>Block Expression</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STEP_EXPRESSION__BLOCK_EXPRESSION = eINSTANCE.getStepExpression_BlockExpression();
 
 		/**
 		 * The meta object literal for the '{@link org.jnario.feature.feature.impl.FeatureFileImpl <em>File</em>}' class.

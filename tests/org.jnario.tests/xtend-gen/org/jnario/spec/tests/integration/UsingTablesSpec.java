@@ -7,6 +7,7 @@ import org.hamcrest.StringDescription;
 import org.jnario.jnario.test.util.BehaviorExecutor;
 import org.jnario.jnario.test.util.Helpers;
 import org.jnario.jnario.test.util.SpecTestCreator;
+import org.jnario.lib.Assert;
 import org.jnario.lib.ExampleTable;
 import org.jnario.lib.ExampleTableIterators;
 import org.jnario.lib.Should;
@@ -16,9 +17,6 @@ import org.jnario.runner.Extension;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.spec.tests.integration.UsingTablesSpecExample;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -26,8 +24,8 @@ import org.junit.runner.RunWith;
  * Example tables are a great way to structure input and expected output data.
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Using Tables")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SpecTestCreator.class)
 public class UsingTablesSpec {
   @Inject
@@ -44,7 +42,7 @@ public class UsingTablesSpec {
    */
   @Test
   @Named("accessing values")
-  @Order(0)
+  @Order(1)
   public void _accessingValues() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package bootstrap");
@@ -97,7 +95,7 @@ public class UsingTablesSpec {
    */
   @Test
   @Named("Naming examples")
-  @Order(1)
+  @Order(2)
   public void _namingExamples() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package bootstrap");
@@ -139,8 +137,8 @@ public class UsingTablesSpec {
    * @filter('''|.executesSuccessfully)
    */
   @Test
-  @Named("expressions in tables")
-  @Order(2)
+  @Named("Expressions in tables")
+  @Order(3)
   public void _expressionsInTables() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package bootstrap");
@@ -191,8 +189,8 @@ public class UsingTablesSpec {
    * @filter('''|.executesSuccessfully)
    */
   @Test
-  @Named("referencing members")
-  @Order(3)
+  @Named("Referencing members")
+  @Order(4)
   public void _referencingMembers() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package bootstrap");
@@ -259,9 +257,9 @@ public class UsingTablesSpec {
    * @filter('''|.executesSuccessfully)
    */
   @Test
-  @Named("Specifying column types")
-  @Order(4)
-  public void _specifyingColumnTypes() throws Exception {
+  @Named("Column type inference")
+  @Order(5)
+  public void _columnTypeInference() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package bootstrap");
     _builder.newLine();
@@ -272,7 +270,7 @@ public class UsingTablesSpec {
     _builder.append("describe \"Example Tables\"{");
     _builder.newLine();
     _builder.append("  ");
-    _builder.append("def examplesWithType{");
+    _builder.append("def examplesWithTypeInference{");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("|          list            |");
@@ -291,7 +289,7 @@ public class UsingTablesSpec {
     _builder.append("fact \"computes the common super type\"{");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("examplesWithType.forEach[");
+    _builder.append("examplesWithTypeInference.forEach[");
     _builder.newLine();
     _builder.append("      ");
     _builder.append("assert list.empty // works only if the type of list has been inferred as List<String>");
@@ -307,9 +305,61 @@ public class UsingTablesSpec {
     this._behaviorExecutor.executesSuccessfully(_builder);
   }
   
-  @Before
-  public void _initUsingTablesSpecExample() {
-    example = ExampleTable.create("example", 
+  /**
+   * It is also possible to explicitly define the type of a column.
+   * @filter('''|.executesSuccessfully)
+   */
+  @Test
+  @Named("Specifying column types")
+  @Order(6)
+  public void _specifyingColumnTypes() throws Exception {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("import java.util.ArrayList");
+    _builder.newLine();
+    _builder.append("import java.util.LinkedList");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("describe \"Example Tables\"{");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("def examplesWithType{");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("| Iterable<String> list    |");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("| new ArrayList<String>()  |");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("| new LinkedList<String>() |");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("fact \"computes the common super type\"{");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("examplesWithType.forEach[");
+    _builder.newLine();
+    _builder.append("      ");
+    _builder.append("assert list.empty");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("]");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    this._behaviorExecutor.executesSuccessfully(_builder);
+  }
+  
+  public ExampleTable<UsingTablesSpecExample> _initUsingTablesSpecExample() {
+    return ExampleTable.create("example", 
       java.util.Arrays.asList("value1", "value2", "sum"), 
       new UsingTablesSpecExample(  java.util.Arrays.asList("1", "2", "3"), 1, 2, 3),
       new UsingTablesSpecExample(  java.util.Arrays.asList("4", "5", "7"), 4, 5, 7),
@@ -317,16 +367,15 @@ public class UsingTablesSpec {
     );
   }
   
-  protected ExampleTable<UsingTablesSpecExample> example;
+  protected ExampleTable<UsingTablesSpecExample> example = _initUsingTablesSpecExample();
   
   /**
    * `ExampleTable#forEach` executes the passed in procedure for all table rows.
    * It will generate an error message for all procedures that have failed with the reason why they failed.
    */
-  @Ignore
   @Test
   @Named("Error message")
-  @Order(5)
+  @Order(7)
   public void _errorMessage() throws Exception {
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
         public void apply(final Boolean it) {
@@ -351,47 +400,50 @@ public class UsingTablesSpec {
     _builder.newLine();
     _builder.newLine();
     _builder.append("        ");
-    _builder.append("| value1     | value2     | sum     |");
+    _builder.append("| value1     | value2     | sum      |");
     _builder.newLine();
     _builder.append("        ");
-    _builder.append("| 1          | 2          | 3       | ?");
+    _builder.append("| <1>        | <2>        | <3>      | \u2713");
     _builder.newLine();
     _builder.append("        ");
-    _builder.append("| 4          | 5          | 7       | ?     (1)");
+    _builder.append("| <4>        | <5>        | <7>      | \u2718     (1)");
     _builder.newLine();
     _builder.append("        ");
-    _builder.append("| 7          | 8          | 14      | ?     (2)");
+    _builder.append("| <7>        | <8>        | <14>     | \u2718     (2)");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("(1) Expected value1 + value2 => sum but");
+    _builder.append("(1) java.lang.AssertionError: ");
     _builder.newLine();
-    _builder.append("         ");
-    _builder.append("value1 + value2 is 9");
+    _builder.append("Expected value1 + value2 => sum but");
     _builder.newLine();
-    _builder.append("         ");
-    _builder.append("value1 is 4");
+    _builder.append("     ");
+    _builder.append("value1 + value2 is <9>");
     _builder.newLine();
-    _builder.append("         ");
-    _builder.append("value2 is 5");
+    _builder.append("     ");
+    _builder.append("value1 is <4>");
     _builder.newLine();
-    _builder.append("         ");
-    _builder.append("sum is 7");
+    _builder.append("     ");
+    _builder.append("value2 is <5>");
     _builder.newLine();
-    _builder.append("    ");
+    _builder.append("     ");
+    _builder.append("sum is <7>");
     _builder.newLine();
-    _builder.append("(2) Expected value1 + value2 => sum but");
     _builder.newLine();
-    _builder.append("         ");
-    _builder.append("value1 + value2 is 15");
+    _builder.append("(2) java.lang.AssertionError: ");
     _builder.newLine();
-    _builder.append("         ");
-    _builder.append("value1 is 7");
+    _builder.append("Expected value1 + value2 => sum but");
     _builder.newLine();
-    _builder.append("         ");
-    _builder.append("value2 is 8");
+    _builder.append("     ");
+    _builder.append("value1 + value2 is <15>");
     _builder.newLine();
-    _builder.append("         ");
-    _builder.append("sum is 14");
+    _builder.append("     ");
+    _builder.append("value1 is <7>");
+    _builder.newLine();
+    _builder.append("     ");
+    _builder.append("value2 is <8>");
+    _builder.newLine();
+    _builder.append("     ");
+    _builder.append("sum is <14>");
     Helpers.is(_errorMessage, _builder);
   }
 }

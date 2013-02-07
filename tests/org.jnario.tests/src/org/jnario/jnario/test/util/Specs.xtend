@@ -7,9 +7,11 @@
  *******************************************************************************/
 package org.jnario.jnario.test.util
 
-import org.jnario.spec.spec.SpecFactory
-import org.jnario.spec.spec.Example
+import org.eclipse.xtend.core.xtend.XtendMember
 import org.eclipse.xtext.xbase.XbaseFactory
+import org.jnario.spec.spec.SpecFactory
+
+import static org.jnario.jnario.test.util.Specs.*
 
 class Specs {
 	
@@ -39,11 +41,11 @@ class Specs {
 		exampleGroupWith(pendingExample)
 	}
 	
-	def static exampleGroupWith(Example... examples){
+	def static exampleGroupWith(XtendMember... examples){
 		exampleGroup("with examples", examples)
 	}
 	
-	def static exampleGroup(String name, Example... examples){
+	def static exampleGroup(String name, XtendMember... examples){
 		val group = exampleGroup(name)
 		group.members.addAll(examples)
 		group

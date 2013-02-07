@@ -24,19 +24,17 @@ import org.eclipse.xtext.xbase.XExpression
 import org.jnario.ExampleTable
 import org.jnario.Executable
 import org.jnario.report.Executable2ResultMapping
+import org.jnario.report.ExecutableStateSwitch
+import org.jnario.report.Failed
+import org.jnario.report.NotRun
+import org.jnario.report.Passed
+import org.jnario.report.Pending
 import org.pegdown.PegDownProcessor
 
 import static org.jnario.doc.AbstractDocGenerator.*
 
 import static extension org.eclipse.xtext.util.Strings.*
 import static extension org.jnario.util.Strings.*
-import org.jnario.doc.WhiteSpaceNormalizer
-import org.jnario.report.Failed
-import org.jnario.report.Passed
-import org.jnario.report.Pending
-import org.jnario.report.SpecFailure
-import org.jnario.report.ExecutableStateSwitch
-import org.jnario.report.NotRun
 
 abstract class AbstractDocGenerator implements IGenerator {
 
@@ -216,7 +214,7 @@ class CssClassProvider extends ExecutableStateSwitch<String> {
 	override protected handlePassed(Passed execution) '''passed'''
 	override protected handlePending(Pending execution) '''pending'''
 }
-
+ 
 class ErrorMessageProvider extends ExecutableStateSwitch<String> {
 	override protected handleFailed(Failed result) '''
 			«FOR failure : result.failures»

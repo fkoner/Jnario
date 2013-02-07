@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.jnario.standalone
-Bundle-Version: 0.3.0.qualifier
+Bundle-Version: 0.4.0.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -14,6 +14,7 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.3.0",
  org.jnario.spec;bundle-version="0.1.0",
  org.eclipse.xtext.xbase.lib;bundle-version="2.3.0",
  org.jnario.lib;bundle-version="0.1.0",
- org.jnario.suite;bundle-version="0.1.0"
+ org.jnario.suite;bundle-version="0.1.0",
+ org.apache.ant;bundle-version="1.8.3";resolution:=optional
 Import-Package: org.apache.log4j
 Export-Package: org.jnario.compiler

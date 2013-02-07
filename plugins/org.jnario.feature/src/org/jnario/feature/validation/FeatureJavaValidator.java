@@ -8,10 +8,14 @@
 package org.jnario.feature.validation;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static com.google.common.collect.Iterables.filter;
 import static com.google.common.collect.Maps.newHashMap;
+import static com.google.common.collect.Sets.newHashSet;
 import static org.eclipse.xtext.EcoreUtil2.getContainerOfType;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -20,10 +24,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtend.core.validation.IssueCodes;
 import org.eclipse.xtend.core.xtend.XtendClass;
+import org.eclipse.xtend.core.xtend.XtendField;
 import org.eclipse.xtend.core.xtend.XtendFile;
+import org.eclipse.xtend.core.xtend.XtendFunction;
 import org.eclipse.xtend.core.xtend.XtendImport;
 import org.eclipse.xtend.core.xtend.XtendPackage;
 import org.eclipse.xtext.CrossReference;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmFeature;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.TypesPackage;
@@ -46,10 +53,8 @@ import org.eclipse.xtext.xbase.scoping.XbaseScopeProvider;
 import org.jnario.ExampleTable;
 import org.jnario.feature.feature.Background;
 import org.jnario.feature.feature.Feature;
-import org.jnario.feature.feature.FeaturePackage;
 import org.jnario.feature.feature.Scenario;
 import org.jnario.feature.feature.Step;
-import org.jnario.feature.feature.StepExpression;
 import org.jnario.feature.naming.FeatureClassNameProvider;
 import org.jnario.feature.naming.StepNameProvider;
 import org.jnario.validation.JnarioJavaValidator;
@@ -68,9 +73,6 @@ public class FeatureJavaValidator extends AbstractFeatureJavaValidator {
 
 	@Override
 	public void checkInnerExpressions(XExpression block) {
-		if(block.eContainer() instanceof StepExpression){
-			return;
-		}
 		super.checkInnerExpressions(block);
 	}
 	
@@ -78,6 +80,16 @@ public class FeatureJavaValidator extends AbstractFeatureJavaValidator {
 	public void checkFeaturesHaveAName(Feature feature){
 		if(isNullOrEmpty(feature.getName())){
 			error("Features should have a description", XtendPackage.Literals.XTEND_CLASS__NAME);
+		}
+	}
+	
+	@Check(CheckType.FAST)
+	public void checkDuplicateScenarioNames(Feature feature){
+		Set<String> names = newHashSet();
+		for (Scenario scenario : feature.getScenarios()) {
+			if(!names.add(classNameProvider.toJavaClassName(scenario))){
+				error("Duplicate scenario: '" + scenario.getName() + "'", XtendPackage.Literals.XTEND_CLASS__NAME);
+			}
 		}
 	}
 	
@@ -102,7 +114,7 @@ public class FeatureJavaValidator extends AbstractFeatureJavaValidator {
 		String name = nameProvider.nameOf(step);
 		name = nameProvider.removeKeywords(name);
 		if(isNullOrEmpty(name)){
-			error("Steps should have a description", FeaturePackage.Literals.STEP__NAME);
+			error("Steps should have a description", XtendPackage.Literals.XTEND_FUNCTION__NAME);
 		}
 	}
 	
@@ -239,4 +251,34 @@ public class FeatureJavaValidator extends AbstractFeatureJavaValidator {
 		getMessageAcceptor().acceptWarning(message, source, feature, ValidationMessageAcceptor.INSIGNIFICANT_INDEX, code, issueData);
 	}
 
+	@Check
+	public void checkAbstract(XtendFunction function) {
+		if (function instanceof Step) {
+			return;
+		}
+		super.checkAbstract(function);
+	}
+	
+	protected void error(String message, EObject source, EStructuralFeature feature, int index, String code, String... issueData) {
+		if(NodeModelUtils.getNode(source) == null){
+			source = EcoreUtil2.getContainerOfType(source, Step.class);
+			feature = XtendPackage.Literals.XTEND_FUNCTION__NAME;
+		}
+		getMessageAcceptor().acceptError(message, source, feature, index, code, issueData);
+	}
+	
+	
+	@Check
+	public void checkConflictingFields(Scenario scenario){
+		
+		Iterable<XtendField> fields = filter(scenario.getMembers(), XtendField.class);
+		Set<String> names = new HashSet<String>();
+		for (XtendField xtendField : fields) {
+			if(names.contains(xtendField.getName())){
+				
+			}else{
+				names.add(xtendField.getName());
+			}
+		}
+	}
 }

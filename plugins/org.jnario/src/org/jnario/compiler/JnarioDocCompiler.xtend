@@ -7,7 +7,6 @@
  *******************************************************************************/
 package org.jnario.compiler
 
-import com.google.common.collect.Iterables
 import com.google.inject.Inject
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.util.EcoreUtil
@@ -29,12 +28,8 @@ class JnarioDocCompiler extends XtendBatchCompiler{
 	
 	override compile() {
 		resourceSet = loadResources()
-		if (hasValidationErrors(resourceSet)) {
-			return false;
-		}else{
-			generateDocumentation(resourceSet, resultMapping);
-			return true
-		}
+		generateDocumentation(resourceSet, resultMapping);
+		return true
 	}
 	
 	@Inject 
@@ -50,9 +45,11 @@ class JnarioDocCompiler extends XtendBatchCompiler{
 		val nameBasedFilter = new NameBasedFilter();
 		nameBasedFilter.setExtension(fileExtensionProvider.getPrimaryFileExtension());
 		val pathTraverser = new PathTraverser();
+		println("source directories: " + getSourcePathDirectories())
 		pathTraverser.resolvePathes(getSourcePathDirectories(), [input |
 				val matches = nameBasedFilter.matches(input);
 				if (matches) {
+					println("loading resource: " + input)
 					resourceSet.getResource(input, true);
 				}
 				return matches;
@@ -61,12 +58,6 @@ class JnarioDocCompiler extends XtendBatchCompiler{
 		installJvmTypeProvider(resourceSet, classDirectory)
 		EcoreUtil::resolveAll(resourceSet)
 		resourceSet
-	}
-	
-	def hasValidationErrors(ResourceSet resourceSet){
-		val issues = validate(resourceSet);
-		val errors = Iterables::filter(issues, SeverityFilter::ERROR);
-		!errors.empty 
 	}
 	
 	def generateDocumentation(ResourceSet rs, Executable2ResultMapping executable2ResultMapping){

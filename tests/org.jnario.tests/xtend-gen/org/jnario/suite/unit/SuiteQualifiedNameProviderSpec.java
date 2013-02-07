@@ -8,6 +8,7 @@ import org.hamcrest.Matcher;
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.test.util.ModelStore;
 import org.jnario.jnario.test.util.SuiteTestCreator;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.CreateWith;
 import org.jnario.runner.ExampleGroupRunner;
@@ -17,13 +18,12 @@ import org.jnario.runner.Order;
 import org.jnario.runner.Subject;
 import org.jnario.suite.naming.SuiteQualifiedNameProvider;
 import org.jnario.suite.suite.Suite;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("SuiteQualifiedNameProvider")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SuiteTestCreator.class)
 public class SuiteQualifiedNameProviderSpec {
   @Subject
@@ -35,7 +35,7 @@ public class SuiteQualifiedNameProviderSpec {
   
   @Test
   @Named("removes suite prefix")
-  @Order(0)
+  @Order(1)
   public void _removesSuitePrefix() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("#My Suite");
@@ -49,7 +49,7 @@ public class SuiteQualifiedNameProviderSpec {
   
   @Test
   @Named("removes suite trailing text")
-  @Order(1)
+  @Order(2)
   public void _removesSuiteTrailingText() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("#My Suite");
@@ -65,7 +65,7 @@ public class SuiteQualifiedNameProviderSpec {
   
   @Test
   @Named("add suite package")
-  @Order(2)
+  @Order(3)
   public void _addSuitePackage() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package test");
@@ -81,7 +81,7 @@ public class SuiteQualifiedNameProviderSpec {
   
   @Test
   @Named("handles empty packages")
-  @Order(3)
+  @Order(4)
   public void _handlesEmptyPackages() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("#My Suite");
@@ -95,7 +95,7 @@ public class SuiteQualifiedNameProviderSpec {
   
   @Test
   @Named("handles empty suites")
-  @Order(4)
+  @Order(5)
   public void _handlesEmptySuites() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("#");

@@ -5,11 +5,11 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.test.util.Helpers;
+import org.jnario.lib.Assert;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.spec.tests.integration.AssertionSpec;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -20,15 +20,15 @@ import org.junit.runner.RunWith;
  * of all subexpressions.
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("No more debugging...")
+@RunWith(ExampleGroupRunner.class)
 public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
   /**
    * For example, it will print the value of all referenced variables.
    */
   @Test
   @Named("Variable Access")
-  @Order(2)
+  @Order(3)
   public void _variableAccess() throws Exception {
     final boolean y = false;
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
@@ -52,7 +52,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
    */
   @Test
   @Named("Filters literals")
-  @Order(3)
+  @Order(4)
   public void _filtersLiterals() throws Exception {
     final int x = 0;
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
@@ -77,7 +77,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
    */
   @Test
   @Named("Not Equals")
-  @Order(4)
+  @Order(5)
   public void _notEquals() throws Exception {
     final int x = 42;
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
@@ -107,7 +107,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
    */
   @Test
   @Named("Function Calls")
-  @Order(5)
+  @Order(6)
   public void _functionCalls() throws Exception {
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
         public void apply(final Boolean it) {
@@ -132,7 +132,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
    */
   @Test
   @Named("Feature Calls")
-  @Order(6)
+  @Order(7)
   public void _featureCalls() throws Exception {
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {
         public void apply(final Boolean it) {
@@ -162,7 +162,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
    */
   @Test
   @Named("And expressions")
-  @Order(7)
+  @Order(8)
   public void _andExpressions() throws Exception {
     final int x = 0;
     final int y = 1;
@@ -202,7 +202,7 @@ public class AssertionNoMoreDebuggingSpec extends AssertionSpec {
    */
   @Test
   @Named("Removes duplicate feature calls")
-  @Order(8)
+  @Order(9)
   public void _removesDuplicateFeatureCalls() throws Exception {
     final int x = 0;
     final Procedure1<Boolean> _function = new Procedure1<Boolean>() {

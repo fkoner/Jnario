@@ -14,6 +14,7 @@ import org.jnario.jnario.test.util.ModelStore;
 import org.jnario.jnario.test.util.Specs;
 import org.jnario.jnario.test.util.SuiteTestCreator;
 import org.jnario.jnario.test.util.Suites;
+import org.jnario.lib.Assert;
 import org.jnario.lib.JnarioCollectionLiterals;
 import org.jnario.lib.Should;
 import org.jnario.runner.Contains;
@@ -29,15 +30,14 @@ import org.jnario.suite.jvmmodel.SuiteClassNameProvider;
 import org.jnario.suite.suite.SpecReference;
 import org.jnario.suite.suite.Suite;
 import org.jnario.suite.unit.SpecResolverEvaluatesRegularExpressionsSpec;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @Contains(SpecResolverEvaluatesRegularExpressionsSpec.class)
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("SpecResolver")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SuiteTestCreator.class)
 public class SpecResolverSpec {
   @Subject
@@ -96,7 +96,7 @@ public class SpecResolverSpec {
   
   @Test
   @Named("resolves referenced specs")
-  @Order(0)
+  @Order(1)
   public void _resolvesReferencedSpecs() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package demo");
@@ -120,14 +120,13 @@ public class SpecResolverSpec {
      + "\n     resolvedSpecs(firstSuite).toSet is " + new StringDescription().appendValue(_set).toString()
      + "\n     resolvedSpecs(firstSuite) is " + new StringDescription().appendValue(_resolvedSpecs).toString()
      + "\n     firstSuite is " + new StringDescription().appendValue(_firstSuite).toString()
-     + "\n      is " + new StringDescription().appendValue(this.m).toString()
      + "\n     set(\"MySpecSpec\", \"MyFeatureFeature\") is " + new StringDescription().appendValue(_set_1).toString() + "\n", _doubleArrow);
     
   }
   
   @Test
   @Named("filters unresolved specs")
-  @Order(1)
+  @Order(2)
   public void _filtersUnresolvedSpecs() throws Exception {
     SpecReference _specReference = Suites.specReference(null);
     SpecReference _specReference_1 = Suites.specReference(null);
@@ -144,7 +143,7 @@ public class SpecResolverSpec {
   
   @Test
   @Named("ignores specs without name")
-  @Order(2)
+  @Order(3)
   public void _ignoresSpecsWithoutName() throws Exception {
     final ExampleGroup specWithoutName = Specs.exampleGroup(null);
     SpecReference _specReference = Suites.specReference(specWithoutName);
@@ -165,8 +164,8 @@ public class SpecResolverSpec {
     List<Specification> _resolveSpecs = this.subject.resolveSpecs(suite);
     final Function1<Specification,String> _function = new Function1<Specification,String>() {
         public String apply(final Specification it) {
-          String _className = SpecResolverSpec.this._suiteClassNameProvider.getClassName(it);
-          return _className;
+          String _javaClassName = SpecResolverSpec.this._suiteClassNameProvider.toJavaClassName(it);
+          return _javaClassName;
         }
       };
     List<String> _map = ListExtensions.<Specification, String>map(_resolveSpecs, _function);

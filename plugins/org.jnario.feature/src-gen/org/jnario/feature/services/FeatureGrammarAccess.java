@@ -311,16 +311,22 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameBACKGROUND_TEXTTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Assignment cMembersAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cMembersMemberParserRuleCall_2_0 = (RuleCall)cMembersAssignment_2.eContents().get(0);
-		private final Assignment cStepsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Alternatives cStepsAlternatives_3_0 = (Alternatives)cStepsAssignment_3.eContents().get(0);
-		private final RuleCall cStepsGivenParserRuleCall_3_0_0 = (RuleCall)cStepsAlternatives_3_0.eContents().get(0);
-		private final RuleCall cStepsGivenReferenceParserRuleCall_3_0_1 = (RuleCall)cStepsAlternatives_3_0.eContents().get(1);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cMembersAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final Alternatives cMembersAlternatives_3_0_0 = (Alternatives)cMembersAssignment_3_0.eContents().get(0);
+		private final RuleCall cMembersGivenParserRuleCall_3_0_0_0 = (RuleCall)cMembersAlternatives_3_0_0.eContents().get(0);
+		private final RuleCall cMembersGivenReferenceParserRuleCall_3_0_0_1 = (RuleCall)cMembersAlternatives_3_0_0.eContents().get(1);
+		private final Assignment cMembersAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final Alternatives cMembersAlternatives_3_1_0 = (Alternatives)cMembersAssignment_3_1.eContents().get(0);
+		private final RuleCall cMembersAndParserRuleCall_3_1_0_0 = (RuleCall)cMembersAlternatives_3_1_0.eContents().get(0);
+		private final RuleCall cMembersAndReferenceParserRuleCall_3_1_0_1 = (RuleCall)cMembersAlternatives_3_1_0.eContents().get(1);
 		
 		//Background:
-		//	{Background} name=BACKGROUND_TEXT members+=Member* steps+=(Given | GivenReference)*;
+		//	{Background} name=BACKGROUND_TEXT members+=Member* (members+=(Given | GivenReference) members+=(And |
+		//	AndReference)*)?;
 		public ParserRule getRule() { return rule; }
 
-		//{Background} name=BACKGROUND_TEXT members+=Member* steps+=(Given | GivenReference)*
+		//{Background} name=BACKGROUND_TEXT members+=Member* (members+=(Given | GivenReference) members+=(And | AndReference)*)?
 		public Group getGroup() { return cGroup; }
 
 		//{Background}
@@ -338,17 +344,32 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		//Member
 		public RuleCall getMembersMemberParserRuleCall_2_0() { return cMembersMemberParserRuleCall_2_0; }
 
-		//steps+=(Given | GivenReference)*
-		public Assignment getStepsAssignment_3() { return cStepsAssignment_3; }
+		//(members+=(Given | GivenReference) members+=(And | AndReference)*)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//members+=(Given | GivenReference)
+		public Assignment getMembersAssignment_3_0() { return cMembersAssignment_3_0; }
 
 		//Given | GivenReference
-		public Alternatives getStepsAlternatives_3_0() { return cStepsAlternatives_3_0; }
+		public Alternatives getMembersAlternatives_3_0_0() { return cMembersAlternatives_3_0_0; }
 
 		//Given
-		public RuleCall getStepsGivenParserRuleCall_3_0_0() { return cStepsGivenParserRuleCall_3_0_0; }
+		public RuleCall getMembersGivenParserRuleCall_3_0_0_0() { return cMembersGivenParserRuleCall_3_0_0_0; }
 
 		//GivenReference
-		public RuleCall getStepsGivenReferenceParserRuleCall_3_0_1() { return cStepsGivenReferenceParserRuleCall_3_0_1; }
+		public RuleCall getMembersGivenReferenceParserRuleCall_3_0_0_1() { return cMembersGivenReferenceParserRuleCall_3_0_0_1; }
+
+		//members+=(And | AndReference)*
+		public Assignment getMembersAssignment_3_1() { return cMembersAssignment_3_1; }
+
+		//And | AndReference
+		public Alternatives getMembersAlternatives_3_1_0() { return cMembersAlternatives_3_1_0; }
+
+		//And
+		public RuleCall getMembersAndParserRuleCall_3_1_0_0() { return cMembersAndParserRuleCall_3_1_0_0; }
+
+		//AndReference
+		public RuleCall getMembersAndReferenceParserRuleCall_3_1_0_1() { return cMembersAndReferenceParserRuleCall_3_1_0_1; }
 	}
 
 	public class ScenarioElements extends AbstractParserRuleElementFinder {
@@ -359,26 +380,43 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameSCENARIO_TEXTTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Assignment cMembersAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cMembersMemberParserRuleCall_2_0 = (RuleCall)cMembersAssignment_2.eContents().get(0);
-		private final Assignment cStepsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Alternatives cStepsAlternatives_3_0 = (Alternatives)cStepsAssignment_3.eContents().get(0);
-		private final RuleCall cStepsGivenParserRuleCall_3_0_0 = (RuleCall)cStepsAlternatives_3_0.eContents().get(0);
-		private final RuleCall cStepsGivenReferenceParserRuleCall_3_0_1 = (RuleCall)cStepsAlternatives_3_0.eContents().get(1);
-		private final Assignment cStepsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final Alternatives cStepsAlternatives_4_0 = (Alternatives)cStepsAssignment_4.eContents().get(0);
-		private final RuleCall cStepsWhenParserRuleCall_4_0_0 = (RuleCall)cStepsAlternatives_4_0.eContents().get(0);
-		private final RuleCall cStepsWhenReferenceParserRuleCall_4_0_1 = (RuleCall)cStepsAlternatives_4_0.eContents().get(1);
-		private final Assignment cStepsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final Alternatives cStepsAlternatives_5_0 = (Alternatives)cStepsAssignment_5.eContents().get(0);
-		private final RuleCall cStepsThenParserRuleCall_5_0_0 = (RuleCall)cStepsAlternatives_5_0.eContents().get(0);
-		private final RuleCall cStepsThenReferenceParserRuleCall_5_0_1 = (RuleCall)cStepsAlternatives_5_0.eContents().get(1);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cMembersAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final Alternatives cMembersAlternatives_3_0_0 = (Alternatives)cMembersAssignment_3_0.eContents().get(0);
+		private final RuleCall cMembersGivenParserRuleCall_3_0_0_0 = (RuleCall)cMembersAlternatives_3_0_0.eContents().get(0);
+		private final RuleCall cMembersGivenReferenceParserRuleCall_3_0_0_1 = (RuleCall)cMembersAlternatives_3_0_0.eContents().get(1);
+		private final Assignment cMembersAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final Alternatives cMembersAlternatives_3_1_0 = (Alternatives)cMembersAssignment_3_1.eContents().get(0);
+		private final RuleCall cMembersAndParserRuleCall_3_1_0_0 = (RuleCall)cMembersAlternatives_3_1_0.eContents().get(0);
+		private final RuleCall cMembersAndReferenceParserRuleCall_3_1_0_1 = (RuleCall)cMembersAlternatives_3_1_0.eContents().get(1);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Assignment cMembersAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
+		private final Alternatives cMembersAlternatives_4_0_0 = (Alternatives)cMembersAssignment_4_0.eContents().get(0);
+		private final RuleCall cMembersWhenParserRuleCall_4_0_0_0 = (RuleCall)cMembersAlternatives_4_0_0.eContents().get(0);
+		private final RuleCall cMembersWhenReferenceParserRuleCall_4_0_0_1 = (RuleCall)cMembersAlternatives_4_0_0.eContents().get(1);
+		private final Assignment cMembersAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final Alternatives cMembersAlternatives_4_1_0 = (Alternatives)cMembersAssignment_4_1.eContents().get(0);
+		private final RuleCall cMembersAndParserRuleCall_4_1_0_0 = (RuleCall)cMembersAlternatives_4_1_0.eContents().get(0);
+		private final RuleCall cMembersAndReferenceParserRuleCall_4_1_0_1 = (RuleCall)cMembersAlternatives_4_1_0.eContents().get(1);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Assignment cMembersAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
+		private final Alternatives cMembersAlternatives_5_0_0 = (Alternatives)cMembersAssignment_5_0.eContents().get(0);
+		private final RuleCall cMembersThenParserRuleCall_5_0_0_0 = (RuleCall)cMembersAlternatives_5_0_0.eContents().get(0);
+		private final RuleCall cMembersThenReferenceParserRuleCall_5_0_0_1 = (RuleCall)cMembersAlternatives_5_0_0.eContents().get(1);
+		private final Assignment cMembersAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final Alternatives cMembersAlternatives_5_1_0 = (Alternatives)cMembersAssignment_5_1.eContents().get(0);
+		private final RuleCall cMembersAndParserRuleCall_5_1_0_0 = (RuleCall)cMembersAlternatives_5_1_0.eContents().get(0);
+		private final RuleCall cMembersAndReferenceParserRuleCall_5_1_0_1 = (RuleCall)cMembersAlternatives_5_1_0.eContents().get(1);
 		
 		//Scenario:
-		//	{Scenario} name=SCENARIO_TEXT members+=Member* steps+=(Given | GivenReference)? steps+=(When | WhenReference)?
-		//	steps+=(Then | ThenReference)?;
+		//	{Scenario} name=SCENARIO_TEXT members+=Member* (members+=(Given | GivenReference) members+=(And | AndReference)*)?
+		//	(members+=(When | WhenReference) members+=(And | AndReference)*)? (members+=(Then | ThenReference) members+=(And |
+		//	AndReference)*)?;
 		public ParserRule getRule() { return rule; }
 
-		//{Scenario} name=SCENARIO_TEXT members+=Member* steps+=(Given | GivenReference)? steps+=(When | WhenReference)?
-		//steps+=(Then | ThenReference)?
+		//{Scenario} name=SCENARIO_TEXT members+=Member* (members+=(Given | GivenReference) members+=(And | AndReference)*)?
+		//(members+=(When | WhenReference) members+=(And | AndReference)*)? (members+=(Then | ThenReference) members+=(And |
+		//AndReference)*)?
 		public Group getGroup() { return cGroup; }
 
 		//{Scenario}
@@ -396,41 +434,86 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		//Member
 		public RuleCall getMembersMemberParserRuleCall_2_0() { return cMembersMemberParserRuleCall_2_0; }
 
-		//steps+=(Given | GivenReference)?
-		public Assignment getStepsAssignment_3() { return cStepsAssignment_3; }
+		//(members+=(Given | GivenReference) members+=(And | AndReference)*)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//members+=(Given | GivenReference)
+		public Assignment getMembersAssignment_3_0() { return cMembersAssignment_3_0; }
 
 		//Given | GivenReference
-		public Alternatives getStepsAlternatives_3_0() { return cStepsAlternatives_3_0; }
+		public Alternatives getMembersAlternatives_3_0_0() { return cMembersAlternatives_3_0_0; }
 
 		//Given
-		public RuleCall getStepsGivenParserRuleCall_3_0_0() { return cStepsGivenParserRuleCall_3_0_0; }
+		public RuleCall getMembersGivenParserRuleCall_3_0_0_0() { return cMembersGivenParserRuleCall_3_0_0_0; }
 
 		//GivenReference
-		public RuleCall getStepsGivenReferenceParserRuleCall_3_0_1() { return cStepsGivenReferenceParserRuleCall_3_0_1; }
+		public RuleCall getMembersGivenReferenceParserRuleCall_3_0_0_1() { return cMembersGivenReferenceParserRuleCall_3_0_0_1; }
 
-		//steps+=(When | WhenReference)?
-		public Assignment getStepsAssignment_4() { return cStepsAssignment_4; }
+		//members+=(And | AndReference)*
+		public Assignment getMembersAssignment_3_1() { return cMembersAssignment_3_1; }
+
+		//And | AndReference
+		public Alternatives getMembersAlternatives_3_1_0() { return cMembersAlternatives_3_1_0; }
+
+		//And
+		public RuleCall getMembersAndParserRuleCall_3_1_0_0() { return cMembersAndParserRuleCall_3_1_0_0; }
+
+		//AndReference
+		public RuleCall getMembersAndReferenceParserRuleCall_3_1_0_1() { return cMembersAndReferenceParserRuleCall_3_1_0_1; }
+
+		//(members+=(When | WhenReference) members+=(And | AndReference)*)?
+		public Group getGroup_4() { return cGroup_4; }
+
+		//members+=(When | WhenReference)
+		public Assignment getMembersAssignment_4_0() { return cMembersAssignment_4_0; }
 
 		//When | WhenReference
-		public Alternatives getStepsAlternatives_4_0() { return cStepsAlternatives_4_0; }
+		public Alternatives getMembersAlternatives_4_0_0() { return cMembersAlternatives_4_0_0; }
 
 		//When
-		public RuleCall getStepsWhenParserRuleCall_4_0_0() { return cStepsWhenParserRuleCall_4_0_0; }
+		public RuleCall getMembersWhenParserRuleCall_4_0_0_0() { return cMembersWhenParserRuleCall_4_0_0_0; }
 
 		//WhenReference
-		public RuleCall getStepsWhenReferenceParserRuleCall_4_0_1() { return cStepsWhenReferenceParserRuleCall_4_0_1; }
+		public RuleCall getMembersWhenReferenceParserRuleCall_4_0_0_1() { return cMembersWhenReferenceParserRuleCall_4_0_0_1; }
 
-		//steps+=(Then | ThenReference)?
-		public Assignment getStepsAssignment_5() { return cStepsAssignment_5; }
+		//members+=(And | AndReference)*
+		public Assignment getMembersAssignment_4_1() { return cMembersAssignment_4_1; }
+
+		//And | AndReference
+		public Alternatives getMembersAlternatives_4_1_0() { return cMembersAlternatives_4_1_0; }
+
+		//And
+		public RuleCall getMembersAndParserRuleCall_4_1_0_0() { return cMembersAndParserRuleCall_4_1_0_0; }
+
+		//AndReference
+		public RuleCall getMembersAndReferenceParserRuleCall_4_1_0_1() { return cMembersAndReferenceParserRuleCall_4_1_0_1; }
+
+		//(members+=(Then | ThenReference) members+=(And | AndReference)*)?
+		public Group getGroup_5() { return cGroup_5; }
+
+		//members+=(Then | ThenReference)
+		public Assignment getMembersAssignment_5_0() { return cMembersAssignment_5_0; }
 
 		//Then | ThenReference
-		public Alternatives getStepsAlternatives_5_0() { return cStepsAlternatives_5_0; }
+		public Alternatives getMembersAlternatives_5_0_0() { return cMembersAlternatives_5_0_0; }
 
 		//Then
-		public RuleCall getStepsThenParserRuleCall_5_0_0() { return cStepsThenParserRuleCall_5_0_0; }
+		public RuleCall getMembersThenParserRuleCall_5_0_0_0() { return cMembersThenParserRuleCall_5_0_0_0; }
 
 		//ThenReference
-		public RuleCall getStepsThenReferenceParserRuleCall_5_0_1() { return cStepsThenReferenceParserRuleCall_5_0_1; }
+		public RuleCall getMembersThenReferenceParserRuleCall_5_0_0_1() { return cMembersThenReferenceParserRuleCall_5_0_0_1; }
+
+		//members+=(And | AndReference)*
+		public Assignment getMembersAssignment_5_1() { return cMembersAssignment_5_1; }
+
+		//And | AndReference
+		public Alternatives getMembersAlternatives_5_1_0() { return cMembersAlternatives_5_1_0; }
+
+		//And
+		public RuleCall getMembersAndParserRuleCall_5_1_0_0() { return cMembersAndParserRuleCall_5_1_0_0; }
+
+		//AndReference
+		public RuleCall getMembersAndReferenceParserRuleCall_5_1_0_1() { return cMembersAndReferenceParserRuleCall_5_1_0_1; }
 	}
 
 	public class MemberElements extends AbstractParserRuleElementFinder {
@@ -625,16 +708,12 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cReferenceAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cReferenceGivenCrossReference_1_0 = (CrossReference)cReferenceAssignment_1.eContents().get(0);
 		private final RuleCall cReferenceGivenGIVEN_TEXTTerminalRuleCall_1_0_1 = (RuleCall)cReferenceGivenCrossReference_1_0.eContents().get(1);
-		private final Assignment cAndAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Alternatives cAndAlternatives_2_0 = (Alternatives)cAndAssignment_2.eContents().get(0);
-		private final RuleCall cAndAndParserRuleCall_2_0_0 = (RuleCall)cAndAlternatives_2_0.eContents().get(0);
-		private final RuleCall cAndAndReferenceParserRuleCall_2_0_1 = (RuleCall)cAndAlternatives_2_0.eContents().get(1);
 		
 		//GivenReference:
-		//	{GivenReference} reference=[Given|GIVEN_TEXT] and+=(And | AndReference)*;
+		//	{GivenReference} reference=[Given|GIVEN_TEXT];
 		public ParserRule getRule() { return rule; }
 
-		//{GivenReference} reference=[Given|GIVEN_TEXT] and+=(And | AndReference)*
+		//{GivenReference} reference=[Given|GIVEN_TEXT]
 		public Group getGroup() { return cGroup; }
 
 		//{GivenReference}
@@ -648,18 +727,6 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 
 		//GIVEN_TEXT
 		public RuleCall getReferenceGivenGIVEN_TEXTTerminalRuleCall_1_0_1() { return cReferenceGivenGIVEN_TEXTTerminalRuleCall_1_0_1; }
-
-		//and+=(And | AndReference)*
-		public Assignment getAndAssignment_2() { return cAndAssignment_2; }
-
-		//And | AndReference
-		public Alternatives getAndAlternatives_2_0() { return cAndAlternatives_2_0; }
-
-		//And
-		public RuleCall getAndAndParserRuleCall_2_0_0() { return cAndAndParserRuleCall_2_0_0; }
-
-		//AndReference
-		public RuleCall getAndAndReferenceParserRuleCall_2_0_1() { return cAndAndReferenceParserRuleCall_2_0_1; }
 	}
 
 	public class GivenElements extends AbstractParserRuleElementFinder {
@@ -668,18 +735,14 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cGivenAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameGIVEN_TEXTTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cStepExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cStepExpressionStepExpressionParserRuleCall_2_0 = (RuleCall)cStepExpressionAssignment_2.eContents().get(0);
-		private final Assignment cAndAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Alternatives cAndAlternatives_3_0 = (Alternatives)cAndAssignment_3.eContents().get(0);
-		private final RuleCall cAndAndParserRuleCall_3_0_0 = (RuleCall)cAndAlternatives_3_0.eContents().get(0);
-		private final RuleCall cAndAndReferenceParserRuleCall_3_0_1 = (RuleCall)cAndAlternatives_3_0.eContents().get(1);
+		private final Assignment cExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cExpressionBlockExpressionParserRuleCall_2_0 = (RuleCall)cExpressionAssignment_2.eContents().get(0);
 		
 		//Given:
-		//	{Given} name=GIVEN_TEXT stepExpression=StepExpression and+=(And | AndReference)*;
+		//	{Given} name=GIVEN_TEXT expression=BlockExpression;
 		public ParserRule getRule() { return rule; }
 
-		//{Given} name=GIVEN_TEXT stepExpression=StepExpression and+=(And | AndReference)*
+		//{Given} name=GIVEN_TEXT expression=BlockExpression
 		public Group getGroup() { return cGroup; }
 
 		//{Given}
@@ -691,23 +754,11 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		//GIVEN_TEXT
 		public RuleCall getNameGIVEN_TEXTTerminalRuleCall_1_0() { return cNameGIVEN_TEXTTerminalRuleCall_1_0; }
 
-		//stepExpression=StepExpression
-		public Assignment getStepExpressionAssignment_2() { return cStepExpressionAssignment_2; }
+		//expression=BlockExpression
+		public Assignment getExpressionAssignment_2() { return cExpressionAssignment_2; }
 
-		//StepExpression
-		public RuleCall getStepExpressionStepExpressionParserRuleCall_2_0() { return cStepExpressionStepExpressionParserRuleCall_2_0; }
-
-		//and+=(And | AndReference)*
-		public Assignment getAndAssignment_3() { return cAndAssignment_3; }
-
-		//And | AndReference
-		public Alternatives getAndAlternatives_3_0() { return cAndAlternatives_3_0; }
-
-		//And
-		public RuleCall getAndAndParserRuleCall_3_0_0() { return cAndAndParserRuleCall_3_0_0; }
-
-		//AndReference
-		public RuleCall getAndAndReferenceParserRuleCall_3_0_1() { return cAndAndReferenceParserRuleCall_3_0_1; }
+		//BlockExpression
+		public RuleCall getExpressionBlockExpressionParserRuleCall_2_0() { return cExpressionBlockExpressionParserRuleCall_2_0; }
 	}
 
 	public class WhenReferenceElements extends AbstractParserRuleElementFinder {
@@ -717,16 +768,12 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cReferenceAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cReferenceWhenCrossReference_1_0 = (CrossReference)cReferenceAssignment_1.eContents().get(0);
 		private final RuleCall cReferenceWhenWHEN_TEXTTerminalRuleCall_1_0_1 = (RuleCall)cReferenceWhenCrossReference_1_0.eContents().get(1);
-		private final Assignment cAndAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Alternatives cAndAlternatives_2_0 = (Alternatives)cAndAssignment_2.eContents().get(0);
-		private final RuleCall cAndAndParserRuleCall_2_0_0 = (RuleCall)cAndAlternatives_2_0.eContents().get(0);
-		private final RuleCall cAndAndReferenceParserRuleCall_2_0_1 = (RuleCall)cAndAlternatives_2_0.eContents().get(1);
 		
 		//WhenReference:
-		//	{WhenReference} reference=[When|WHEN_TEXT] and+=(And | AndReference)*;
+		//	{WhenReference} reference=[When|WHEN_TEXT];
 		public ParserRule getRule() { return rule; }
 
-		//{WhenReference} reference=[When|WHEN_TEXT] and+=(And | AndReference)*
+		//{WhenReference} reference=[When|WHEN_TEXT]
 		public Group getGroup() { return cGroup; }
 
 		//{WhenReference}
@@ -740,18 +787,6 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 
 		//WHEN_TEXT
 		public RuleCall getReferenceWhenWHEN_TEXTTerminalRuleCall_1_0_1() { return cReferenceWhenWHEN_TEXTTerminalRuleCall_1_0_1; }
-
-		//and+=(And | AndReference)*
-		public Assignment getAndAssignment_2() { return cAndAssignment_2; }
-
-		//And | AndReference
-		public Alternatives getAndAlternatives_2_0() { return cAndAlternatives_2_0; }
-
-		//And
-		public RuleCall getAndAndParserRuleCall_2_0_0() { return cAndAndParserRuleCall_2_0_0; }
-
-		//AndReference
-		public RuleCall getAndAndReferenceParserRuleCall_2_0_1() { return cAndAndReferenceParserRuleCall_2_0_1; }
 	}
 
 	public class WhenElements extends AbstractParserRuleElementFinder {
@@ -760,18 +795,14 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cWhenAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameWHEN_TEXTTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cStepExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cStepExpressionStepExpressionParserRuleCall_2_0 = (RuleCall)cStepExpressionAssignment_2.eContents().get(0);
-		private final Assignment cAndAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Alternatives cAndAlternatives_3_0 = (Alternatives)cAndAssignment_3.eContents().get(0);
-		private final RuleCall cAndAndParserRuleCall_3_0_0 = (RuleCall)cAndAlternatives_3_0.eContents().get(0);
-		private final RuleCall cAndAndReferenceParserRuleCall_3_0_1 = (RuleCall)cAndAlternatives_3_0.eContents().get(1);
+		private final Assignment cExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cExpressionBlockExpressionParserRuleCall_2_0 = (RuleCall)cExpressionAssignment_2.eContents().get(0);
 		
 		//When:
-		//	{When} name=WHEN_TEXT stepExpression=StepExpression and+=(And | AndReference)*;
+		//	{When} name=WHEN_TEXT expression=BlockExpression;
 		public ParserRule getRule() { return rule; }
 
-		//{When} name=WHEN_TEXT stepExpression=StepExpression and+=(And | AndReference)*
+		//{When} name=WHEN_TEXT expression=BlockExpression
 		public Group getGroup() { return cGroup; }
 
 		//{When}
@@ -783,23 +814,11 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		//WHEN_TEXT
 		public RuleCall getNameWHEN_TEXTTerminalRuleCall_1_0() { return cNameWHEN_TEXTTerminalRuleCall_1_0; }
 
-		//stepExpression=StepExpression
-		public Assignment getStepExpressionAssignment_2() { return cStepExpressionAssignment_2; }
+		//expression=BlockExpression
+		public Assignment getExpressionAssignment_2() { return cExpressionAssignment_2; }
 
-		//StepExpression
-		public RuleCall getStepExpressionStepExpressionParserRuleCall_2_0() { return cStepExpressionStepExpressionParserRuleCall_2_0; }
-
-		//and+=(And | AndReference)*
-		public Assignment getAndAssignment_3() { return cAndAssignment_3; }
-
-		//And | AndReference
-		public Alternatives getAndAlternatives_3_0() { return cAndAlternatives_3_0; }
-
-		//And
-		public RuleCall getAndAndParserRuleCall_3_0_0() { return cAndAndParserRuleCall_3_0_0; }
-
-		//AndReference
-		public RuleCall getAndAndReferenceParserRuleCall_3_0_1() { return cAndAndReferenceParserRuleCall_3_0_1; }
+		//BlockExpression
+		public RuleCall getExpressionBlockExpressionParserRuleCall_2_0() { return cExpressionBlockExpressionParserRuleCall_2_0; }
 	}
 
 	public class ThenReferenceElements extends AbstractParserRuleElementFinder {
@@ -809,16 +828,12 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cReferenceAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cReferenceThenCrossReference_1_0 = (CrossReference)cReferenceAssignment_1.eContents().get(0);
 		private final RuleCall cReferenceThenTHEN_TEXTTerminalRuleCall_1_0_1 = (RuleCall)cReferenceThenCrossReference_1_0.eContents().get(1);
-		private final Assignment cAndAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Alternatives cAndAlternatives_2_0 = (Alternatives)cAndAssignment_2.eContents().get(0);
-		private final RuleCall cAndAndParserRuleCall_2_0_0 = (RuleCall)cAndAlternatives_2_0.eContents().get(0);
-		private final RuleCall cAndAndReferenceParserRuleCall_2_0_1 = (RuleCall)cAndAlternatives_2_0.eContents().get(1);
 		
 		//ThenReference:
-		//	{ThenReference} reference=[Then|THEN_TEXT] and+=(And | AndReference)*;
+		//	{ThenReference} reference=[Then|THEN_TEXT];
 		public ParserRule getRule() { return rule; }
 
-		//{ThenReference} reference=[Then|THEN_TEXT] and+=(And | AndReference)*
+		//{ThenReference} reference=[Then|THEN_TEXT]
 		public Group getGroup() { return cGroup; }
 
 		//{ThenReference}
@@ -832,18 +847,6 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 
 		//THEN_TEXT
 		public RuleCall getReferenceThenTHEN_TEXTTerminalRuleCall_1_0_1() { return cReferenceThenTHEN_TEXTTerminalRuleCall_1_0_1; }
-
-		//and+=(And | AndReference)*
-		public Assignment getAndAssignment_2() { return cAndAssignment_2; }
-
-		//And | AndReference
-		public Alternatives getAndAlternatives_2_0() { return cAndAlternatives_2_0; }
-
-		//And
-		public RuleCall getAndAndParserRuleCall_2_0_0() { return cAndAndParserRuleCall_2_0_0; }
-
-		//AndReference
-		public RuleCall getAndAndReferenceParserRuleCall_2_0_1() { return cAndAndReferenceParserRuleCall_2_0_1; }
 	}
 
 	public class ThenElements extends AbstractParserRuleElementFinder {
@@ -852,18 +855,14 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cThenAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameTHEN_TEXTTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cStepExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cStepExpressionStepExpressionParserRuleCall_2_0 = (RuleCall)cStepExpressionAssignment_2.eContents().get(0);
-		private final Assignment cAndAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Alternatives cAndAlternatives_3_0 = (Alternatives)cAndAssignment_3.eContents().get(0);
-		private final RuleCall cAndAndParserRuleCall_3_0_0 = (RuleCall)cAndAlternatives_3_0.eContents().get(0);
-		private final RuleCall cAndAndReferenceParserRuleCall_3_0_1 = (RuleCall)cAndAlternatives_3_0.eContents().get(1);
+		private final Assignment cExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cExpressionBlockExpressionParserRuleCall_2_0 = (RuleCall)cExpressionAssignment_2.eContents().get(0);
 		
 		//Then:
-		//	{Then} name=THEN_TEXT stepExpression=StepExpression and+=(And | AndReference)*;
+		//	{Then} name=THEN_TEXT expression=BlockExpression;
 		public ParserRule getRule() { return rule; }
 
-		//{Then} name=THEN_TEXT stepExpression=StepExpression and+=(And | AndReference)*
+		//{Then} name=THEN_TEXT expression=BlockExpression
 		public Group getGroup() { return cGroup; }
 
 		//{Then}
@@ -875,23 +874,11 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		//THEN_TEXT
 		public RuleCall getNameTHEN_TEXTTerminalRuleCall_1_0() { return cNameTHEN_TEXTTerminalRuleCall_1_0; }
 
-		//stepExpression=StepExpression
-		public Assignment getStepExpressionAssignment_2() { return cStepExpressionAssignment_2; }
+		//expression=BlockExpression
+		public Assignment getExpressionAssignment_2() { return cExpressionAssignment_2; }
 
-		//StepExpression
-		public RuleCall getStepExpressionStepExpressionParserRuleCall_2_0() { return cStepExpressionStepExpressionParserRuleCall_2_0; }
-
-		//and+=(And | AndReference)*
-		public Assignment getAndAssignment_3() { return cAndAssignment_3; }
-
-		//And | AndReference
-		public Alternatives getAndAlternatives_3_0() { return cAndAlternatives_3_0; }
-
-		//And
-		public RuleCall getAndAndParserRuleCall_3_0_0() { return cAndAndParserRuleCall_3_0_0; }
-
-		//AndReference
-		public RuleCall getAndAndReferenceParserRuleCall_3_0_1() { return cAndAndReferenceParserRuleCall_3_0_1; }
+		//BlockExpression
+		public RuleCall getExpressionBlockExpressionParserRuleCall_2_0() { return cExpressionBlockExpressionParserRuleCall_2_0; }
 	}
 
 	public class AndReferenceElements extends AbstractParserRuleElementFinder {
@@ -928,14 +915,14 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cAndAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameAND_TEXTTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cStepExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cStepExpressionStepExpressionParserRuleCall_2_0 = (RuleCall)cStepExpressionAssignment_2.eContents().get(0);
+		private final Assignment cExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cExpressionBlockExpressionParserRuleCall_2_0 = (RuleCall)cExpressionAssignment_2.eContents().get(0);
 		
 		//And:
-		//	{And} name=AND_TEXT stepExpression=StepExpression;
+		//	{And} name=AND_TEXT expression=BlockExpression;
 		public ParserRule getRule() { return rule; }
 
-		//{And} name=AND_TEXT stepExpression=StepExpression
+		//{And} name=AND_TEXT expression=BlockExpression
 		public Group getGroup() { return cGroup; }
 
 		//{And}
@@ -947,41 +934,11 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		//AND_TEXT
 		public RuleCall getNameAND_TEXTTerminalRuleCall_1_0() { return cNameAND_TEXTTerminalRuleCall_1_0; }
 
-		//stepExpression=StepExpression
-		public Assignment getStepExpressionAssignment_2() { return cStepExpressionAssignment_2; }
-
-		//StepExpression
-		public RuleCall getStepExpressionStepExpressionParserRuleCall_2_0() { return cStepExpressionStepExpressionParserRuleCall_2_0; }
-	}
-
-	public class StepExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StepExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cAnnotationsAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cAnnotationsXAnnotationParserRuleCall_0_0 = (RuleCall)cAnnotationsAssignment_0.eContents().get(0);
-		private final Assignment cBlockExpressionAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cBlockExpressionBlockExpressionParserRuleCall_1_0 = (RuleCall)cBlockExpressionAssignment_1.eContents().get(0);
-		
-		/// *
-		// * artificial node to simplify folding
-		// * / StepExpression:
-		//	annotations+=XAnnotation* blockExpression=BlockExpression;
-		public ParserRule getRule() { return rule; }
-
-		//annotations+=XAnnotation* blockExpression=BlockExpression
-		public Group getGroup() { return cGroup; }
-
-		//annotations+=XAnnotation*
-		public Assignment getAnnotationsAssignment_0() { return cAnnotationsAssignment_0; }
-
-		//XAnnotation
-		public RuleCall getAnnotationsXAnnotationParserRuleCall_0_0() { return cAnnotationsXAnnotationParserRuleCall_0_0; }
-
-		//blockExpression=BlockExpression
-		public Assignment getBlockExpressionAssignment_1() { return cBlockExpressionAssignment_1; }
+		//expression=BlockExpression
+		public Assignment getExpressionAssignment_2() { return cExpressionAssignment_2; }
 
 		//BlockExpression
-		public RuleCall getBlockExpressionBlockExpressionParserRuleCall_1_0() { return cBlockExpressionBlockExpressionParserRuleCall_1_0; }
+		public RuleCall getExpressionBlockExpressionParserRuleCall_2_0() { return cExpressionBlockExpressionParserRuleCall_2_0; }
 	}
 
 	public class BlockExpressionElements extends AbstractParserRuleElementFinder {
@@ -991,7 +948,9 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpressionsXExpressionInsideBlockParserRuleCall_0_0 = (RuleCall)cExpressionsAssignment_0.eContents().get(0);
 		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
-		//BlockExpression returns xbase::XBlockExpression:
+		/// *
+		// * artificial node to simplify folding
+		// * / BlockExpression returns xbase::XBlockExpression:
 		//	(expressions+=XExpressionInsideBlock ";"?)+;
 		public ParserRule getRule() { return rule; }
 
@@ -1376,7 +1335,6 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 	private ThenElements pThen;
 	private AndReferenceElements pAndReference;
 	private AndElements pAnd;
-	private StepExpressionElements pStepExpression;
 	private BlockExpressionElements pBlockExpression;
 	private XPrimaryExpressionElements pXPrimaryExpression;
 	private XRelationalExpressionElements pXRelationalExpression;
@@ -1479,7 +1437,8 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Background:
-	//	{Background} name=BACKGROUND_TEXT members+=Member* steps+=(Given | GivenReference)*;
+	//	{Background} name=BACKGROUND_TEXT members+=Member* (members+=(Given | GivenReference) members+=(And |
+	//	AndReference)*)?;
 	public BackgroundElements getBackgroundAccess() {
 		return (pBackground != null) ? pBackground : (pBackground = new BackgroundElements());
 	}
@@ -1489,8 +1448,9 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Scenario:
-	//	{Scenario} name=SCENARIO_TEXT members+=Member* steps+=(Given | GivenReference)? steps+=(When | WhenReference)?
-	//	steps+=(Then | ThenReference)?;
+	//	{Scenario} name=SCENARIO_TEXT members+=Member* (members+=(Given | GivenReference) members+=(And | AndReference)*)?
+	//	(members+=(When | WhenReference) members+=(And | AndReference)*)? (members+=(Then | ThenReference) members+=(And |
+	//	AndReference)*)?;
 	public ScenarioElements getScenarioAccess() {
 		return (pScenario != null) ? pScenario : (pScenario = new ScenarioElements());
 	}
@@ -1513,7 +1473,7 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//GivenReference:
-	//	{GivenReference} reference=[Given|GIVEN_TEXT] and+=(And | AndReference)*;
+	//	{GivenReference} reference=[Given|GIVEN_TEXT];
 	public GivenReferenceElements getGivenReferenceAccess() {
 		return (pGivenReference != null) ? pGivenReference : (pGivenReference = new GivenReferenceElements());
 	}
@@ -1523,7 +1483,7 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Given:
-	//	{Given} name=GIVEN_TEXT stepExpression=StepExpression and+=(And | AndReference)*;
+	//	{Given} name=GIVEN_TEXT expression=BlockExpression;
 	public GivenElements getGivenAccess() {
 		return (pGiven != null) ? pGiven : (pGiven = new GivenElements());
 	}
@@ -1533,7 +1493,7 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//WhenReference:
-	//	{WhenReference} reference=[When|WHEN_TEXT] and+=(And | AndReference)*;
+	//	{WhenReference} reference=[When|WHEN_TEXT];
 	public WhenReferenceElements getWhenReferenceAccess() {
 		return (pWhenReference != null) ? pWhenReference : (pWhenReference = new WhenReferenceElements());
 	}
@@ -1543,7 +1503,7 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//When:
-	//	{When} name=WHEN_TEXT stepExpression=StepExpression and+=(And | AndReference)*;
+	//	{When} name=WHEN_TEXT expression=BlockExpression;
 	public WhenElements getWhenAccess() {
 		return (pWhen != null) ? pWhen : (pWhen = new WhenElements());
 	}
@@ -1553,7 +1513,7 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ThenReference:
-	//	{ThenReference} reference=[Then|THEN_TEXT] and+=(And | AndReference)*;
+	//	{ThenReference} reference=[Then|THEN_TEXT];
 	public ThenReferenceElements getThenReferenceAccess() {
 		return (pThenReference != null) ? pThenReference : (pThenReference = new ThenReferenceElements());
 	}
@@ -1563,7 +1523,7 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Then:
-	//	{Then} name=THEN_TEXT stepExpression=StepExpression and+=(And | AndReference)*;
+	//	{Then} name=THEN_TEXT expression=BlockExpression;
 	public ThenElements getThenAccess() {
 		return (pThen != null) ? pThen : (pThen = new ThenElements());
 	}
@@ -1583,7 +1543,7 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//And:
-	//	{And} name=AND_TEXT stepExpression=StepExpression;
+	//	{And} name=AND_TEXT expression=BlockExpression;
 	public AndElements getAndAccess() {
 		return (pAnd != null) ? pAnd : (pAnd = new AndElements());
 	}
@@ -1594,17 +1554,7 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// *
 	// * artificial node to simplify folding
-	// * / StepExpression:
-	//	annotations+=XAnnotation* blockExpression=BlockExpression;
-	public StepExpressionElements getStepExpressionAccess() {
-		return (pStepExpression != null) ? pStepExpression : (pStepExpression = new StepExpressionElements());
-	}
-	
-	public ParserRule getStepExpressionRule() {
-		return getStepExpressionAccess().getRule();
-	}
-
-	//BlockExpression returns xbase::XBlockExpression:
+	// * / BlockExpression returns xbase::XBlockExpression:
 	//	(expressions+=XExpressionInsideBlock ";"?)+;
 	public BlockExpressionElements getBlockExpressionAccess() {
 		return (pBlockExpression != null) ? pBlockExpression : (pBlockExpression = new BlockExpressionElements());
@@ -1968,37 +1918,37 @@ public class FeatureGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal RICH_TEXT_START:
-	//	"\'\'\'" IN_RICH_STRING* ("\'" "\'"?)? "�";
+	//	"\'\'\'" IN_RICH_STRING* ("\'" "\'"?)? "«";
 	public TerminalRule getRICH_TEXT_STARTRule() {
 		return gaXtend.getRICH_TEXT_STARTRule();
 	} 
 
 	//terminal RICH_TEXT_END:
-	//	"�" IN_RICH_STRING* ("\'\'\'" | ("\'" "\'"?)? EOF);
+	//	"»" IN_RICH_STRING* ("\'\'\'" | ("\'" "\'"?)? EOF);
 	public TerminalRule getRICH_TEXT_ENDRule() {
 		return gaXtend.getRICH_TEXT_ENDRule();
 	} 
 
 	//terminal RICH_TEXT_INBETWEEN:
-	//	"�" IN_RICH_STRING* ("\'" "\'"?)? "�";
+	//	"»" IN_RICH_STRING* ("\'" "\'"?)? "«";
 	public TerminalRule getRICH_TEXT_INBETWEENRule() {
 		return gaXtend.getRICH_TEXT_INBETWEENRule();
 	} 
 
 	//terminal COMMENT_RICH_TEXT_INBETWEEN:
-	//	"��" !("\n" | "\r")* ("\r"? "\n" IN_RICH_STRING* ("\'" "\'"?)? "�")?;
+	//	"««" !("\n" | "\r")* ("\r"? "\n" IN_RICH_STRING* ("\'" "\'"?)? "«")?;
 	public TerminalRule getCOMMENT_RICH_TEXT_INBETWEENRule() {
 		return gaXtend.getCOMMENT_RICH_TEXT_INBETWEENRule();
 	} 
 
 	//terminal COMMENT_RICH_TEXT_END:
-	//	"��" !("\n" | "\r")* ("\r"? "\n" IN_RICH_STRING* ("\'\'\'" | ("\'" "\'"?)? EOF) | EOF);
+	//	"««" !("\n" | "\r")* ("\r"? "\n" IN_RICH_STRING* ("\'\'\'" | ("\'" "\'"?)? EOF) | EOF);
 	public TerminalRule getCOMMENT_RICH_TEXT_ENDRule() {
 		return gaXtend.getCOMMENT_RICH_TEXT_ENDRule();
 	} 
 
 	//terminal fragment IN_RICH_STRING:
-	//	"\'\'" !("�" | "\'") | "\'" !("�" | "\'") | !("�" | "\'");
+	//	"\'\'" !("«" | "\'") | "\'" !("«" | "\'") | !("«" | "\'");
 	public TerminalRule getIN_RICH_STRINGRule() {
 		return gaXtend.getIN_RICH_STRINGRule();
 	} 

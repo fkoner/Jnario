@@ -6,6 +6,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.hamcrest.StringDescription;
 import org.jnario.Specification;
+import org.jnario.lib.Assert;
 import org.jnario.lib.JnarioCollectionLiterals;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
@@ -15,17 +16,16 @@ import org.jnario.suite.suite.PatternReference;
 import org.jnario.suite.suite.Suite;
 import org.jnario.suite.suite.SuiteFactory;
 import org.jnario.suite.unit.SpecResolverSpec;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("evaluates regular expressions")
+@RunWith(ExampleGroupRunner.class)
 public class SpecResolverEvaluatesRegularExpressionsSpec extends SpecResolverSpec {
   @Test
   @Named("example 1")
-  @Order(3)
+  @Order(4)
   public void _example1() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package demo");
@@ -54,7 +54,7 @@ public class SpecResolverEvaluatesRegularExpressionsSpec extends SpecResolverSpe
   
   @Test
   @Named("example 2")
-  @Order(4)
+  @Order(5)
   public void _example2() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package demo");
@@ -81,7 +81,7 @@ public class SpecResolverEvaluatesRegularExpressionsSpec extends SpecResolverSpe
   
   @Test
   @Named("returns empty list on null input")
-  @Order(5)
+  @Order(6)
   public void _returnsEmptyListOnNullInput() throws Exception {
     PatternReference _createPatternReference = SuiteFactory.eINSTANCE.createPatternReference();
     List<Specification> _resolveSpecs = this.subject.resolveSpecs(_createPatternReference);
@@ -98,7 +98,7 @@ public class SpecResolverEvaluatesRegularExpressionsSpec extends SpecResolverSpe
   
   @Test
   @Named("ignores unresolved elements")
-  @Order(6)
+  @Order(7)
   public void _ignoresUnresolvedElements() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package demo");
@@ -125,7 +125,7 @@ public class SpecResolverEvaluatesRegularExpressionsSpec extends SpecResolverSpe
   
   @Test
   @Named("ignores containing suite")
-  @Order(7)
+  @Order(8)
   public void _ignoresContainingSuite() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package demo");
@@ -154,7 +154,7 @@ public class SpecResolverEvaluatesRegularExpressionsSpec extends SpecResolverSpe
   
   @Test
   @Named("orders specs alphabetically")
-  @Order(8)
+  @Order(9)
   public void _ordersSpecsAlphabetically() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package demo");

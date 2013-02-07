@@ -21,8 +21,8 @@ import org.junit.runner.RunWith;
  * @author Sebastian Benz - Initial contribution and API
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("SuiteJavaValidator")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SuiteTestCreator.class)
 public class SuiteJavaValidatorSpec {
   @Inject
@@ -31,7 +31,7 @@ public class SuiteJavaValidatorSpec {
   
   @Test
   @Named("Suite cannot include itself")
-  @Order(0)
+  @Order(1)
   public void _suiteCannotIncludeItself() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("#MySuite");

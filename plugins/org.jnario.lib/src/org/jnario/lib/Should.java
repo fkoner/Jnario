@@ -9,6 +9,8 @@ package org.jnario.lib;
 
 import static com.google.common.collect.Iterables.contains;
 
+import java.util.Arrays;
+
 import org.eclipse.xtext.xbase.lib.Functions;
 import org.eclipse.xtext.xbase.lib.Procedures;
 import org.hamcrest.BaseMatcher;
@@ -48,10 +50,24 @@ public class Should{
 			((Procedures.Procedure1<Object>)expected).apply(actual);
 			return true;
 		}
-		return should_be(actual, expected);
+		if (expected instanceof Functions.Function1<?,?>) {
+			Object result = ((Functions.Function1<Object,Object>)expected).apply(actual);
+			return result instanceof Boolean && ((Boolean)result);
+		}
+		if(isArray(actual) && isArray(expected)){
+			return Arrays.equals((Object[])actual, (Object[])expected);
+		}
+		return Objects.equal(actual, expected);
 	}
 
-// do not work due to a type inference problem in xtend
+	private static boolean isArray(Object obj) {
+		if(obj == null){
+			return false;
+		}
+		return obj.getClass().isArray();
+	}
+
+// does not work due to a type inference problem in xtend
 //	public static boolean operator_doubleArrow(Object actual, Class<?> expected) {
 //		return should_be(actual, expected);
 //	}
@@ -65,11 +81,7 @@ public class Should{
 //	}
 	
 	public static <T> boolean should_be(Object actual, Object expected){
-//		if(haveSameTypeAndAreStrings(actual, expected)){
-//			assertEquals(expected.toString(), actual.toString());
-//			return true;
-//		}
-		return Objects.equal(actual, expected);
+		return operator_doubleArrow(actual, expected);
 	}
 
 //	private static boolean haveSameTypeAndAreStrings(Object actual,
