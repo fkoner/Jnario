@@ -2,21 +2,21 @@ package org.jnario.feature.tests.unit.naming;
 
 import org.hamcrest.StringDescription;
 import org.jnario.feature.tests.unit.naming.FeatureQualifiedNameProviderSpec;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("StepImplementation")
+@RunWith(ExampleGroupRunner.class)
 public class FeatureQualifiedNameProviderStepImplementationSpec extends FeatureQualifiedNameProviderSpec {
   @Test
   @Named("strips keyword")
-  @Order(3)
+  @Order(4)
   public void _stripsKeyword() throws Exception {
     String _implementedStepName = this.implementedStepName("Given a step with implementation");
     boolean _doubleArrow = Should.operator_doubleArrow(_implementedStepName, "myPackage.a step with implementation");
@@ -27,7 +27,7 @@ public class FeatureQualifiedNameProviderStepImplementationSpec extends FeatureQ
   
   @Test
   @Named("strips dot at end")
-  @Order(4)
+  @Order(5)
   public void _stripsDotAtEnd() throws Exception {
     String _implementedStepName = this.implementedStepName("Given a step with implementation.");
     boolean _doubleArrow = Should.operator_doubleArrow(_implementedStepName, "myPackage.a step with implementation");
@@ -38,7 +38,7 @@ public class FeatureQualifiedNameProviderStepImplementationSpec extends FeatureQ
   
   @Test
   @Named("strips argument values")
-  @Order(5)
+  @Order(6)
   public void _stripsArgumentValues() throws Exception {
     String _implementedStepName = this.implementedStepName("Given a step with \"arg\".");
     boolean _doubleArrow = Should.operator_doubleArrow(_implementedStepName, "myPackage.a step with \"\"");

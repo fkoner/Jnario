@@ -11,6 +11,7 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.jnario.feature.tests.unit.validation.FeatureJavaValidatorFeaturesMustHaveDescriptionsSpec;
 import org.jnario.feature.tests.unit.validation.FeatureJavaValidatorScenariosMustHaveDescriptionsSpec;
+import org.jnario.feature.tests.unit.validation.FeatureJavaValidatorScenariosMustHaveDifferentNamesSpec;
 import org.jnario.feature.tests.unit.validation.FeatureJavaValidatorStepsMustHaveDescriptionsSpec;
 import org.jnario.jnario.test.util.FeatureTestCreator;
 import org.jnario.jnario.test.util.ModelStore;
@@ -27,10 +28,10 @@ import org.junit.runner.RunWith;
 /**
  * @author Sebastian Benz - Initial contribution and API
  */
-@Contains({ FeatureJavaValidatorFeaturesMustHaveDescriptionsSpec.class, FeatureJavaValidatorScenariosMustHaveDescriptionsSpec.class, FeatureJavaValidatorStepsMustHaveDescriptionsSpec.class })
+@Contains({ FeatureJavaValidatorFeaturesMustHaveDescriptionsSpec.class, FeatureJavaValidatorScenariosMustHaveDifferentNamesSpec.class, FeatureJavaValidatorScenariosMustHaveDescriptionsSpec.class, FeatureJavaValidatorStepsMustHaveDescriptionsSpec.class })
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("FeatureJavaValidator")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = FeatureTestCreator.class)
 public class FeatureJavaValidatorSpec {
   @Inject
@@ -39,7 +40,7 @@ public class FeatureJavaValidatorSpec {
   
   @Test
   @Named("no name clash between features and imported types")
-  @Order(0)
+  @Order(1)
   public void _noNameClashBetweenFeaturesAndImportedTypes() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("import java.util.Stack");

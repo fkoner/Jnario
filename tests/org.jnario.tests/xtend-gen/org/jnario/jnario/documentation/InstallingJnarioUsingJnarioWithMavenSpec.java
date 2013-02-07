@@ -14,8 +14,8 @@ import org.junit.runner.RunWith;
  * demonstrating the usage of Jnario with Maven.
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Using Jnario with Maven")
+@RunWith(ExampleGroupRunner.class)
 public class InstallingJnarioUsingJnarioWithMavenSpec extends InstallingJnarioSpec {
   /**
    * The XML for the Jnario runtime library is:
@@ -23,7 +23,7 @@ public class InstallingJnarioUsingJnarioWithMavenSpec extends InstallingJnarioSp
    *     <dependency>
    *       <groupId>org.jnario</groupId>
    *       <artifactId>org.jnario.lib.maven</artifactId>
-   *       <version>0.2.1</version>
+   *       <version>0.3.0</version>
    *       <scope>test</scope>
    *     </dependency>
    * 
@@ -31,7 +31,7 @@ public class InstallingJnarioUsingJnarioWithMavenSpec extends InstallingJnarioSp
    */
   @Test
   @Named("Jnario Runtime")
-  @Order(0)
+  @Order(1)
   public void _jnarioRuntime() throws Exception {
     /* "not yet implemented" */
   }
@@ -58,7 +58,7 @@ public class InstallingJnarioUsingJnarioWithMavenSpec extends InstallingJnarioSp
    */
   @Test
   @Named("Executing specs")
-  @Order(1)
+  @Order(2)
   public void _executingSpecs() throws Exception {
     /* "not yet implemented" */
   }
@@ -69,7 +69,7 @@ public class InstallingJnarioUsingJnarioWithMavenSpec extends InstallingJnarioSp
    *     <plugin>
    *       <groupId>org.jnario</groupId>
    *       <artifactId>jnario-maven-plugin</artifactId>
-   *       <version>0.2.1</version>
+   *       <version>0.3.0</version>
    *       <executions>
    *         <execution>
    *           <goals>
@@ -83,7 +83,7 @@ public class InstallingJnarioUsingJnarioWithMavenSpec extends InstallingJnarioSp
    */
   @Test
   @Named("Jnario Compiler")
-  @Order(2)
+  @Order(3)
   public void _jnarioCompiler() throws Exception {
     /* "not yet implemented" */
   }
@@ -103,7 +103,7 @@ public class InstallingJnarioUsingJnarioWithMavenSpec extends InstallingJnarioSp
    */
   @Test
   @Named("Configuring Eclipse")
-  @Order(3)
+  @Order(4)
   public void _configuringEclipse() throws Exception {
     /* "not yet implemented" */
   }

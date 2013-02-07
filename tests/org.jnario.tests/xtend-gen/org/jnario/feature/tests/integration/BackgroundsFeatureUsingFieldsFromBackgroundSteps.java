@@ -1,5 +1,6 @@
 package org.jnario.feature.tests.integration;
 
+import org.jnario.feature.tests.integration.BackgroundsFeature;
 import org.jnario.jnario.test.util.FeatureExecutor;
 import org.jnario.lib.JnarioIterableExtensions;
 import org.jnario.lib.StepArguments;
@@ -12,12 +13,14 @@ import org.junit.runner.RunWith;
 @RunWith(FeatureRunner.class)
 @Named("Scenario: Using fields from background steps")
 @SuppressWarnings("all")
-public class BackgroundsFeatureUsingFieldsFromBackgroundSteps {
+public class BackgroundsFeatureUsingFieldsFromBackgroundSteps extends BackgroundsFeature {
+  CharSequence jnarioFile;
+  
   @Test
   @Order(0)
   @Named("When I have a scenario with a field")
   public void whenIHaveAScenarioWithAField() {
-    StepArguments _stepArguments = new StepArguments("package bootstrap\nimport java.util.*\nFeature: Test\n\tBackground: \n\t\tList<String> values = new ArrayList()\n\t\tGiven a list\n\t\t\tvalues += \"hello\"\n\t\t\n\tScenario: TestScenario 2\n\t\tThen it should have contents\n\t\t\tvalues.size => 1\n\t\t\t");
+    StepArguments _stepArguments = new StepArguments("package bootstrap\nimport java.util.*\nFeature: Test\n\tBackground: \n\t\tList<String> values = new ArrayList()\n\t\tGiven a list\n\t\t\tvalues += \"hello\"\n\t\t\n\tScenario: TestScenario 2\n\t\tThen it should have contents\n\t\t\tvalues.size => 1\n");
     final StepArguments args = _stepArguments;
     String _first = JnarioIterableExtensions.<String>first(args);
     this.jnarioFile = _first;
@@ -29,6 +32,4 @@ public class BackgroundsFeatureUsingFieldsFromBackgroundSteps {
   public void thenItShouldExecuteSuccessfully() {
     FeatureExecutor.isSuccessful(this.jnarioFile);
   }
-  
-  CharSequence jnarioFile;
 }

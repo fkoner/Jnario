@@ -4,7 +4,6 @@ import org.jnario.jvmmodel.ExecutableProvider
 import org.jnario.Executable
 import org.jnario.feature.feature.Feature
 import org.jnario.feature.feature.Scenario
-import static extension org.jnario.feature.jvmmodel.Scenarios.*
 import java.util.List
 
 class FeatureExecutableProvider implements ExecutableProvider {
@@ -14,7 +13,7 @@ class FeatureExecutableProvider implements ExecutableProvider {
 	}
 	 
 	def dispatch List<? extends Executable> doGetExecutables(Scenario scenario){
-		scenario.allSteps
+		scenario.steps
 	}
 	
 	def dispatch List<? extends Executable> doGetExecutables(Executable e){

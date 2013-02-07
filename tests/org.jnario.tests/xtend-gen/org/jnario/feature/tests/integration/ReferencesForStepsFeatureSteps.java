@@ -1,8 +1,11 @@
 package org.jnario.feature.tests.integration;
 
+import org.jnario.feature.tests.integration.ReferencesForStepsFeature;
 import org.jnario.jnario.test.util.FeatureExecutor;
+import org.jnario.jnario.test.util.FeatureTestCreator;
 import org.jnario.lib.JnarioIterableExtensions;
 import org.jnario.lib.StepArguments;
+import org.jnario.runner.CreateWith;
 import org.jnario.runner.FeatureRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
@@ -11,8 +14,11 @@ import org.junit.runner.RunWith;
 
 @RunWith(FeatureRunner.class)
 @Named("Scenario: Steps")
+@CreateWith(value = FeatureTestCreator.class)
 @SuppressWarnings("all")
-public class ReferencesForStepsFeatureSteps {
+public class ReferencesForStepsFeatureSteps extends ReferencesForStepsFeature {
+  CharSequence jnarioFile;
+  
   @Test
   @Order(0)
   @Named("When I have a scenario with a variable that is initialized")
@@ -29,6 +35,4 @@ public class ReferencesForStepsFeatureSteps {
   public void thenItShouldExecuteSuccessfully() {
     FeatureExecutor.isSuccessful(this.jnarioFile);
   }
-  
-  CharSequence jnarioFile;
 }

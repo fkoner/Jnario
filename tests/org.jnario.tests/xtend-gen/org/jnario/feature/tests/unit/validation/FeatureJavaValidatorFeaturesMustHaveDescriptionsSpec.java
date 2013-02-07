@@ -11,12 +11,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Features must have descriptions")
+@RunWith(ExampleGroupRunner.class)
 public class FeatureJavaValidatorFeaturesMustHaveDescriptionsSpec extends FeatureJavaValidatorSpec {
   @Test
   @Named("\\\'\\\'\\\' Feature: \\\'\\\'\\\'.select[typeof[Feature]].assertErrorContains[\\\"description\\\"]")
-  @Order(1)
+  @Order(2)
   public void _featureSelectTypeofFeatureAssertErrorContainsDescription() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Feature: ");

@@ -3,6 +3,7 @@ package org.jnario.suite.unit;
 import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.hamcrest.StringDescription;
+import org.jnario.lib.Assert;
 import org.jnario.lib.ExampleTable;
 import org.jnario.lib.ExampleTableIterators;
 import org.jnario.lib.Should;
@@ -13,21 +14,18 @@ import org.jnario.runner.Subject;
 import org.jnario.suite.conversion.PatternValueConverter;
 import org.jnario.suite.unit.PatternValueConverterSpec;
 import org.jnario.suite.unit.PatternValueConverterToStringStringSpecExamples;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("toString[String]")
+@RunWith(ExampleGroupRunner.class)
 public class PatternValueConverterToStringStringSpec extends PatternValueConverterSpec {
   @Subject
   public PatternValueConverter subject;
   
-  @Before
-  public void _initPatternValueConverterToStringStringSpecExamples() {
-    examples = ExampleTable.create("examples", 
+  public ExampleTable<PatternValueConverterToStringStringSpecExamples> _initPatternValueConverterToStringStringSpecExamples() {
+    return ExampleTable.create("examples", 
       java.util.Arrays.asList("input", "result"), 
       new PatternValueConverterToStringStringSpecExamples(  java.util.Arrays.asList("null", "\"\\\\\\\\\""), null, "\\\\"),
       new PatternValueConverterToStringStringSpecExamples(  java.util.Arrays.asList("\"\"", "\"\\\\\\\\\""), "", "\\\\"),
@@ -35,11 +33,11 @@ public class PatternValueConverterToStringStringSpec extends PatternValueConvert
     );
   }
   
-  protected ExampleTable<PatternValueConverterToStringStringSpecExamples> examples;
+  protected ExampleTable<PatternValueConverterToStringStringSpecExamples> examples = _initPatternValueConverterToStringStringSpecExamples();
   
   @Test
   @Named("examples.forEach[subject.toString[input] => result + newLine]")
-  @Order(0)
+  @Order(1)
   public void _examplesForEachSubjectToStringInputResultNewLine() throws Exception {
     final Procedure1<PatternValueConverterToStringStringSpecExamples> _function = new Procedure1<PatternValueConverterToStringStringSpecExamples>() {
         public void apply(final PatternValueConverterToStringStringSpecExamples it) {

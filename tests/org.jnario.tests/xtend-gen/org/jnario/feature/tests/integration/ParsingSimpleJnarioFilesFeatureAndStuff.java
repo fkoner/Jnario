@@ -1,18 +1,25 @@
 package org.jnario.feature.tests.integration;
 
 import org.hamcrest.StringDescription;
+import org.jnario.feature.tests.integration.ParsingSimpleJnarioFilesFeature;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.FeatureRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(FeatureRunner.class)
 @Named("Scenario: And stuff.")
 @SuppressWarnings("all")
-public class ParsingSimpleJnarioFilesFeatureAndStuff {
+public class ParsingSimpleJnarioFilesFeatureAndStuff extends ParsingSimpleJnarioFilesFeature {
+  int x;
+  
+  int y;
+  
+  int z;
+  
   @Test
   @Order(0)
   @Named("Given two numbers.")
@@ -41,10 +48,4 @@ public class ParsingSimpleJnarioFilesFeatureAndStuff {
      + "\n     z is " + new StringDescription().appendValue(Integer.valueOf(this.z)).toString() + "\n", _doubleArrow);
     
   }
-  
-  int x;
-  
-  int y;
-  
-  int z;
 }

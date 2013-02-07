@@ -12,6 +12,8 @@ import org.hamcrest.StringDescription;
 import org.jnario.Executable;
 import org.jnario.jnario.test.util.ModelStore;
 import org.jnario.jnario.test.util.SpecTestCreator;
+import org.jnario.jnario.tests.integration.ParsingSpecResultsFromJUnitXMLReportsFeature;
+import org.jnario.lib.Assert;
 import org.jnario.lib.JnarioIterableExtensions;
 import org.jnario.lib.JnarioIteratorExtensions;
 import org.jnario.lib.Should;
@@ -27,7 +29,6 @@ import org.jnario.runner.FeatureRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.spec.spec.ExampleGroup;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -35,7 +36,19 @@ import org.junit.runner.RunWith;
 @Named("Scenario: Matching failed Spec runs")
 @CreateWith(value = SpecTestCreator.class)
 @SuppressWarnings("all")
-public class ParsingSpecResultsFromJUnitXMLReportsFeatureMatchingFailedSpecRuns {
+public class ParsingSpecResultsFromJUnitXMLReportsFeatureMatchingFailedSpecRuns extends ParsingSpecResultsFromJUnitXMLReportsFeature {
+  @Inject
+  @Extension
+  public ModelStore _modelStore;
+  
+  @Inject
+  HashBasedSpec2ResultMapping spec2ResultMapping;
+  
+  @Inject
+  SpecResultParser resultParser;
+  
+  Executable specification;
+  
   @Test
   @Order(0)
   @Named("Given a specification")
@@ -74,25 +87,13 @@ public class ParsingSpecResultsFromJUnitXMLReportsFeatureMatchingFailedSpecRuns 
     if (_equals) {
       boolean _doubleArrow = Should.operator_doubleArrow(result, Passed.class);
       Assert.assertTrue("\nExpected result => typeof(Passed) but"
-       + "\n     result => typeof(Passed) is " + new StringDescription().appendValue(Boolean.valueOf(_doubleArrow)).toString() + "\n", _doubleArrow);
+       + "\n     result is " + new StringDescription().appendValue(result).toString() + "\n", _doubleArrow);
       
     } else {
       boolean _doubleArrow_1 = Should.operator_doubleArrow(result, Failed.class);
       Assert.assertTrue("\nExpected result => typeof(Failed) but"
-       + "\n     result => typeof(Failed) is " + new StringDescription().appendValue(Boolean.valueOf(_doubleArrow_1)).toString() + "\n", _doubleArrow_1);
+       + "\n     result is " + new StringDescription().appendValue(result).toString() + "\n", _doubleArrow_1);
       
     }
   }
-  
-  @Inject
-  @Extension
-  public ModelStore _modelStore;
-  
-  @Inject
-  HashBasedSpec2ResultMapping spec2ResultMapping;
-  
-  @Inject
-  SpecResultParser resultParser;
-  
-  Executable specification;
 }

@@ -4,18 +4,18 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.tests.unit.report.HashBasedSpec2ResultMappingSpec;
+import org.jnario.lib.Assert;
 import org.jnario.report.Passed;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.spec.spec.Example;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Example")
+@RunWith(ExampleGroupRunner.class)
 public class HashBasedSpec2ResultMappingExampleSpec extends HashBasedSpec2ResultMappingSpec {
   final Passed aResult = new Function0<Passed>() {
     public Passed apply() {
@@ -40,7 +40,7 @@ public class HashBasedSpec2ResultMappingExampleSpec extends HashBasedSpec2Result
   
   @Test
   @Named("matches if classname and name are equal")
-  @Order(2)
+  @Order(3)
   public void _matchesIfClassnameAndNameAreEqual() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package example");
@@ -76,7 +76,7 @@ public class HashBasedSpec2ResultMappingExampleSpec extends HashBasedSpec2Result
   
   @Test
   @Named("includes pending state when matching")
-  @Order(3)
+  @Order(4)
   public void _includesPendingStateWhenMatching() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package example");

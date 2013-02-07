@@ -12,6 +12,8 @@ import org.hamcrest.StringDescription;
 import org.jnario.Executable;
 import org.jnario.jnario.test.util.ModelStore;
 import org.jnario.jnario.test.util.SpecTestCreator;
+import org.jnario.jnario.tests.integration.ParsingSpecResultsFromJUnitXMLReportsFeature;
+import org.jnario.lib.Assert;
 import org.jnario.lib.JnarioIterableExtensions;
 import org.jnario.lib.JnarioIteratorExtensions;
 import org.jnario.lib.Should;
@@ -27,7 +29,6 @@ import org.jnario.runner.FeatureRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.spec.spec.ExampleGroup;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -35,12 +36,24 @@ import org.junit.runner.RunWith;
 @Named("Scenario: Matching successfull Spec Runs")
 @CreateWith(value = SpecTestCreator.class)
 @SuppressWarnings("all")
-public class ParsingSpecResultsFromJUnitXMLReportsFeatureMatchingSuccessfullSpecRuns {
+public class ParsingSpecResultsFromJUnitXMLReportsFeatureMatchingSuccessfullSpecRuns extends ParsingSpecResultsFromJUnitXMLReportsFeature {
+  @Inject
+  @Extension
+  public ModelStore _modelStore;
+  
+  @Inject
+  HashBasedSpec2ResultMapping spec2ResultMapping;
+  
+  @Inject
+  SpecResultParser resultParser;
+  
+  Executable specification;
+  
   @Test
   @Order(0)
   @Named("Given a specification")
   public void givenASpecification() {
-    StepArguments _stepArguments = new StepArguments("package example\ndescribe \"Adding values\"{\n\tfact \"4 + 3 is 7\"{\n\t\t4 + 3 => 7\n\t}\n}\n\t\t");
+    StepArguments _stepArguments = new StepArguments("package example\ndescribe \"Adding values\"{\n\tfact \"4 + 3 is 7\"{\n\t\t4 + 3 => 7\n\t}\n}\n");
     final StepArguments args = _stepArguments;
     String _first = JnarioIterableExtensions.<String>first(args);
     Resource _parseSpec = this._modelStore.parseSpec(_first);
@@ -54,7 +67,7 @@ public class ParsingSpecResultsFromJUnitXMLReportsFeatureMatchingSuccessfullSpec
   @Order(1)
   @Named("And a test result xml file")
   public void andATestResultXmlFile() {
-    StepArguments _stepArguments = new StepArguments("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<testsuite failures=\"0\" time=\"0.001\" errors=\"0\" skipped=\"0\" tests=\"1\" name=\"example.AddingValuesSpec\">\n  <properties>\n    <property name=\"java.runtime.name\" value=\"Java(TM) SE Runtime Environment\"/>\n  </properties>\n  <testcase time=\"0.001\" classname=\"example.AddingValuesSpec\" name=\"4 + 3 is 7\"/>\n</testsuite>\n\t\t");
+    StepArguments _stepArguments = new StepArguments("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<testsuite failures=\"0\" time=\"0.001\" errors=\"0\" skipped=\"0\" tests=\"1\" name=\"example.AddingValuesSpec\">\n  <properties>\n    <property name=\"java.runtime.name\" value=\"Java(TM) SE Runtime Environment\"/>\n  </properties>\n  <testcase time=\"0.001\" classname=\"example.AddingValuesSpec\" name=\"4 + 3 is 7\"/>\n</testsuite>\n");
     final StepArguments args = _stepArguments;
     String _first = JnarioIterableExtensions.<String>first(args);
     String _trim = _first.trim();
@@ -83,16 +96,4 @@ public class ParsingSpecResultsFromJUnitXMLReportsFeatureMatchingSuccessfullSpec
       
     }
   }
-  
-  @Inject
-  @Extension
-  public ModelStore _modelStore;
-  
-  @Inject
-  HashBasedSpec2ResultMapping spec2ResultMapping;
-  
-  @Inject
-  SpecResultParser resultParser;
-  
-  Executable specification;
 }

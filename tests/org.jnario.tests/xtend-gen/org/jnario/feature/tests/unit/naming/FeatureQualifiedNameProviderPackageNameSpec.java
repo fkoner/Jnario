@@ -2,21 +2,21 @@ package org.jnario.feature.tests.unit.naming;
 
 import org.hamcrest.StringDescription;
 import org.jnario.feature.tests.unit.naming.FeatureQualifiedNameProviderSpec;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Package name")
+@RunWith(ExampleGroupRunner.class)
 public class FeatureQualifiedNameProviderPackageNameSpec extends FeatureQualifiedNameProviderSpec {
   @Test
   @Named("package name is prepended")
-  @Order(0)
+  @Order(1)
   public void _packageNameIsPrepended() throws Exception {
     String _stepName = this.stepName("Given a step", "myPackage");
     boolean _should_startWith = Should.should_startWith(_stepName, "myPackage.");
@@ -27,7 +27,7 @@ public class FeatureQualifiedNameProviderPackageNameSpec extends FeatureQualifie
   
   @Test
   @Named("package name is separated by \\\'.\\\'")
-  @Order(1)
+  @Order(2)
   public void _packageNameIsSeparatedBy() throws Exception {
     String _stepName = this.stepName("Given a step", "myPackage.subpackage");
     boolean _should_startWith = Should.should_startWith(_stepName, "myPackage.subpackage.");
@@ -38,7 +38,7 @@ public class FeatureQualifiedNameProviderPackageNameSpec extends FeatureQualifie
   
   @Test
   @Named("default package name is \\\'features\\\'")
-  @Order(2)
+  @Order(3)
   public void _defaultPackageNameIsFeatures() throws Exception {
     String _stepName = this.stepName("Given a step", null);
     boolean _should_startWith = Should.should_startWith(_stepName, "features.");

@@ -6,18 +6,18 @@ import org.hamcrest.StringDescription;
 import org.jnario.feature.feature.Step;
 import org.jnario.jnario.test.util.FeatureTestCreator;
 import org.jnario.jnario.tests.unit.report.HashBasedSpec2ResultMappingSpec;
+import org.jnario.lib.Assert;
 import org.jnario.report.Passed;
 import org.jnario.runner.CreateWith;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Step")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = FeatureTestCreator.class)
 public class HashBasedSpec2ResultMappingStepSpec extends HashBasedSpec2ResultMappingSpec {
   final Passed aResult = new Function0<Passed>() {
@@ -68,7 +68,7 @@ public class HashBasedSpec2ResultMappingStepSpec extends HashBasedSpec2ResultMap
   
   @Test
   @Named("matches if classname and name are equal")
-  @Order(12)
+  @Order(13)
   public void _matchesIfClassnameAndNameAreEqual() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package example");
@@ -108,7 +108,7 @@ public class HashBasedSpec2ResultMappingStepSpec extends HashBasedSpec2ResultMap
   
   @Test
   @Named("includes pending state when matching")
-  @Order(13)
+  @Order(14)
   public void _includesPendingStateWhenMatching() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package example");
@@ -133,7 +133,7 @@ public class HashBasedSpec2ResultMappingStepSpec extends HashBasedSpec2ResultMap
   
   @Test
   @Named("handles escaped characters")
-  @Order(14)
+  @Order(15)
   public void _handlesEscapedCharacters() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package example");
@@ -161,7 +161,7 @@ public class HashBasedSpec2ResultMappingStepSpec extends HashBasedSpec2ResultMap
   
   @Test
   @Named("handles step arguments")
-  @Order(15)
+  @Order(16)
   public void _handlesStepArguments() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package example");

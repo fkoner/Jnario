@@ -268,6 +268,112 @@ Scenario: Stack adding more elements
 </li>
 </ul>
 </div>
+<div><h3 class="scenario notrun"  id="Scenario_Background_steps_referencing_other_steps">Scenario: Background steps referencing other steps
+</h3>
+<ul>
+<li><span class="step notrun"><p>Given a feature</p><pre>Feature: Feature 1
+Background:
+String testString
+Given something
+testString = &quot;test&quot;
+And it is upper case
+testString.toUpperCase
+Scenario: Scenario 1</pre></span>
+</li>
+<li><span class="step notrun"><p>When referencing the backround steps from another background</p><pre>Feature: Feature 2
+Background:
+Given something
+Scenario: Scenario 2
+Given it is upper case</pre></span>
+</li>
+<li><span class="step notrun"><p>Then they should execute successfully</p></span>
+</li>
+</ul>
+</div>
+<div><h3 class="scenario notrun"  id="Scenario_Step_references_with_extensions_in_same_scenario">Scenario: Step references with extensions in same scenario
+</h3>
+<ul>
+<li><span class="step notrun"><p>Given a feature</p><pre>import org.jnario.feature.tests.integration.ExampleExtension
+Feature: Step references with extensions in same step
+      Scenario: Greetings
+        extension static ExampleExtension = new ExampleExtension
+      When greeting &quot;Sebastian&quot; is &quot;Hello Sebastian&quot;
+        args.first.greet =&gt; args.second
+      But greeting &quot;World&quot; is &quot;Hello World&quot;</pre></span>
+</li>
+<li><span class="step notrun"><p>Then it should execute successfully</p></span>
+</li>
+</ul>
+</div>
+<div><h3 class="scenario notrun"  id="Scenario_Scenario_references_two_steps_from_different_scenarios_which_define_the_same_field">Scenario: Scenario references two steps from different scenarios which define the same field
+</h3>
+<ul>
+<li><span class="step notrun"><p>Given a feature</p><pre>Feature: Field inference
+      Scenario: Scenario with field colors
+        val colors = &lt;String&gt;list  
+        Given a color red
+          colors += &quot;red&quot;
+      Scenario: Other scenario with field colors
+        val colors = &lt;String&gt;list 
+        Given a color green
+          colors += &quot;green&quot;
+      Scenario: Two steps reuse same field
+        
+        Given a color green
+        And a color red
+        Then colors are red &amp; green
+        colors =&gt; list(&quot;green&quot;, &quot;red&quot;)</pre></span>
+</li>
+<li><span class="step notrun"><p>Then it should execute successfully</p></span>
+</li>
+</ul>
+</div>
+<div><h3 class="scenario notrun"  id="Scenario_Duplicate_extension_via_step_rerferences">Scenario: Duplicate extension via step rerferences
+</h3>
+<ul>
+<li><span class="step notrun"><p>When I have a feature</p><pre>import java.util.List
+Feature: Feature 1
+    Scenario: Scenario with field colors
+      extension List&lt;String&gt; colors = &lt;String&gt;list
+      Given a color red
+        colors += &quot;red&quot;
+      And a color green</pre></span>
+</li>
+<li><span class="step notrun"><p>And another feature</p><pre>import java.util.List
+Feature: Feature 2
+    Scenario: Scenario with other colors
+        extension List&lt;String&gt; colors = &lt;String&gt;list
+      Given a color red
+      And a color green
+        colors += &quot;green&quot;</pre></span>
+</li>
+<li><span class="step notrun"><p>Then both should execute successfully</p></span>
+</li>
+</ul>
+</div>
+<div><h3 class="scenario notrun"  id="Scenario_Error_messages_in_Step_References">Scenario: Error messages in Step References
+</h3>
+<ul>
+<li><span class="step notrun"><p>Given a feature</p><pre>Feature: Error Messages in Step References
+ 
+Scenario: Defines a failing step
+  val aList = list(&quot;red&quot;)
+Given an extension
+  try{
+    aList should contain &quot;green&quot;
+  }catch(AssertionError e){
+    val expected = 
+'Expected aList should contain &quot;green&quot; but
+     aList is &lt;[red]&gt;'
+    e.message should contain expected
+  }
+Scenario: Redefines failing step
+Given an extension</pre></span>
+</li>
+<li><span class="step notrun"><p>Then it should execute successfully</p></span>
+</li>
+</ul>
+</div>
 							</div>
 						    <div class="tab-pane" id="source">
 						    	<h3>References.feature</h3>
@@ -284,10 +390,15 @@ package org.jnario.feature.tests.integration
 
 import static extension org.jnario.jnario.test.util.FeatureExecutor.*
 import static org.jnario.jnario.test.util.ResultMatchers.*
+import org.jnario.jnario.test.util.FeatureTestCreator
+import org.jnario.runner.CreateWith
+import com.google.inject.Inject
+import org.jnario.jnario.test.util.BehaviorExecutor
 
 /**
  * @author Birgit Engelmann - Initial contribution and API
  */
+ @CreateWith(typeof(FeatureTestCreator))
 Feature: References for steps
 
   Scenario: Defining a step and using it in the same scenario
@@ -516,6 +627,115 @@ Feature: References for steps
      '''
      jnarioFile = args.first
      Then it should execute successfully
+
+  Scenario: Background steps referencing other steps
+     @Inject extension BehaviorExecutor behaviorExecutor
+     CharSequence jnarioFile
+     CharSequence jnarioFile2
+     Given a feature
+     '''
+      Feature: Feature 1
+      Background:
+      String testString
+      Given something
+      testString = &quot;test&quot;
+      And it is upper case
+      testString.toUpperCase
+      Scenario: Scenario 1
+     '''
+       jnarioFile = args.first
+     When referencing the backround steps from another background
+     '''
+      Feature: Feature 2
+      Background:
+      Given something
+      Scenario: Scenario 2
+      Given it is upper case
+     '''
+       jnarioFile2 = args.first
+     Then they should execute successfully
+       jnarioFile.executesSuccessfully
+       jnarioFile2.executesSuccessfully
+       
+   Scenario: Step references with extensions in same scenario
+     Given a feature
+     '''
+     import org.jnario.feature.tests.integration.ExampleExtension
+     Feature: Step references with extensions in same step
+      Scenario: Greetings
+        extension static ExampleExtension = new ExampleExtension
+      When greeting &quot;Sebastian&quot; is &quot;Hello Sebastian&quot;
+        args.first.greet =&gt; args.second
+      But greeting &quot;World&quot; is &quot;Hello World&quot;
+     '''
+       jnarioFile = args.first
+     Then it should execute successfully
+     
+   Scenario: Scenario references two steps from different scenarios which define the same field
+     Given a feature
+     '''
+     Feature: Field inference
+      Scenario: Scenario with field colors
+        val colors = &lt;String&gt;list  
+        Given a color red
+          colors += &quot;red&quot;
+      Scenario: Other scenario with field colors
+        val colors = &lt;String&gt;list 
+        Given a color green
+          colors += &quot;green&quot;
+      Scenario: Two steps reuse same field
+        
+        Given a color green
+        And a color red
+        Then colors are red &amp; green
+        colors =&gt; list(&quot;green&quot;, &quot;red&quot;)
+     '''
+     Then it should execute successfully
+     
+   Scenario: Duplicate extension via step rerferences
+     
+     When I have a feature
+     '''
+     import java.util.List
+     Feature: Feature 1
+    Scenario: Scenario with field colors
+      extension List&lt;String&gt; colors = &lt;String&gt;list
+      Given a color red
+        colors += &quot;red&quot;
+      And a color green
+     '''
+     And another feature 
+     '''
+     import java.util.List
+     Feature: Feature 2
+    Scenario: Scenario with other colors
+        extension List&lt;String&gt; colors = &lt;String&gt;list
+      Given a color red
+      And a color green
+        colors += &quot;green&quot;
+     '''
+     Then both should execute successfully
+
+  Scenario: Error messages in Step References
+    Given a feature
+    '''
+      Feature: Error Messages in Step References
+       
+      Scenario: Defines a failing step
+        val aList = list(&quot;red&quot;)
+      Given an extension
+        try{
+          aList should contain &quot;green&quot;
+        }catch(AssertionError e){
+          val expected = 
+      'Expected aList should contain &quot;green&quot; but
+           aList is &lt;[red]&gt;'
+          e.message should contain expected
+        }
+      Scenario: Redefines failing step
+      Given an extension                      
+    '''
+    Then it should execute successfully
 </pre>
 						    </p></div>
 						  </div>

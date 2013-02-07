@@ -10,6 +10,7 @@
  */
 package org.jnario.ui.quickfix;
 
+import static org.eclipse.xtext.EcoreUtil2.getContainerOfType;
 import static org.eclipse.xtext.ui.util.DisplayRunHelper.runAsyncInDisplayThread;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -20,7 +21,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.internal.ui.wizards.NewClassCreationWizard;
 import org.eclipse.jdt.internal.ui.wizards.NewElementWizard;
+import org.eclipse.jdt.internal.ui.wizards.NewInterfaceCreationWizard;
 import org.eclipse.jdt.ui.wizards.NewClassWizardPage;
+import org.eclipse.jdt.ui.wizards.NewInterfaceWizardPage;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -30,7 +33,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.xtend.ide.quickfix.XtendQuickfixProvider;
 import org.eclipse.xtend.ide.wizards.NewXtendClassWizard;
 import org.eclipse.xtend.ide.wizards.NewXtendClassWizardPage;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.TypesPackage;
 import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider;
 import org.eclipse.xtext.resource.XtextResource;
@@ -100,7 +102,7 @@ public class JnarioQuickFixProvider extends XtendQuickfixProvider{
 				@Override
 				public void process(XtextResource state) throws Exception {
 					EObject eObject = state.getEObject(issue.getUriToProblem().fragment());
-					XMemberFeatureCall memberFeatureCall = EcoreUtil2.getContainerOfType(eObject, XMemberFeatureCall.class);
+					XMemberFeatureCall memberFeatureCall = getContainerOfType(eObject, XMemberFeatureCall.class);
 					if(memberFeatureCall == null){
 						return;
 					}
@@ -138,14 +140,37 @@ public class JnarioQuickFixProvider extends XtendQuickfixProvider{
 						issueResolutionAcceptor.accept(issue, 
 								"Create Java class", 
 								"Opens the new Java class wizard to create the type '" + issueString + "'", 
-								"java_file.png", 
+								"java_file.gif", 
 								openNewJavaClassWizardFor(context, issueString));
+						issueResolutionAcceptor.accept(issue, 
+								"Create Java Interface", 
+								"Opens the new Java interface wizard to create the type '" + issueString + "'", 
+								"java_interface.gif", 
+								openNewJavaInterfaceWizardFor(context, issueString));
 					}
 				}
+
 
 			});
 			super.createLinkingIssueResolutions(issue, issueResolutionAcceptor);
 		}
+	}
+	
+	private IModification openNewJavaInterfaceWizardFor(final URI contextUri, final String typeName) {
+		return new IModification() {
+			public void apply(IModificationContext context) throws Exception {
+				runAsyncInDisplayThread(new Runnable(){
+
+					public void run() {
+						NewInterfaceWizardPage classWizardPage = new NewInterfaceWizardPage();
+						NewInterfaceCreationWizard wizard = new NewInterfaceCreationWizard(classWizardPage, false);
+						WizardDialog dialog = createWizardDialog(wizard); 
+						newTypePageConfigurer.configure(classWizardPage, contextUri, typeName);
+						dialog.open(); 
+					}
+				});
+			}
+		};
 	}
 	
 	private IModification openNewJavaClassWizardFor(final URI contextUri, final String typeName) {
@@ -203,8 +228,7 @@ public class JnarioQuickFixProvider extends XtendQuickfixProvider{
 		});
 	}
 	
-	protected String getIssueString(final Issue issue,
-			final IXtextDocument xtextDocument)
+	protected String getIssueString(final Issue issue, final IXtextDocument xtextDocument)
 			throws BadLocationException {
 		return xtextDocument.get(issue.getOffset(), issue.getLength());
 	}

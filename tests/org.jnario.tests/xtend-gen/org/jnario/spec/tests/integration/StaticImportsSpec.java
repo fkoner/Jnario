@@ -13,8 +13,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("StaticImports")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SpecTestCreator.class)
 public class StaticImportsSpec {
   @Inject
@@ -23,7 +23,7 @@ public class StaticImportsSpec {
   
   @Test
   @Named("should resolve static imports")
-  @Order(0)
+  @Order(1)
   public void _shouldResolveStaticImports() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package bootstrap");

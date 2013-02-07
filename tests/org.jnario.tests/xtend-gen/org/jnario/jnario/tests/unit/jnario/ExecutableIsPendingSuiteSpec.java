@@ -9,6 +9,7 @@ import org.jnario.jnario.test.util.Specs;
 import org.jnario.jnario.test.util.SuiteTestCreator;
 import org.jnario.jnario.test.util.Suites;
 import org.jnario.jnario.tests.unit.jnario.ExecutableIsPendingSpec;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.CreateWith;
 import org.jnario.runner.ExampleGroupRunner;
@@ -18,13 +19,12 @@ import org.jnario.spec.spec.Example;
 import org.jnario.spec.spec.ExampleGroup;
 import org.jnario.suite.suite.SpecReference;
 import org.jnario.suite.suite.Suite;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Suite")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SuiteTestCreator.class)
 public class ExecutableIsPendingSuiteSpec extends ExecutableIsPendingSpec {
   @Inject
@@ -32,7 +32,7 @@ public class ExecutableIsPendingSuiteSpec extends ExecutableIsPendingSpec {
   
   @Test
   @Named("suiteWith[\\\"A suite\\\", specReference[pendingExampleGroup]].isPending should be true")
-  @Order(18)
+  @Order(20)
   public void _suiteWithASuiteSpecReferencePendingExampleGroupIsPendingShouldBeTrue() throws Exception {
     ExampleGroup _pendingExampleGroup = Specs.pendingExampleGroup();
     SpecReference _specReference = Suites.specReference(_pendingExampleGroup);
@@ -49,7 +49,7 @@ public class ExecutableIsPendingSuiteSpec extends ExecutableIsPendingSpec {
   
   @Test
   @Named("suiteWith[\\\"A suite\\\", specReference[exampleGroupWith[example[\\\"passing\\\"]]]].isPending should be false")
-  @Order(19)
+  @Order(21)
   public void _suiteWithASuiteSpecReferenceExampleGroupWithExamplePassingIsPendingShouldBeFalse() throws Exception {
     Example _example = Specs.example("passing");
     ExampleGroup _exampleGroupWith = Specs.exampleGroupWith(_example);

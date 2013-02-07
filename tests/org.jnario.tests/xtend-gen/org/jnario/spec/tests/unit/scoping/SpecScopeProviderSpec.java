@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.test.util.ScopeTestExtension;
 import org.jnario.jnario.test.util.SpecTestCreator;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.CreateWith;
 import org.jnario.runner.ExampleGroupRunner;
@@ -15,13 +16,12 @@ import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.spec.spec.ExampleGroup;
 import org.jnario.spec.spec.SpecPackage;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("SpecScopeProvider")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SpecTestCreator.class)
 public class SpecScopeProviderSpec {
   @Inject
@@ -30,7 +30,7 @@ public class SpecScopeProviderSpec {
   
   @Test
   @Named("resolves operations from surrounding ExampleGroup\\\'s target")
-  @Order(0)
+  @Order(1)
   public void _resolvesOperationsFromSurroundingExampleGroupSTarget() throws Exception {
     this._scopeTestExtension.parseSpec("\r\n\t\t\tpackage bootstrap\r\n\t\t\t\r\n\t\t\timport org.junit.Assert\r\n\r\n\t\t\tdescribe Assert{\r\n\t\t\t\tcontext assertNotNull(String, Object){\r\n\t\t\t\t\tfact \"assertNotNull(String, Object)\"{\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t} \r\n\r\n\t\t");
     Set<String> _targetOperationScope = this.targetOperationScope();

@@ -24,6 +24,7 @@ import org.eclipse.xtend.core.validation.IssueCodes;
 import org.eclipse.xtend.core.xtend.XtendClass;
 import org.eclipse.xtend.core.xtend.XtendField;
 import org.eclipse.xtend.core.xtend.XtendFile;
+import org.eclipse.xtend.core.xtend.XtendFunction;
 import org.eclipse.xtend.core.xtend.XtendImport;
 import org.eclipse.xtend.core.xtend.XtendPackage;
 import org.eclipse.xtext.CrossReference;
@@ -39,7 +40,6 @@ import org.jnario.ExampleColumn;
 import org.jnario.spec.naming.ExampleNameProvider;
 import org.jnario.spec.spec.Example;
 import org.jnario.spec.spec.ExampleGroup;
-import org.jnario.spec.spec.SpecPackage;
 import org.jnario.spec.spec.TestFunction;
 import org.jnario.validation.JnarioJavaValidator;
 
@@ -63,7 +63,11 @@ public class SpecJavaValidator extends AbstractSpecJavaValidator {
 	@Check
 	public void checkClasses(ExampleGroup exampleGroup) {
 		checkClasses(filter(exampleGroup.getMembers(), XtendClass.class));
+		if(exampleGroup.getTargetOperation() == null && exampleGroup.getName() == null && exampleGroup.getTargetType() == null){
+			error("Example groups must have a name", XtendPackage.Literals.XTEND_CLASS__NAME);
+		}
 	}
+	
 
 	protected void checkClasses(Iterable<XtendClass> xtendClasses) {
 		Set<String> names = newLinkedHashSet();
@@ -96,7 +100,7 @@ public class SpecJavaValidator extends AbstractSpecJavaValidator {
 	public void checkExamplesHaveNames(TestFunction example){
 		String methodName = exampleNameProvider.toMethodName(example);
 		if(isNullOrEmpty(methodName)){
-			error("Name must not be empty", SpecPackage.Literals.TEST_FUNCTION__NAME);
+			error("Name must not be empty", XtendPackage.Literals.XTEND_FUNCTION__NAME);
 		}
 	}
 	
@@ -195,4 +199,32 @@ public class SpecJavaValidator extends AbstractSpecJavaValidator {
 					IssueCodes.IMPORT_UNUSED);
 		}
 	}
+	
+	@Check
+	public void checkDuplicateFacts(ExampleGroup exampleGroup){
+		Map<String, Example> names = newHashMap();
+		for (Example example : filter(exampleGroup.getMembers(), Example.class)) {
+			String exampleName = exampleNameProvider.describe(example);
+			Example duplicate = names.get(exampleName);
+			if(duplicate != null){
+				markAsDuplicate(duplicate);
+				markAsDuplicate(example);
+			}else{
+				names.put(exampleName, example);
+			}
+		}
+	}
+
+	public void markAsDuplicate(Example duplicate) {
+		error("Duplicate fact", duplicate, XtendPackage.Literals.XTEND_FUNCTION__NAME, -1);
+	}
+	
+	@Check
+	public void checkAbstract(XtendFunction function) {
+		if (function instanceof TestFunction) {
+			return;
+		}
+		super.checkAbstract(function);
+	}
+
 }

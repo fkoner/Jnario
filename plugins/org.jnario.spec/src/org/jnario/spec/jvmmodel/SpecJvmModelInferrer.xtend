@@ -18,7 +18,6 @@ import org.eclipse.xtend.core.xtend.XtendField
 import org.eclipse.xtend.core.xtend.XtendFunction
 import org.eclipse.xtend.core.xtend.XtendMember
 import org.eclipse.xtext.EcoreUtil2
-import org.eclipse.xtext.common.types.JvmAnnotationReference
 import org.eclipse.xtext.common.types.JvmAnnotationType
 import org.eclipse.xtext.common.types.JvmGenericType
 import org.eclipse.xtext.common.types.JvmVisibility
@@ -30,9 +29,7 @@ import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociator
 import org.jnario.ExampleTable
 import org.jnario.jvmmodel.ExtendedJvmTypesBuilder
 import org.jnario.jvmmodel.JnarioJvmModelInferrer
-import org.jnario.jvmmodel.JunitAnnotationProvider
 import org.jnario.lib.ExampleTableRow
-import org.jnario.runner.Contains
 import org.jnario.runner.Named
 import org.jnario.runner.Order
 import org.jnario.spec.naming.ExampleNameProvider
@@ -44,12 +41,13 @@ import org.jnario.spec.spec.SpecFile
 import org.jnario.spec.spec.TestFunction
 
 import static extension org.eclipse.xtext.util.Strings.*
+import org.eclipse.xtext.xbase.lib.Procedures$Procedure2
+import org.eclipse.xtext.common.types.JvmOperation
  
 /**
  * @author Sebastian Benz - Initial contribution and API
  */
 class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
-	
 	var exampleIndex = 0
 	
 	@Inject extension ExtendedJvmTypesBuilder
@@ -58,15 +56,13 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 
 	@Inject extension ExampleNameProvider
 	
-	@Inject extension JunitAnnotationProvider annotationProvider
-	
 	@Inject extension ImplicitSubject 
 	
 	@Inject extension IJvmModelAssociator 
 	
 	@Inject extension SyntheticNameClashResolver
 	
-	override infer(EObject e, IJvmDeclaredTypeAcceptor acceptor, boolean preIndexingPhase) {
+	override doInfer(EObject e, IJvmDeclaredTypeAcceptor acceptor, boolean preIndexingPhase) {
 		if (!(e instanceof SpecFile)){
 			return
 		}
@@ -77,10 +73,12 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 		]
 		exampleIndex = 0
 	}
-
+	
 	def infer(IJvmDeclaredTypeAcceptor acceptor, ExampleGroup exampleGroup, JvmGenericType superType){
 		if(superType != null){
 			exampleGroup.^extends = superType.createTypeRef
+		}else{
+			exampleGroup.addSuperClass
 		}
 		val inferredJvmType = exampleGroup.toClass(exampleGroup.toJavaClassName)[
 			packageName = exampleGroup.packageName
@@ -91,10 +89,11 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 			children += acceptor.infer(child, inferredJvmType)
 		]
 		if(!children.empty){
-			inferredJvmType.annotations += exampleGroup.toAnnotation(typeof(Contains), children);
+			testRuntime.addChildren(exampleGroup, inferredJvmType, children)
 		}
 		return inferredJvmType
 	}
+
 	
 	override initialize(XtendClass source, JvmGenericType inferredJvmType) {
 		inferredJvmType.setVisibility(JvmVisibility::PUBLIC);
@@ -107,8 +106,7 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 			suppressWarnings.getValues().add(annotationValue);
 			inferredJvmType.getAnnotations().add(suppressWarnings);
 		}
-		inferredJvmType.annotations += source.exampleGroupRunnerAnnotation
-		inferredJvmType.annotations += source.toAnnotation(typeof(Named), (source as ExampleGroup).describe)
+		inferredJvmType.annotations += source.toAnnotation(typeof(Named), source.describe)
 		addDefaultConstructor(source, inferredJvmType);
 		if (source.getExtends() == null) {
 			val typeRefToObject = getTypeForName(typeof(Object), source);
@@ -117,6 +115,7 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 		} else {
 			inferredJvmType.getSuperTypes().add(cloneWithProxies(source.getExtends()));
 		}
+		testRuntime.updateExampleGroup(source, inferredJvmType)
 		for (intf : source.getImplements()) {
 			inferredJvmType.getSuperTypes().add(cloneWithProxies(intf));
 		}
@@ -144,7 +143,6 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 		computeInferredReturnTypes(inferredJvmType);
 		translateAnnotationsTo(source.getAnnotations(), inferredJvmType);
 		setDocumentation(inferredJvmType, getDocumentation(source));
-
 		resolveNameClashes(inferredJvmType);
 	}
 	 
@@ -171,36 +169,60 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 	}
 	
 	def transform(Example element, JvmGenericType container) {
-		val annotations = element.getTestAnnotations(element.pending)
-		annotations += element.toAnnotation(typeof(Named), element.describe)
-		annotations += element.toAnnotation(typeof(Order), exampleIndex)
 		exampleIndex = exampleIndex + 1
-		container.members += toMethod(element, annotations)
+		val method = toMethod(element)
+		testRuntime.markAsTestMethod(element, method)
+		if(element.pending){
+			testRuntime.markAsPending(element, method) 
+		}
+		method.annotations += element.toAnnotation(typeof(Named), element.describe)
+		method.annotations += element.toAnnotation(typeof(Order), exampleIndex)
+		container.members += method
 	}
 	
 	def transform(Before element, JvmGenericType container) {
-		val annotationType = element.getBeforeAnnotation(element.beforeAll)
-	    container.members += element.toMethod(annotationType, element.beforeAll)
+		transformAround(element, container, 
+			[e, m | testRuntime.beforeMethod(e, m)], 
+			[e, m | testRuntime.beforeAllMethod(e, m)]
+		)
 	}
 	
 	def transform(After element, JvmGenericType container) {
-		val annotationType = element.getAfterAnnotation(element.afterAll)
-		container.members += element.toMethod(annotationType, element.afterAll)
+		transformAround(element, container, 
+			[e, m | testRuntime.afterMethod(e, m)], 
+			[e, m | testRuntime.afterAllMethod(e, m)]
+		)
 	}
 	
-	def toMethod(TestFunction element, JvmAnnotationReference annotation, boolean isStatic){
-		val result = toMethod(element, newArrayList(annotation))
-		result.setStatic(isStatic)	
-		return result
+	def transformAround(TestFunction element, JvmGenericType container, 
+		Procedure2<XtendMember, JvmOperation> around, Procedure2<XtendMember, JvmOperation> aroundAll){
+		val afterMethod = element.toMethod
+		if(element.isStatic){
+			container.members += element.addIsExecutedField
+			aroundAll.apply(element as XtendMember, afterMethod)
+		}else{
+			around.apply(element, afterMethod)
+		}
+	    container.members += afterMethod
 	}
 	
-	def toMethod(TestFunction element, List<JvmAnnotationReference> annotations){
+	def addIsExecutedField(TestFunction element){
+		element.toField("_" + element.toMethodName + "IsExecuted", getTypeForName(typeof(Boolean), element))[
+			setInitializer[
+				append(" false")
+			]
+			^static = true
+		]
+	}
+	
+	def toMethod(TestFunction element){
 		element.toMethod(element.toMethodName, getTypeForName(Void::TYPE, element)) [
 			documentation = element.documentation
-			body = element.implementation
+			body = element.expression
 			element.annotations.translateAnnotationsTo(it)
 			exceptions += typeof(Exception).getTypeForName(element)
-			it.annotations.addAll(annotations.filter[it != null])
+			associatePrimary(element, it);
+			^static = element.^static
 		]
 	}
 	
@@ -220,8 +242,10 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 			exampleTableType.configureWith(table, spec)
 			
 			val type = getTypeForName(typeof(org.jnario.lib.ExampleTable), table, exampleTableType.createTypeRef)
-			specType.members += table.toMethod("_init" + table.toJavaClassName, getTypeForName(Void::TYPE, table))[
-				annotations += table.getBeforeAnnotation()
+			
+			val initMethodName = "_init" + table.toJavaClassName
+			
+			specType.members += table.toMethod(initMethodName, type)[
 				setBody[ITreeAppendable a |
 					exampleTableType.generateInitializationMethod(table, a)	
 				]
@@ -229,6 +253,9 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 			
 			specType.members += table.toField(table.toFieldName, type)[
 				visibility = JvmVisibility::PROTECTED
+				setInitializer[
+					append(initMethodName).append("()")
+				]
 			]
 
 			val constructor = table.toConstructor[simpleName=exampleTableType.simpleName]
@@ -248,12 +275,12 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 				exampleTableType.members += column.toField
 				val jvmParam = typesFactory.createJvmFormalParameter();
 				jvmParam.name = column.name
-				jvmParam.setParameterType(cloneWithProxies(column.type));
+				jvmParam.setParameterType(cloneWithProxies(column.getOrCreateType));
 				constructor.parameters += jvmParam
 				associate(table, jvmParam); 
 				assignments += "this." + column.name + " = " + column.name + ";" 
 				
-				exampleTableType.members += table.toMethod("get" + column.name.toFirstUpper, column.type)[
+				exampleTableType.members += table.toMethod("get" + column.name.toFirstUpper, column.getOrCreateType)[
 					setBody[ITreeAppendable a |
 						a.append("return " + column.name + ";")
 					]
@@ -284,8 +311,7 @@ class SpecJvmModelInferrer extends JnarioJvmModelInferrer {
 				compiler.toJavaStatement(cell, appendable, true)
 			}
 		}
-		appendable.append(exampleTable.toFieldName)
-		appendable.append(" = ExampleTable.create(\"" + exampleTable.toFieldName + "\", \n")
+		appendable.append("return ExampleTable.create(\"" + exampleTable.toFieldName + "\", \n")
 		appendable.append('  java.util.Arrays.asList("' + exampleTable.columnNames.join('", "') + '"), ')
 		appendable.increaseIndentation()
 		appendable.append("\n")

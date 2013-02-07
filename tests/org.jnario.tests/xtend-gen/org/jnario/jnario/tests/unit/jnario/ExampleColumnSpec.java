@@ -12,6 +12,7 @@ import org.jnario.jnario.test.util.ModelStore;
 import org.jnario.jnario.test.util.Query;
 import org.jnario.jnario.test.util.SpecTestCreator;
 import org.jnario.jnario.tests.unit.jnario.ExampleColumnSpecExamples;
+import org.jnario.lib.Assert;
 import org.jnario.lib.ExampleTable;
 import org.jnario.lib.ExampleTableIterators;
 import org.jnario.lib.Should;
@@ -20,14 +21,12 @@ import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Extension;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("ExampleColumn")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SpecTestCreator.class)
 public class ExampleColumnSpec {
   @Inject
@@ -38,9 +37,8 @@ public class ExampleColumnSpec {
   @Extension
   public ISerializer _iSerializer;
   
-  @Before
-  public void _initExampleColumnSpecExamples() {
-    examples = ExampleTable.create("examples", 
+  public ExampleTable<ExampleColumnSpecExamples> _initExampleColumnSpecExamples() {
+    return ExampleTable.create("examples", 
       java.util.Arrays.asList("columnIndex", "cellIndex", "value"), 
       new ExampleColumnSpecExamples(  java.util.Arrays.asList("0", "0", "\"1\""), 0, 0, "1"),
       new ExampleColumnSpecExamples(  java.util.Arrays.asList("0", "1", "\"3\""), 0, 1, "3"),
@@ -49,11 +47,11 @@ public class ExampleColumnSpec {
     );
   }
   
-  protected ExampleTable<ExampleColumnSpecExamples> examples;
+  protected ExampleTable<ExampleColumnSpecExamples> examples = _initExampleColumnSpecExamples();
   
   @Test
   @Named("calculates cells based on table")
-  @Order(0)
+  @Order(1)
   public void _calculatesCellsBasedOnTable() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package bootstrap");
@@ -92,7 +90,6 @@ public class ExampleColumnSpec {
           Assert.assertTrue("\nExpected cell.serialize.trim => value but"
            + "\n     cell.serialize.trim is " + new StringDescription().appendValue(_trim).toString()
            + "\n     cell.serialize is " + new StringDescription().appendValue(_serialize).toString()
-           + "\n      is " + new StringDescription().appendValue(ExampleColumnSpec.this._iSerializer).toString()
            + "\n     cell is " + new StringDescription().appendValue(cell).toString()
            + "\n     value is " + new StringDescription().appendValue(it.value).toString() + "\n", _doubleArrow);
           

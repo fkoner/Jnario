@@ -20,4 +20,16 @@ class ExampleExtension {
 		println("after")
 	}
 	
+// 	@BeforeClass def beforeAll(){
+//		println("before all")
+//	}
+//  
+//	@AfterClass def afterAll(){
+//		println("after all")
+//	}
+
+	def String greet(String s){
+		return "Hello " + s
+	}
+	
 }

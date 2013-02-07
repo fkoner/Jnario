@@ -13,8 +13,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Should")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = FeatureTestCreator.class)
 public class ShouldSpec {
   @Inject
@@ -23,7 +23,7 @@ public class ShouldSpec {
   
   @Test
   @Named("Shows correct failure message in reused steps")
-  @Order(0)
+  @Order(1)
   public void _showsCorrectFailureMessageInReusedSteps() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package demo");

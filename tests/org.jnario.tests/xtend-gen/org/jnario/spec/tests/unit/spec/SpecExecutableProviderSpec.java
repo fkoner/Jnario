@@ -7,6 +7,7 @@ import org.hamcrest.StringDescription;
 import org.jnario.Executable;
 import org.jnario.jnario.test.util.ModelStore;
 import org.jnario.jnario.test.util.SpecTestCreator;
+import org.jnario.lib.Assert;
 import org.jnario.lib.JnarioCollectionLiterals;
 import org.jnario.lib.Should;
 import org.jnario.runner.CreateWith;
@@ -18,13 +19,12 @@ import org.jnario.runner.Subject;
 import org.jnario.spec.jvmmodel.SpecExecutableProvider;
 import org.jnario.spec.spec.Example;
 import org.jnario.spec.spec.ExampleGroup;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("SpecExecutableProvider")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SpecTestCreator.class)
 public class SpecExecutableProviderSpec {
   @Subject
@@ -36,7 +36,7 @@ public class SpecExecutableProviderSpec {
   
   @Test
   @Named("returns all examples")
-  @Order(0)
+  @Order(1)
   public void _returnsAllExamples() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("describe \"Something\"{");
@@ -59,7 +59,6 @@ public class SpecExecutableProviderSpec {
     Assert.assertTrue("\nExpected exampleGroup(\"Something\").executables => list(example(\"fact 1\"), example(\"fact 2\")) but"
      + "\n     exampleGroup(\"Something\").executables is " + new StringDescription().appendValue(_executables).toString()
      + "\n     exampleGroup(\"Something\") is " + new StringDescription().appendValue(_exampleGroup).toString()
-     + "\n      is " + new StringDescription().appendValue(this._modelStore).toString()
      + "\n     list(example(\"fact 1\"), example(\"fact 2\")) is " + new StringDescription().appendValue(_list).toString()
      + "\n     example(\"fact 1\") is " + new StringDescription().appendValue(_example).toString()
      + "\n     example(\"fact 2\") is " + new StringDescription().appendValue(_example_1).toString() + "\n", _doubleArrow);
@@ -68,7 +67,7 @@ public class SpecExecutableProviderSpec {
   
   @Test
   @Named("returns all sub example groups")
-  @Order(1)
+  @Order(2)
   public void _returnsAllSubExampleGroups() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("describe \"Something\"{");
@@ -91,7 +90,6 @@ public class SpecExecutableProviderSpec {
     Assert.assertTrue("\nExpected exampleGroup(\"Something\").executables => list(exampleGroup(\"exampleGroup 1\"), exampleGroup(\"exampleGroup 2\")) but"
      + "\n     exampleGroup(\"Something\").executables is " + new StringDescription().appendValue(_executables).toString()
      + "\n     exampleGroup(\"Something\") is " + new StringDescription().appendValue(_exampleGroup).toString()
-     + "\n      is " + new StringDescription().appendValue(this._modelStore).toString()
      + "\n     list(exampleGroup(\"exampleGroup 1\"), exampleGroup(\"exampleGroup 2\")) is " + new StringDescription().appendValue(_list).toString()
      + "\n     exampleGroup(\"exampleGroup 1\") is " + new StringDescription().appendValue(_exampleGroup_1).toString()
      + "\n     exampleGroup(\"exampleGroup 2\") is " + new StringDescription().appendValue(_exampleGroup_2).toString() + "\n", _doubleArrow);

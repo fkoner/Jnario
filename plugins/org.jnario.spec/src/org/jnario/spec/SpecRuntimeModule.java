@@ -55,7 +55,6 @@ import org.jnario.doc.AbstractDocGenerator;
 import org.jnario.doc.DocOutputConfigurationProvider;
 import org.jnario.generator.JnarioJavaIoFileSystemAccess;
 import org.jnario.jvmmodel.ExecutableProvider;
-import org.jnario.jvmmodel.ExtendedJvmModelGenerator;
 import org.jnario.jvmmodel.ExtendedJvmTypesBuilder;
 import org.jnario.jvmmodel.JnarioDispatchUtil;
 import org.jnario.jvmmodel.JnarioNameProvider;
@@ -70,14 +69,15 @@ import org.jnario.spec.compiler.SpecBatchCompiler;
 import org.jnario.spec.conversion.SpecValueConverterService;
 import org.jnario.spec.doc.SpecDocGenerator;
 import org.jnario.spec.jvmmodel.SpecExecutableProvider;
+import org.jnario.spec.jvmmodel.SpecJvmModelGenerator;
 import org.jnario.spec.jvmmodel.SpecJvmModelInferrer;
 import org.jnario.spec.jvmmodel.SpecSyntheticNameClashResolver;
 import org.jnario.spec.naming.ExampleNameProvider;
 import org.jnario.spec.naming.SpecQualifiedNameProvider;
 import org.jnario.spec.scoping.SpecResourceDescriptionStrategy;
 import org.jnario.spec.scoping.SpecScopeProvider;
+import org.jnario.spec.typing.SpecTypeProvider;
 import org.jnario.spec.validation.SpecClassPathBasedChecks;
-import org.jnario.typing.JnarioTypeProvider;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -112,7 +112,7 @@ public class SpecRuntimeModule extends org.jnario.spec.AbstractSpecRuntimeModule
 	}
 	
 	public Class<? extends JvmModelGenerator> bindJvmModelGenerator(){
-		return ExtendedJvmModelGenerator.class;
+		return SpecJvmModelGenerator.class;
 	}
 	
 	@Override
@@ -126,7 +126,7 @@ public class SpecRuntimeModule extends org.jnario.spec.AbstractSpecRuntimeModule
 	
 	@Override
 	public Class<? extends ITypeProvider> bindITypeProvider() {
-		return JnarioTypeProvider.class;
+		return SpecTypeProvider.class;
 	}
 	
 	@Override

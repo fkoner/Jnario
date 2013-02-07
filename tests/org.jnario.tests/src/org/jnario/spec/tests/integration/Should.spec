@@ -72,7 +72,7 @@ describe "Using Should"{
 	 */
 	fact "...or not to pass"{
 	  1 + 1 should be 1 throws AssertionError
-	  1 + 1 should not be 1 throws AssertionError
+	  1 + 1 should not be 2 throws AssertionError
 	  1 + 1 => 1 throws AssertionError
 	  new Object => null throws AssertionError
 	  new Object should be null throws AssertionError
@@ -115,9 +115,6 @@ describe "Using Should"{
 		(assert aString != null && aString.length == 0) throws NullPointerException 
 	}
 	
-	
-		
-    
 	/*
 	 * You can also the `should` and `=>` together with [hamcrest](http://code.google.com/p/hamcrest/) 
 	 * matchers. The following static import statements are needed to run the examples:

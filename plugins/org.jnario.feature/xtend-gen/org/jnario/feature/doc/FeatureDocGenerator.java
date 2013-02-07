@@ -1,7 +1,6 @@
 package org.jnario.feature.doc;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -38,8 +37,8 @@ public class FeatureDocGenerator extends AbstractDocGenerator {
     final Feature feature = ((Feature) xtendClass);
     final Procedure1<HtmlFile> _function = new Procedure1<HtmlFile>() {
         public void apply(final HtmlFile it) {
-          String _className = FeatureDocGenerator.this._featureClassNameProvider.getClassName(feature);
-          it.setName(_className);
+          String _javaClassName = FeatureDocGenerator.this._featureClassNameProvider.toJavaClassName(feature);
+          it.setName(_javaClassName);
           String _name = feature.getName();
           it.setTitle(_name);
           CharSequence _generateContent = FeatureDocGenerator.this.generateContent(feature);
@@ -108,8 +107,7 @@ public class FeatureDocGenerator extends AbstractDocGenerator {
     _builder.append("</h3>");
     _builder.newLineIfNotEmpty();
     EList<Step> _steps = scenario.getSteps();
-    Iterable<Step> _filter = Iterables.<Step>filter(_steps, Step.class);
-    CharSequence _generate = this.generate(_filter);
+    CharSequence _generate = this.generate(_steps);
     _builder.append(_generate, "");
     _builder.append("</div>");
     _builder.newLineIfNotEmpty();
@@ -127,16 +125,6 @@ public class FeatureDocGenerator extends AbstractDocGenerator {
         _builder.append(_generate, "");
         _builder.append("</li>");
         _builder.newLineIfNotEmpty();
-        {
-          EList<Step> _and = step.getAnd();
-          for(final Step and : _and) {
-            _builder.append("<li>");
-            CharSequence _generate_1 = this.generate(and);
-            _builder.append(_generate_1, "");
-            _builder.append("</li>");
-            _builder.newLineIfNotEmpty();
-          }
-        }
       }
     }
     _builder.append("</ul>");
@@ -211,16 +199,16 @@ public class FeatureDocGenerator extends AbstractDocGenerator {
     return _builder;
   }
   
-  public CharSequence generate(final Object scenario) {
-    if (scenario instanceof Scenario) {
-      return _generate((Scenario)scenario);
-    } else if (scenario instanceof Step) {
-      return _generate((Step)scenario);
-    } else if (scenario instanceof Iterable) {
-      return _generate((Iterable<Step>)scenario);
+  public CharSequence generate(final Object step) {
+    if (step instanceof Step) {
+      return _generate((Step)step);
+    } else if (step instanceof Scenario) {
+      return _generate((Scenario)step);
+    } else if (step instanceof Iterable) {
+      return _generate((Iterable<Step>)step);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(scenario).toString());
+        Arrays.<Object>asList(step).toString());
     }
   }
 }

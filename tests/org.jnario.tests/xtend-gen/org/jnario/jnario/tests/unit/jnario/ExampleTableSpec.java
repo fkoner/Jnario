@@ -7,18 +7,18 @@ import org.jnario.ExampleTable;
 import org.jnario.jnario.test.util.ModelStore;
 import org.jnario.jnario.test.util.Query;
 import org.jnario.jnario.test.util.SpecTestCreator;
+import org.jnario.lib.Assert;
 import org.jnario.runner.CreateWith;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Extension;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("ExampleTable")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SpecTestCreator.class)
 public class ExampleTableSpec {
   @Inject
@@ -27,7 +27,7 @@ public class ExampleTableSpec {
   
   @Test
   @Named("is valid if all rows have the same number of columns")
-  @Order(0)
+  @Order(1)
   public void _isValidIfAllRowsHaveTheSameNumberOfColumns() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package bootstrap");
@@ -57,14 +57,13 @@ public class ExampleTableSpec {
     boolean _isValid = _first.isValid();
     Assert.assertTrue("\nExpected query.first(typeof(ExampleTable)).isValid() but"
      + "\n     query.first(typeof(ExampleTable)) is " + new StringDescription().appendValue(_first).toString()
-     + "\n     query is " + new StringDescription().appendValue(_query).toString()
-     + "\n      is " + new StringDescription().appendValue(this._modelStore).toString() + "\n", _isValid);
+     + "\n     query is " + new StringDescription().appendValue(_query).toString() + "\n", _isValid);
     
   }
   
   @Test
   @Named("is invalid if one row has a different number of columns")
-  @Order(1)
+  @Order(2)
   public void _isInvalidIfOneRowHasADifferentNumberOfColumns() throws Exception {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package bootstrap");
@@ -96,8 +95,7 @@ public class ExampleTableSpec {
     Assert.assertTrue("\nExpected !query.first(typeof(ExampleTable)).isValid() but"
      + "\n     query.first(typeof(ExampleTable)).isValid() is " + new StringDescription().appendValue(_isValid).toString()
      + "\n     query.first(typeof(ExampleTable)) is " + new StringDescription().appendValue(_first).toString()
-     + "\n     query is " + new StringDescription().appendValue(_query).toString()
-     + "\n      is " + new StringDescription().appendValue(this._modelStore).toString() + "\n", _not);
+     + "\n     query is " + new StringDescription().appendValue(_query).toString() + "\n", _not);
     
   }
 }

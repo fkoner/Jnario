@@ -2,6 +2,7 @@ package org.jnario.feature.jvmmodel;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
+import org.eclipse.xtend.core.xtend.XtendField;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
 import org.eclipse.xtext.xbase.XExpression;
 import org.eclipse.xtext.xbase.jvmmodel.IJvmModelAssociator;
@@ -14,7 +15,7 @@ public class ExpressionCopier{
 	
 	private class Implementation extends Copier{
 		public Implementation() {
-			super(false);
+			super(true);
 		}
 		
 		@Override
@@ -23,11 +24,15 @@ public class ExpressionCopier{
 			modelAssociator.associate(source, target);
 			if (source instanceof XAbstractFeatureCall) {
 				XAbstractFeatureCall sourceFeatureCall = (XAbstractFeatureCall) source;
+				((XAbstractFeatureCall) source).getFeature();
 				XAbstractFeatureCall targetFeatureCall = (XAbstractFeatureCall) target;
 				targetFeatureCall.setImplicitFirstArgument((XExpression) copy(sourceFeatureCall.getImplicitFirstArgument()));
 				targetFeatureCall.setImplicitReceiver((XExpression) copy(sourceFeatureCall.getImplicitReceiver()));
 			}
 			if(source instanceof XExpression){
+				SourceAdapter.adapt(target, source);
+			}
+			if(source instanceof XtendField){
 				SourceAdapter.adapt(target, source);
 			}
 			return target;

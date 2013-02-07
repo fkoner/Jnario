@@ -13,14 +13,10 @@ public class StepImplCustom extends StepImpl {
 
 	@Override
 	public boolean isPending() {
-		if(getStepExpression() == null){
+		if(getExpression() == null){
 			return true;
 		}
-		XBlockExpression blockExpression = getStepExpression().getBlockExpression();
-		if(blockExpression == null){
-			return true;
-		}
-		return blockExpression.getExpressions().isEmpty();
+		return ((XBlockExpression)getExpression()).getExpressions().isEmpty();
 	}
 	
 }

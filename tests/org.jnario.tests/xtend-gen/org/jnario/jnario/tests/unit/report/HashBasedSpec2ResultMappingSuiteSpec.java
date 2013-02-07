@@ -9,13 +9,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Suite")
+@RunWith(ExampleGroupRunner.class)
 public class HashBasedSpec2ResultMappingSuiteSpec extends HashBasedSpec2ResultMappingSpec {
   @Test
   @Ignore
   @Named("matches referenced suites [PENDING]")
-  @Order(22)
+  @Order(23)
   public void _matchesReferencedSuites() throws Exception {
     throw new UnsupportedOperationException("_matchesReferencedSuitesis not implemented");
   }

@@ -8,19 +8,19 @@ import org.hamcrest.StringDescription;
 import org.jnario.doc.DocOutputConfigurationProvider;
 import org.jnario.doc.HtmlAssets;
 import org.jnario.jnario.test.util.SpecTestCreator;
+import org.jnario.lib.Assert;
 import org.jnario.runner.CreateWith;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.runner.Subject;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("HtmlAssets")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SpecTestCreator.class)
 public class HtmlAssetsSpec {
   @Subject
@@ -36,7 +36,7 @@ public class HtmlAssetsSpec {
   
   @Test
   @Named("generates java script helper files")
-  @Order(0)
+  @Order(1)
   public void _generatesJavaScriptHelperFiles() throws Exception {
     String _generatedFile = this.generatedFile("js/prettify.js");
     boolean _notEquals = (!Objects.equal(_generatedFile, null));
@@ -52,7 +52,7 @@ public class HtmlAssetsSpec {
   
   @Test
   @Named("generates css helper files")
-  @Order(1)
+  @Order(2)
   public void _generatesCssHelperFiles() throws Exception {
     String _generatedFile = this.generatedFile("css/bootstrap-responsive.min.css");
     boolean _notEquals = (!Objects.equal(_generatedFile, null));

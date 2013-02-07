@@ -5,21 +5,21 @@ import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 import org.hamcrest.StringDescription;
 import org.jnario.feature.tests.unit.conversion.FeatureValueConverterSpec;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("toString")
+@RunWith(ExampleGroupRunner.class)
 public class FeatureValueConverterToStringSpec extends FeatureValueConverterSpec {
   @Test
   @Named("subject.toString[\\\"text\\\"] should be \\\"Prefix:text\\\" + Strings::newLine")
-  @Order(3)
+  @Order(4)
   public void _subjectToStringTextShouldBePrefixTextStringsNewLine() throws Exception {
     String _string = this.subject.toString("text");
     String _newLine = Strings.newLine();
@@ -35,7 +35,7 @@ public class FeatureValueConverterToStringSpec extends FeatureValueConverterSpec
   
   @Test
   @Named("subject.toString[null] should be null")
-  @Order(4)
+  @Order(5)
   public void _subjectToStringNullShouldBeNull() throws Exception {
     String _string = this.subject.toString(null);
     Matcher<String> _nullValue = CoreMatchers.<String>nullValue();

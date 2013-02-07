@@ -6,6 +6,7 @@ import org.eclipse.xtext.util.Files;
 import org.hamcrest.StringDescription;
 import org.jnario.compiler.HtmlAssetsCompiler;
 import org.jnario.jnario.test.util.SpecTestCreator;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.CreateWith;
 import org.jnario.runner.ExampleGroupRunner;
@@ -13,15 +14,14 @@ import org.jnario.runner.Extension;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.runner.Subject;
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("HtmlAssetsCompiler")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = SpecTestCreator.class)
 public class HtmlAssetsCompilerSpec {
   @Subject
@@ -34,7 +34,7 @@ public class HtmlAssetsCompilerSpec {
   
   @Test
   @Named("compiles css & js files to specified folder")
-  @Order(0)
+  @Order(1)
   public void _compilesCssJsFilesToSpecifiedFolder() throws Exception {
     this.doCompile();
     File _file = this.file("js/prettify.js");
@@ -51,7 +51,7 @@ public class HtmlAssetsCompilerSpec {
   
   @Test
   @Named("does not override existing file")
-  @Order(1)
+  @Order(2)
   public void _doesNotOverrideExistingFile() throws Exception {
     this.mkdir("js");
     File _file = this.file("js/prettify.js");

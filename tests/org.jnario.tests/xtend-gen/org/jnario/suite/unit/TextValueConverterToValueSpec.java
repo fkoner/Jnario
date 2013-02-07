@@ -1,22 +1,22 @@
 package org.jnario.suite.unit;
 
 import org.hamcrest.StringDescription;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
 import org.jnario.suite.unit.TextValueConverterSpec;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("toValue")
+@RunWith(ExampleGroupRunner.class)
 public class TextValueConverterToValueSpec extends TextValueConverterSpec {
   @Test
   @Named("removes colon")
-  @Order(3)
+  @Order(4)
   public void _removesColon() throws Exception {
     String _value = this.subject.toValue(":suite", null);
     boolean _doubleArrow = Should.operator_doubleArrow(_value, "suite");
@@ -28,7 +28,7 @@ public class TextValueConverterToValueSpec extends TextValueConverterSpec {
   
   @Test
   @Named("removes whitespace after colon")
-  @Order(4)
+  @Order(5)
   public void _removesWhitespaceAfterColon() throws Exception {
     String _value = this.subject.toValue(": suite", null);
     boolean _doubleArrow = Should.operator_doubleArrow(_value, "suite");
@@ -40,7 +40,7 @@ public class TextValueConverterToValueSpec extends TextValueConverterSpec {
   
   @Test
   @Named("removes escape character for dashes")
-  @Order(5)
+  @Order(6)
   public void _removesEscapeCharacterForDashes() throws Exception {
     String _value = this.subject.toValue(":suite \\- with dash", null);
     boolean _doubleArrow = Should.operator_doubleArrow(_value, "suite - with dash");
@@ -52,7 +52,7 @@ public class TextValueConverterToValueSpec extends TextValueConverterSpec {
   
   @Test
   @Named("removes escape character for  hashs")
-  @Order(6)
+  @Order(7)
   public void _removesEscapeCharacterForHashs() throws Exception {
     String _value = this.subject.toValue(":suite \\# with hash", null);
     boolean _doubleArrow = Should.operator_doubleArrow(_value, "suite # with hash");

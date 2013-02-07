@@ -5,6 +5,7 @@ import org.hamcrest.StringDescription;
 import org.jnario.feature.feature.Scenario;
 import org.jnario.jnario.test.util.FeatureTestCreator;
 import org.jnario.jnario.tests.unit.report.HashBasedSpec2ResultMappingSpec;
+import org.jnario.lib.Assert;
 import org.jnario.lib.Should;
 import org.jnario.report.Failed;
 import org.jnario.report.Passed;
@@ -13,14 +14,13 @@ import org.jnario.runner.CreateWith;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Scenario")
+@RunWith(ExampleGroupRunner.class)
 @CreateWith(value = FeatureTestCreator.class)
 public class HashBasedSpec2ResultMappingScenarioSpec extends HashBasedSpec2ResultMappingSpec {
   @Before
@@ -47,7 +47,7 @@ public class HashBasedSpec2ResultMappingScenarioSpec extends HashBasedSpec2Resul
   
   @Test
   @Named("returns **Passed** if all children passed")
-  @Order(16)
+  @Order(17)
   public void _returnsPassedIfAllChildrenPassed() throws Exception {
     this.passedStep("Given my Step");
     this.passedStep("And other Step");
@@ -62,7 +62,7 @@ public class HashBasedSpec2ResultMappingScenarioSpec extends HashBasedSpec2Resul
   
   @Test
   @Named("returns **Failed** if one child failed")
-  @Order(17)
+  @Order(18)
   public void _returnsFailedIfOneChildFailed() throws Exception {
     this.passedStep("Given my Step");
     this.failedStep("And other Step");

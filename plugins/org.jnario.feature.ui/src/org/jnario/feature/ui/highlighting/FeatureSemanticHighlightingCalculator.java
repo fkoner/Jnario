@@ -29,7 +29,6 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.xbase.XAbstractFeatureCall;
-import org.eclipse.xtext.xbase.XBlockExpression;
 import org.eclipse.xtext.xbase.XNumberLiteral;
 import org.eclipse.xtext.xbase.annotations.xAnnotations.XAnnotation;
 import org.jnario.ExampleTable;
@@ -37,7 +36,6 @@ import org.jnario.feature.feature.Feature;
 import org.jnario.feature.feature.FeaturePackage;
 import org.jnario.feature.feature.Scenario;
 import org.jnario.feature.feature.Step;
-import org.jnario.feature.feature.StepExpression;
 import org.jnario.feature.feature.StepReference;
 import org.jnario.feature.feature.util.FeatureSwitch;
 import org.jnario.feature.jvmmodel.StepArgumentsProvider;
@@ -60,13 +58,6 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 		}
 		
 		
-		@Override
-		public Boolean caseStepExpression(StepExpression object) {
-			XBlockExpression expression = object.getBlockExpression();
-			highlightRichStrings(expression, acceptor);
-			return Boolean.TRUE;
-		}
-
 		@Override
 		public Boolean caseScenario(Scenario scenario) {
 			for (XtendMember member : scenario.getMembers()) {
@@ -109,8 +100,8 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 		public Boolean caseStep(Step step) {
 			String description;
 			if(step != null && step.getName() != null){
-				description = getFirstWord(stepReferenceName(step, FeaturePackage.Literals.STEP__NAME));
-				highlightStep(description, step, FeaturePackage.Literals.STEP__NAME);
+				description = getFirstWord(stepReferenceName(step, XtendPackage.Literals.XTEND_FUNCTION__NAME));
+				highlightStep(description, step, XtendPackage.Literals.XTEND_FUNCTION__NAME);
 			}else if(step instanceof StepReference){
 				StepReference ref = (StepReference) step;
 				highlightFirstWordOfReference(ref, ref.getReference());
@@ -172,7 +163,7 @@ public class FeatureSemanticHighlightingCalculator extends JnarioHighlightingCal
 			}
 			else{
 				name = step.getName();
-				offset = offset(step, FeaturePackage.Literals.STEP__NAME);
+				offset = offset(step, XtendPackage.Literals.XTEND_FUNCTION__NAME);
 			}
 			if(name != null){
 				argumentsProvider.findStepArguments(step, new StepArgumentsProvider.ArgumentAcceptor() {

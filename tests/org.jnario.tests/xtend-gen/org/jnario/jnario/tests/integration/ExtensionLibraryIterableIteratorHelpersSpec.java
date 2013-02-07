@@ -6,6 +6,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.hamcrest.StringDescription;
 import org.jnario.jnario.tests.integration.ExtensionLibrarySpec;
+import org.jnario.lib.Assert;
 import org.jnario.lib.JnarioCollectionLiterals;
 import org.jnario.lib.JnarioIterableExtensions;
 import org.jnario.lib.JnarioIteratorExtensions;
@@ -13,7 +14,6 @@ import org.jnario.lib.Should;
 import org.jnario.runner.ExampleGroupRunner;
 import org.jnario.runner.Named;
 import org.jnario.runner.Order;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -23,8 +23,8 @@ import org.junit.runner.RunWith;
  * methods to simplify accessing elements by index.
  */
 @SuppressWarnings("all")
-@RunWith(ExampleGroupRunner.class)
 @Named("Iterable & Iterator Helpers")
+@RunWith(ExampleGroupRunner.class)
 public class ExtensionLibraryIterableIteratorHelpersSpec extends ExtensionLibrarySpec {
   /**
    * Accessing elements in iterables by index or type.
@@ -32,7 +32,7 @@ public class ExtensionLibraryIterableIteratorHelpersSpec extends ExtensionLibrar
    */
   @Test
   @Named("Iterables")
-  @Order(3)
+  @Order(4)
   public void _iterables() throws Exception {
     final List<Integer> values = JnarioCollectionLiterals.<Integer>list(Integer.valueOf(1), Integer.valueOf(2), Integer.valueOf(3), Integer.valueOf(4), Integer.valueOf(5));
     Integer _first = JnarioIterableExtensions.<Integer>first(values);
@@ -99,7 +99,7 @@ public class ExtensionLibraryIterableIteratorHelpersSpec extends ExtensionLibrar
    */
   @Test
   @Named("Iterators")
-  @Order(4)
+  @Order(5)
   public void _iterators() throws Exception {
     final List<Integer> values = JnarioCollectionLiterals.<Integer>list(Integer.valueOf(1), Integer.valueOf(2), Integer.valueOf(3), Integer.valueOf(4), Integer.valueOf(5));
     Iterator<Integer> _iterator = values.iterator();

@@ -28,14 +28,12 @@ Feature: Setup & Teardown with Feature Extensions
     var CharSequence feature
     var ConsoleRecorder recorder
 
-    Given a class **ExampleExtension** with JUnit before and after methods:
+/*    Given a class **ExampleExtension** with JUnit before and after methods:
       ''' 
         package org.jnario.feature.tests.integration
-  
+
         import org.junit.Before
-        import org.junit.BeforeClass
         import org.junit.After
-        import org.junit.AfterClass
         
         class ExampleExtension {
           @Before def before(){
@@ -45,8 +43,15 @@ Feature: Setup & Teardown with Feature Extensions
           @After def after(){
             println("after")
           }
+//          @BeforeClass def beforeAll(){
+//            println("before all")
+//          }
+//  
+//          @AfterClass def afterAll(){
+//            println("after all")
+//          }
         }
-      ''' 
+      ''' */
     When I declare an extension field of type **ExampleExtension** in the background
           '''
         import org.jnario.feature.tests.integration.ExampleExtension
@@ -54,8 +59,7 @@ Feature: Setup & Teardown with Feature Extensions
         Feature: Feature with extensions
           
           Background: A common extension to all scenarios
-              extension ExampleExtension = new ExampleExtension 
-            Given a static extension field
+              extension static ExampleExtension = new ExampleExtension 
             
           Scenario: Scenario 1
             Given a step 
